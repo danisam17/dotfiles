@@ -36,4 +36,17 @@ t() {
   fi
 }
 
+mux() {
+  name=$(tmux ls -F "#{session_name}")
+  if [ -z "$name" ]; then
+    tmux new
+  else
+    echo "found $name. join?"
+    read "answer?join this session [y/n]? "
+    if [[ $answer = y ]] ; then
+      tmux at -t $name
+    fi
+  fi
+}
+
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
