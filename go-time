@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+blacklist = %w(. .. .git go-time README.md)
+home = "#{Dir.home}/"
+
+Dir.foreach(home+".dotfiles") do |item|
+  next if blacklist.include? item 
+  if File.exists?(home+".#{item}")
+    puts "#{ item } is already symlinked. skipping"
+  else
+    puts "symlinking #{ item }"
+    File.symlink("#{Dir.pwd}/#{item}", home+".#{ item }")
+  end
+end
