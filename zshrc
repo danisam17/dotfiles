@@ -27,6 +27,7 @@ alias gd="g di"
 alias gs="g st"
 alias l=ls
 alias ls="ls -Ga"
+alias v=vim
 
 t() {
   if [ -e script/test ]; then
@@ -45,6 +46,8 @@ mux() {
     read "answer?join this session [y/n]? "
     if [[ $answer = y ]] ; then
       tmux at -t $name
+    else
+      tmux new
     fi
   fi
 }
