@@ -1,10 +1,10 @@
 #!/usr/bin/env ruby
 
-blacklist = %w(. .. .git go-time README.md)
+blacklist = %w(. .. .git .gitignore go-time README.md)
 home = ENV["HOME"]+"/"
 
 Dir.foreach(home+".dotfiles") do |item|
-  next if blacklist.include? item 
+  next if blacklist.include? item
   if File.exists?(home+".#{item}")
     puts "#{ item } is already symlinked. skipping"
   else

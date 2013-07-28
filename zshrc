@@ -28,6 +28,7 @@ alias gs="g st"
 alias l=ls
 alias ls="ls -Ga"
 alias v=vim
+alias ve="vim ~/.vimrc"
 
 t() {
   if [ -e script/test ]; then

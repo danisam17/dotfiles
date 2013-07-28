@@ -4,6 +4,7 @@ call vundle#rc()
 " required!
 Bundle 'gmarik/vundle'
 Bundle 'christoomey/vim-tmux-navigator'
+Bundle 'wincent/Command-T'
 filetype plugin indent on     " required!
 
 set clipboard=unnamed
