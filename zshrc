@@ -19,8 +19,12 @@ export ACK_COLOR_MATCH='red'
 
 ###alias
 
+alias gac="git add . && git commit"
+alias am="g amend"
 alias die="exec $SHELL -l"
 alias g=git
+alias gd="g di"
+alias gs="g st"
 alias l=ls
 alias ls="ls -Ga"
 
@@ -32,4 +36,4 @@ t() {
   fi
 }
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"

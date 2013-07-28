@@ -1,3 +1,13 @@
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
+Bundle 'christoomey/vim-tmux-navigator'
+filetype plugin indent on     " required!
+
+set clipboard=unnamed
+
 set nocompatible
 set modelines=0
 set tabstop=2
@@ -19,13 +29,16 @@ set ruler
 set backspace=indent,eol,start
 set laststatus=2
 set relativenumber
+
 set undofile
 set undodir=~/.vim/undo " where to save undo histories
 set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
+
 let mapleader = ","
 nnoremap / /\v
 vnoremap / /\v
+
 set ignorecase
 set smartcase
 set gdefault
@@ -35,12 +48,14 @@ set hlsearch
 nnoremap <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
+
 set wrap
 set textwidth=79
 set formatoptions=qrn1
 set colorcolumn=85
 set list
 set listchars=tab:▸\ ,eol:¬
+
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
@@ -51,11 +66,10 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
-inoremap <F1> <ESC>
-nnoremap <F1> <ESC>
-vnoremap <F1> <ESC>
 nnoremap ; :
+
 au FocusLost * :wa
+
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 nnoremap <leader>a :Ack
 nnoremap <leader>ft Vatzf
@@ -68,3 +82,4 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+autocmd BufWritePre * :%s/\s\+$//e
