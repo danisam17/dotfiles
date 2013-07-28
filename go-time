@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 blacklist = %w(. .. .git go-time README.md)
-home = "#{Dir.home}/"
+home = ENV["HOME"]+"/"
 
 Dir.foreach(home+".dotfiles") do |item|
   next if blacklist.include? item 
