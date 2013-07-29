@@ -29,6 +29,11 @@ alias l=ls
 alias ls="ls -Ga"
 alias v=vim
 alias ve="vim ~/.vimrc"
+alias ze="vim ~/.zshrc"
+
+f() {
+  ack $1 -k *
+}
 
 t() {
   if [ -e script/test ]; then
