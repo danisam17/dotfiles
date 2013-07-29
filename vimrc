@@ -5,9 +5,11 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'wincent/Command-T'
+Bundle 'tpope/vim-rails'
 filetype plugin indent on     " required!
 
 set clipboard=unnamed
+syntax on
 
 set nocompatible
 set modelines=0
@@ -39,6 +41,7 @@ set undoreload=10000        " number of lines to save for undo
 let mapleader = ","
 nnoremap / /\v
 vnoremap / /\v
+nnoremap <leader><leader> <c-^>
 
 set ignorecase
 set smartcase
