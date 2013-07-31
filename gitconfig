@@ -53,3 +53,5 @@
 	helper = osxkeychain
 [push]
 	default = matching
+[core]
+	editor = vim

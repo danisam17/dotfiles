@@ -31,6 +31,7 @@ alias less="vim -u ~/.vimrc.more"
 alias ls="ls -Ga"
 alias v=vim
 alias ve="vim ~/.vimrc"
+alias vi=vim
 alias ze="vim ~/.zshrc"
 
 f() {
