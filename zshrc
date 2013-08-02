@@ -1,10 +1,4 @@
-setopt PROMPT_SUBST
-autoload -U promptinit
-promptinit
-prompt grb
-
-autoload -U compinit
-compinit
+ZSH_THEME="kennethreitz"
 
 export PATH=/usr/local/bin:${PATH}
 export PATH="$HOME/bin:$PATH"
@@ -63,3 +57,9 @@ mux() {
 
 eval "$(hub alias -s)"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+
+ZSH=$HOME/.oh-my-zsh
+source $ZSH/oh-my-zsh.sh
+
+# Customize to your needs...
+export PATH=$PATH:/usr/local/bin:/Users/kristian/.rvm/gems/ruby-2.0.0-p247/bin:/Users/kristian/.rvm/gems/ruby-2.0.0-p247@global/bin:/Users/kristian/.rvm/rubies/ruby-2.0.0-p247/bin:/Users/kristian/.rvm/bin:/Users/kristian/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin
