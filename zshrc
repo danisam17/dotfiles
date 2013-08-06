@@ -15,6 +15,7 @@ export ACK_COLOR_MATCH='red'
 
 alias gac="git add . && git commit"
 alias am="g amend"
+alias c=cd
 alias die="exec $SHELL -l"
 alias g=git
 alias gd="g di"
@@ -62,4 +63,4 @@ ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=$PATH:/usr/local/bin:/Users/kristian/.rvm/gems/ruby-2.0.0-p247/bin:/Users/kristian/.rvm/gems/ruby-2.0.0-p247@global/bin:/Users/kristian/.rvm/rubies/ruby-2.0.0-p247/bin:/Users/kristian/.rvm/bin:/Users/kristian/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin
+export PATH=$PATH:/usr/local/bin:/usr/local/share/npm/bin:/usr/local/packer:/Users/kristian/.rvm/gems/ruby-2.0.0-p247/bin:/Users/kristian/.rvm/gems/ruby-2.0.0-p247@global/bin:/Users/kristian/.rvm/rubies/ruby-2.0.0-p247/bin:/Users/kristian/.rvm/bin:/Users/kristian/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin
