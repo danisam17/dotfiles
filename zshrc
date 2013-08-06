@@ -18,6 +18,7 @@ alias am="g amend"
 alias c=cd
 alias die="exec $SHELL -l"
 alias g=git
+alias gc="g clone"
 alias gd="g di"
 alias gpp="git pull --rebase; git push"
 alias gs="g st"
@@ -57,10 +58,14 @@ mux() {
 }
 
 eval "$(hub alias -s)"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=$PATH:/usr/local/bin:/usr/local/share/npm/bin:/usr/local/packer:/Users/kristian/.rvm/gems/ruby-2.0.0-p247/bin:/Users/kristian/.rvm/gems/ruby-2.0.0-p247@global/bin:/Users/kristian/.rvm/rubies/ruby-2.0.0-p247/bin:/Users/kristian/.rvm/bin:/Users/kristian/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin
+export PATH=$PATH:/usr/local/bin:/usr/local/share/npm/bin:/Users/kristian/bin:/usr/bin:/usr/local/share/npm/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin
+export NODE_PATH="/usr/local/lib/node"
+
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
+chruby ruby-2.0.0
