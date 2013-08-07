@@ -6,6 +6,7 @@ Bundle 'gmarik/vundle'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'wincent/Command-T'
 Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-dispatch'
 Bundle 'bling/vim-airline'
 filetype plugin indent on     " required!
 
@@ -92,3 +93,114 @@ autocmd BufWritePre * :%s/\s\+$//e
 nmap <leader>rh :%s/\v:(\w+) \=\>/\1:/g<cr>
 
 let g:airline_theme='luna'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SWITCH BETWEEN TEST AND PRODUCTION CODE
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" TODO: Make better for handling test/unit, etc
+function! OpenTestAlternate()
+  let new_file = AlternateForCurrentFile()
+  exec ':e ' . new_file
+endfunction
+function! AlternateForCurrentFile()
+  let current_file = expand("%")
+  let new_file = current_file
+  let in_engine = match(current_file, '^engines') != -1
+
+  let in_spec = match(current_file, '^spec/') != -1 ||
+        \ match(current_file, '^engines/.\+/spec/') != -1
+  let going_to_spec = !in_spec
+  let in_app = match(current_file, '\<controllers\>') != -1 ||
+        \ match(current_file, '\<models\>') != -1 ||
+        \ match(current_file, '\<views\>') != -1 ||
+        \ match(current_file, '\<helpers\>') != -1 ||
+        \ match(current_file, '\<decorators\>') != -1 ||
+        \ match(current_file, '\<presenters\>') != -1 ||
+        \ match(current_file, '\<uploaders\>') != -1
+
+  if in_engine
+    " TODO: use :A for test/unit, etc
+    exec ":A"
+  else
+    if going_to_spec
+      if in_app
+        let new_file = substitute(new_file, '^app/', '', '')
+      end
+      let new_file = substitute(new_file, '\.rb$', '_spec.rb', '')
+      let new_file = 'spec/' . new_file
+    else
+      let new_file = substitute(new_file, '\(_spec\|_test\)\.rb$', '.rb', '')
+      let new_file = substitute(new_file, '^\(spec\|test\)/', '', '')
+      if in_app
+        let new_file = 'app/' . new_file
+      end
+    endif
+  endif
+  return new_file
+endfunction
+
+" Trying out just :A always to see how that goes
+" Maybe I'll end up wanting it for rails projects, but then OpenTestAlternate
+" for non-rails projects
+" nnoremap <leader>. :A<cr>
+nnoremap <leader>. :call OpenTestAlternate()<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" RUNNING TESTS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>r :call RunTestFile()<cr>
+map <leader>R :call RunNearestTest()<cr>
+map <leader>a :call RunTests('')<cr>
+
+function! RunTestFile(...)
+    if a:0
+        let command_suffix = a:1
+    else
+        let command_suffix = ""
+    endif
+
+    " Run the tests for the previously-marked file.
+    let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|_test.rb\)$') != -1
+    if in_test_file
+        call SetTestFile()
+    elseif !exists("t:grb_test_file")
+        return
+    end
+    call RunTests(t:grb_test_file . command_suffix)
+endfunction
+
+function! RunNearestTest()
+    let spec_line_number = line('.')
+    call RunTestFile(":" . spec_line_number . " -b")
+endfunction
+
+function! SetTestFile()
+    " Set the spec file that tests will be run for.
+    let t:grb_test_file=@%
+endfunction
+
+function! DispatchTests(command)
+  let command = a:command
+
+  " if filereadable(".ruby-version")
+  "   let ruby_version = "`cat .ruby-version`"
+  "   if filereadable(".ruby-gemset")
+  "     let ruby_version = ruby . "@`cat .ruby-gemset`"
+  "   endif
+  " endif
+
+
+  exec ":Dispatch " . a:command
+endfunction
+
+function! RunTests(filename)
+    :w
+    if filereadable("script/test")
+      call DispatchTests("script/test " . a:filename)
+    elseif filereadable("Gemfile")
+      call DispatchTests("bundle exec rspec --color " . a:filename)
+    else
+      call DispatchTests("rspec --color " . a:filename)
+    end
+endfunction
