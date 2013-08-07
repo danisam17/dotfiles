@@ -6,11 +6,13 @@ Bundle 'gmarik/vundle'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'wincent/Command-T'
 Bundle 'tpope/vim-rails'
+Bundle 'bling/vim-airline'
 filetype plugin indent on     " required!
 
 set clipboard=unnamed
 syntax on
 
+set t_Co=256
 set nocompatible
 set modelines=0
 set tabstop=2
@@ -88,3 +90,5 @@ nnoremap <C-l> <C-w>l
 
 autocmd BufWritePre * :%s/\s\+$//e
 nmap <leader>rh :%s/\v:(\w+) \=\>/\1:/g<cr>
+
+let g:airline_theme='luna'
