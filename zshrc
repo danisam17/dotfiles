@@ -11,51 +11,8 @@ export SAVEHIST=$HISTSIZE
 export WORDCHARS='*?[]~&;!$%^<>'
 export ACK_COLOR_MATCH='red'
 
-###alias
-
-alias gac="git add . && git commit"
-alias am="g amend"
-alias c=cd
-alias die="exec $SHELL -l"
-alias g=git
-alias gc="g clone"
-alias gd="g di"
-alias gpp="git pull --rebase; git push"
-alias gs="g st"
-alias l=ls
-alias less="vim -u ~/.vimrc.more"
-alias ls="ls -Ga"
-alias v=vim
-alias ve="vim ~/.vimrc"
-alias vi=vim
-alias ze="vim ~/.zshrc"
-
-f() {
-  ack $1 -k *
-}
-
-t() {
-  if [ -e script/test ]; then
-    script/test $*
-  else
-    rspec --color spec
-  fi
-}
-
-mux() {
-  name=$(tmux ls -F "#{session_name}")
-  if [ -z "$name" ]; then
-    tmux new
-  else
-    echo "found $name. join?"
-    read "answer?join this session [y/n]? "
-    if [[ $answer = y ]] ; then
-      tmux at -t $name
-    else
-      tmux new
-    fi
-  fi
-}
+source $HOME/.zsh/aliases
+source $HOME/.zsh/functions
 
 eval "$(hub alias -s)"
 

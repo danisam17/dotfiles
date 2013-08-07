@@ -1,0 +1,17 @@
+alias am="g amend"
+alias die="exec $SHELL -l"
+alias g=git
+alias gac="git add . && git commit"
+alias gd="g di"
+alias gpp="git pull --rebase; git push"
+alias gs="g st"
+alias gu="git add --update :/"
+alias l=ls
+alias less="vim -u ~/.vimrc.more"
+alias ls="ls -Ga"
+alias rcr="rake db:create"
+alias rmi="rake db:migrate"
+alias v=vim
+alias ve="vim ~/.vimrc"
+alias vi=vim
+alias ze="vim ~/.zshrc"
