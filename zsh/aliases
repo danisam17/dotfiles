@@ -3,9 +3,10 @@ alias die="exec $SHELL -l"
 alias g=git
 alias gc="git clone"
 alias gac="git add . && git commit"
-alias gd="g di"
+alias gd="git diff"
+alias gdf="git difftool --no-prompt --tool=vimdiff"
 alias gpp="git pull --rebase; git push"
-alias gs="g st"
+alias gs="git st"
 alias gu="git add --update :/"
 alias l=ls
 alias less="vim -u ~/.vimrc.more"
