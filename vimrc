@@ -87,3 +87,4 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 autocmd BufWritePre * :%s/\s\+$//e
+nmap <leader>rh :%s/\v:(\w+) \=\>/\1:/g<cr>
