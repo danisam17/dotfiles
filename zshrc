@@ -11,6 +11,8 @@ export SAVEHIST=$HISTSIZE
 export WORDCHARS='*?[]~&;!$%^<>'
 export ACK_COLOR_MATCH='red'
 
+DISABLE_AUTO_TITLE=true # shut the eff up ugh
+
 source $HOME/.zsh/aliases
 source $HOME/.zsh/functions
 
