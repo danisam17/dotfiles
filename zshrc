@@ -21,7 +21,7 @@ source $ZSH/oh-my-zsh.sh
 source $HOME/.secrets
 
 # Customize to your needs...
-export PATH=$PATH:/usr/local/bin:/usr/local/share/npm/bin:/Users/kristian/bin:/usr/bin:/usr/local/share/npm/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin
+export PATH=$PATH:/usr/local/bin:/usr/local/share/npm/bin:/Users/kristian/.bin:/usr/bin:/usr/local/share/npm/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin
 export NODE_PATH="/usr/local/lib/node"
 
 source /usr/local/opt/chruby/share/chruby/chruby.sh
