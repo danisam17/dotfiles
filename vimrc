@@ -6,10 +6,12 @@ Bundle 'gmarik/vundle'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'wincent/Command-T'
 Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-dispatch'
 Bundle 'bling/vim-airline'
 Bundle 'mattn/emmet-vim'
-Bundle 'scrooloose/nerdtree'
+Bundle 'ervandew/supertab'
+Bundle 'endwise.vim'
 filetype plugin indent on     " required!
 
 set clipboard=unnamed
@@ -95,7 +97,6 @@ autocmd BufWritePre * :%s/\s\+$//e
 nmap <leader>rh :%s/\v:(\w+) \=\>/\1:/g<cr>
 
 let g:airline_theme='luna'
-autocmd vimenter * if !argc() | NERDTree | endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SWITCH BETWEEN TEST AND PRODUCTION CODE
