@@ -34,7 +34,11 @@ fpost() {
     echo "No search params indicated."
   else
     post=$(find . -name "*.markdown" | grep $1)
-    vim $post
+    if [[ -z "$post" ]]; then
+      echo "No results found."
+    else
+      vim $post
+    fi
   fi
 }
 

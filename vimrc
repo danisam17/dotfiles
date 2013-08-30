@@ -2,6 +2,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 " let Vundle manage Vundle
 " required!
+"
 Bundle 'gmarik/vundle'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'wincent/Command-T'
@@ -12,6 +13,12 @@ Bundle 'bling/vim-airline'
 Bundle 'mattn/emmet-vim'
 Bundle 'ervandew/supertab'
 Bundle 'endwise.vim'
+Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-commentary'
+Bundle 'rizzatti/funcoo.vim'
+Bundle 'rizzatti/dash.vim'
+
 filetype plugin indent on     " required!
 
 set clipboard=unnamed
@@ -31,7 +38,7 @@ set showmode
 set showcmd
 set hidden
 set wildmenu
-set wildmode=list:longest
+set wildmode=longest,list,full
 set visualbell
 set cursorline
 set ttyfast
@@ -49,6 +56,8 @@ let mapleader = ","
 nnoremap / /\v
 vnoremap / /\v
 nnoremap <leader><leader> <c-^>
+
+:nmap <silent> <leader>d <Plug>DashSearch
 
 set ignorecase
 set smartcase

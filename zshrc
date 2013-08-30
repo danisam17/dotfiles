@@ -1,5 +1,8 @@
 ZSH_THEME="kennethreitz"
 
+plugins=(rails3 ruby brew)
+autoload -U compinit && compinit
+
 export PATH=/usr/local/bin:${PATH}
 export PATH="$HOME/bin:$PATH"
 
@@ -13,11 +16,10 @@ export ACK_COLOR_MATCH='red'
 
 DISABLE_AUTO_TITLE=true # shut the eff up ugh
 
+fpath=(~/.zsh $fpath)
 source $HOME/.zsh/aliases
 source $HOME/.zsh/functions
-
 eval "$(hub alias -s)"
-
 ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 source $HOME/.secrets
