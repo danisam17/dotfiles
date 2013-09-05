@@ -1,4 +1,5 @@
 alias am="g amend"
+alias bundle='bundle -j8'
 alias die="exec $SHELL -l"
 alias g=git
 alias gc="git clone"
@@ -15,6 +16,7 @@ alias ls="ls -Ga"
 alias rcr="rake db:create"
 alias back="rake db:rollback"
 alias rmi="rake db:migrate db:test:prepare"
+alias pro="ps aux | grep"
 alias site="cd ~/source/ruby/site"
 alias v=vim
 alias ve="vim ~/.vimrc"

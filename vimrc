@@ -102,6 +102,8 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+nnoremap <leader>b <ESC>A do<cr><cr>end<ESC>ki<space><space>
+
 autocmd BufWritePre * :%s/\s\+$//e
 nmap <leader>rh :%s/\v:(\w+) \=\>/\1:/g<cr>
 
