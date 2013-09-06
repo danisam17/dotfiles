@@ -56,6 +56,20 @@ let mapleader = ","
 nnoremap / /\v
 vnoremap / /\v
 nnoremap <leader><leader> <c-^>
+vnoremap <leader>G :w !gist -p -t %:e \| pbcopy<cr>
+nnoremap <C-u> gUiw
+inoremap <C-u> <esc>gUiwea
+nnoremap <C-p> Vy<esc>p
+vnoremap <leader>S y:execute @@<cr>
+nnoremap <leader>S ^vg_y:execute @@<cr>
+nnoremap vv ^vg_
+
+cnoremap <c-a> <home>
+cnoremap <c-e> <end>
+
+nnoremap <leader>V V`]
+cmap w!! w !sudo tee % >/dev/null
+nnoremap vv V
 
 :nmap <silent> <leader>d <Plug>DashSearch
 
@@ -68,6 +82,14 @@ set hlsearch
 nnoremap <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
+
+augroup line_return
+  au!
+  au BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   execute 'normal! g`"zvzz' |
+    \ endif
+augroup END
 
 set wrap
 set textwidth=79
@@ -95,19 +117,33 @@ nnoremap <leader>a :Ack
 nnoremap <leader>ft Vatzf
 nnoremap <leader>v V`]
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
-inoremap jj <ESC>
+inoremap jk <ESC>
+inoremap kj <ESC>
 nnoremap <leader>w <C-w>v<C-w>l
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-
-nnoremap <leader>b <ESC>A do<cr><cr>end<ESC>ki<space><space>
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap H ^
+nnoremap L g_
 
 autocmd BufWritePre * :%s/\s\+$//e
 nmap <leader>rh :%s/\v:(\w+) \=\>/\1:/g<cr>
 
+inoremap <c-a> <esc>I
+inoremap <c-e> <esc>A
+
+nnoremap <silent><leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
+
 let g:airline_theme='luna'
+
+set foldlevelstart=-
+nnoremap <Space> za
+vnoremap <Space> za
+nnoremap z0 zCz0
+nnoremap <leader>z zMzvzz
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SWITCH BETWEEN TEST AND PRODUCTION CODE
