@@ -15,3 +15,5 @@ nmap -builtin k 10k
 nmap -builtin ; :
 " Highlight all search matches, not just the first.
 set hlfind
+
+set passkeys+=github.com:sgn?x<cr>ciptlwyi
