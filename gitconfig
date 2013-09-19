@@ -54,3 +54,5 @@
 	default = matching
 [core]
 	editor = vim
+[init]
+	templatedir = ~/.git_template
