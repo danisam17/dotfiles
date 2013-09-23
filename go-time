@@ -9,6 +9,6 @@ Dir.foreach(home+".dotfiles") do |item|
     puts "#{ item } is already symlinked. skipping"
   else
     puts "symlinking #{ item }"
-    File.symlink("#{Dir.pwd}/#{item}", home+".#{ item }")
+    File.symlink("#{home+".dotfiles"}/#{item}", home+".#{ item }")
   end
 end
