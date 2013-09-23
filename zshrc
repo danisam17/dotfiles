@@ -28,8 +28,8 @@ source $HOME/.secrets
 export PATH=$PATH:/usr/local/bin:/usr/local/share/npm/bin:/Users/kristian/.bin:/usr/bin:/usr/local/share/npm/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin
 export NODE_PATH="/usr/local/lib/node"
 
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh
+source /usr/local/share/chruby/chruby.sh
+source /usr/local/share/chruby/auto.sh
 chruby ruby-2.0.0
 
 export MUTT_EMAIL_ADDRESS="kristian@kristianfreeman.com"
