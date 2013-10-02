@@ -3,6 +3,7 @@ ZSH_THEME="kennethreitz"
 plugins=(rails3 ruby brew)
 autoload -U compinit && compinit
 
+export EDITOR=vim
 export PATH=/usr/local/bin:${PATH}
 export PATH="$HOME/bin:$PATH"
 
@@ -23,6 +24,7 @@ eval "$(hub alias -s)"
 ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 source $HOME/.secrets
+source virtualenvwrapper.sh
 
 # Customize to your needs...
 export PATH=$PATH:/usr/local/bin:/usr/local/share/npm/bin:/Users/kristian/.bin:/usr/bin:/usr/local/share/npm/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin

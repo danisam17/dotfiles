@@ -1,10 +1,11 @@
 alias am="g amend"
+alias back="rake db:rollback"
 alias bundle='bundle -j8'
 alias die="exec $SHELL -l"
 alias g=git
 alias gc="git clone"
 alias gac="git add . && git commit"
-alias gd="git diff"
+alias gd="git di"
 alias gdf="git difftool --no-prompt --tool=vimdiff"
 alias gp="git pull --rebase"
 alias gpp="git pull --rebase; git push"
@@ -12,11 +13,12 @@ alias gs="git st"
 alias gu="git add --update :/"
 alias l="tree -L 1 -a"
 alias less="vim -u ~/.vimrc.more"
+alias mutt 'cd ~/Desktop && mutt'
 alias rcr="rake db:create"
-alias back="rake db:rollback"
 alias rmi="rake db:migrate db:test:prepare"
 alias pro="ps aux | grep"
 alias site="cd ~/source/ruby/site"
+alias t="tmuxinator"
 alias v=vim
 alias ve="vim ~/.vimrc"
 alias vi=vim
