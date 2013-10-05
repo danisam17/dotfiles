@@ -20,20 +20,13 @@ DISABLE_AUTO_TITLE=true # shut the eff up ugh
 fpath=(~/.zsh $fpath)
 source $HOME/.zsh/functions
 source $HOME/.zsh/aliases
-eval "$(hub alias -s)"
 ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 source $HOME/.secrets
-source virtualenvwrapper.sh
 
 # Customize to your needs...
-export PATH=$PATH:/usr/local/bin:/usr/local/share/npm/bin:/Users/kristian/.bin:/usr/bin:/usr/local/share/npm/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin
-export NODE_PATH="/usr/local/lib/node"
-
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
-chruby ruby-2.0.0
-
 export MUTT_EMAIL_ADDRESS="kristian@kristianfreeman.com"
 export MUTT_REALNAME="Kristian Freeman"
 export MUTT_SMTP_URL="smtp://kristian@kristianfreeman.com@smtp.gmail.com:587/"
+
+[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh

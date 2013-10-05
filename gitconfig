@@ -49,10 +49,11 @@
 [hub]
 	protocol = https
 [credential]
-	helper = osxkeychain
+  helper = /opt/boxen/bin/boxen-git-credential
 [push]
 	default = matching
 [core]
 	editor = vim
+  excludesfile = /opt/boxen/config/git/gitignore
 [init]
 	templatedir = ~/.git_template

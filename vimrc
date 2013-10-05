@@ -22,7 +22,6 @@ Bundle 'tpope/vim-fireplace'
 Bundle 'tpope/vim-classpath'
 Bundle 'guns/vim-clojure-static'
 Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'FredKSchott/CoVim'
 
 filetype plugin indent on     " required!
 
