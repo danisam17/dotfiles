@@ -55,5 +55,3 @@
 [core]
 	editor = vim
   excludesfile = /opt/boxen/config/git/gitignore
-[init]
-	templatedir = ~/.git_template

@@ -5,7 +5,7 @@ autoload -U compinit && compinit
 
 export EDITOR=vim
 export PATH=/usr/local/bin:${PATH}
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.bin:$PATH"
 
 export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
 export GREP_OPTIONS="--color"

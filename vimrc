@@ -1,29 +1,30 @@
-execute pathogen#infect()
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+" Bundle: tpope/vim-pathogen
+call pathogen#infect()
+
+" vim-update-bundles
+" Bundle: christoomey/vim-tmux-navigator
+" Bundle: wincent/Command-T
+" Bundle: tpope/vim-rails
+" Bundle: tpope/vim-fugitive
+" Bundle: tpope/vim-dispatch
+" Bundle: bling/vim-airline
+" Bundle: mattn/emmet-vim
+" Bundle: ervandew/supertab
+" Bundle: endwise.vim
+" Bundle: scrooloose/syntastic
+" Bundle: tpope/vim-surround
+" Bundle: tpope/vim-commentary
+" Bundle: rizzatti/funcoo.vim
+" Bundle: rizzatti/dash.vim
+" Bundle: tpope/vim-fireplace
+" Bundle: tpope/vim-classpath
+" Bundle: guns/vim-clojure-static
+" Bundle: kien/rainbow_parentheses.vim
+
 syntax on
 filetype plugin indent on
-
-" Bundle: 'gmarik/vundle'
-" Bundle: 'christoomey/vim-tmux-navigator'
-" Bundle: 'wincent/Command-T'
-" Bundle: 'tpope/vim-rails'
-" Bundle: 'tpope/vim-fugitive'
-" Bundle: 'tpope/vim-dispatch'
-" Bundle: 'bling/vim-airline'
-" Bundle: 'mattn/emmet-vim'
-" Bundle: 'ervandew/supertab'
-" Bundle: 'endwise.vim'
-" Bundle: 'scrooloose/syntastic'
-" Bundle: 'tpope/vim-surround'
-" Bundle: 'tpope/vim-commentary'
-" Bundle: 'rizzatti/funcoo.vim'
-" Bundle: 'rizzatti/dash.vim'
-" Bundle: 'tpope/vim-fireplace'
-" Bundle: 'tpope/vim-classpath'
-" Bundle: 'guns/vim-clojure-static'
-" Bundle: 'kien/rainbow_parentheses.vim'
-
 set clipboard=unnamed
-syntax on
 
 set t_Co=256
 set nocompatible
@@ -139,6 +140,7 @@ inoremap <c-e> <esc>A
 nnoremap <silent><leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 
 let g:airline_theme='luna'
+let g:airline_powerline_fonts = 1
 
 set foldlevelstart=-
 nnoremap <Space> za
