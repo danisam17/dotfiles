@@ -5,10 +5,12 @@ home = ENV["HOME"]+"/"
 
 Dir.foreach(home+".dotfiles") do |item|
   next if blacklist.include? item
-  if File.exists?(home+".#{item}")
-    puts "#{ item } is already symlinked. skipping"
+  home_file = home+".#{item}"
+  if File.exists?(home_file)
+    File.delete(home_file)
+    puts "Deleting #{item} and re-linking"
   else
     puts "symlinking #{ item }"
-    File.symlink("#{home+".dotfiles"}/#{item}", home+".#{ item }")
   end
+  File.symlink("#{home+".dotfiles"}/#{item}", home+".#{ item }")
 end
