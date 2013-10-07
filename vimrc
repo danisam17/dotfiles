@@ -1,29 +1,26 @@
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-" let Vundle manage Vundle
-" required!
-"
-Bundle 'gmarik/vundle'
-Bundle 'christoomey/vim-tmux-navigator'
-Bundle 'wincent/Command-T'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-dispatch'
-Bundle 'bling/vim-airline'
-Bundle 'mattn/emmet-vim'
-Bundle 'ervandew/supertab'
-Bundle 'endwise.vim'
-Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-commentary'
-Bundle 'rizzatti/funcoo.vim'
-Bundle 'rizzatti/dash.vim'
-Bundle 'tpope/vim-fireplace'
-Bundle 'tpope/vim-classpath'
-Bundle 'guns/vim-clojure-static'
-Bundle 'kien/rainbow_parentheses.vim'
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
 
-filetype plugin indent on     " required!
+" Bundle: 'gmarik/vundle'
+" Bundle: 'christoomey/vim-tmux-navigator'
+" Bundle: 'wincent/Command-T'
+" Bundle: 'tpope/vim-rails'
+" Bundle: 'tpope/vim-fugitive'
+" Bundle: 'tpope/vim-dispatch'
+" Bundle: 'bling/vim-airline'
+" Bundle: 'mattn/emmet-vim'
+" Bundle: 'ervandew/supertab'
+" Bundle: 'endwise.vim'
+" Bundle: 'scrooloose/syntastic'
+" Bundle: 'tpope/vim-surround'
+" Bundle: 'tpope/vim-commentary'
+" Bundle: 'rizzatti/funcoo.vim'
+" Bundle: 'rizzatti/dash.vim'
+" Bundle: 'tpope/vim-fireplace'
+" Bundle: 'tpope/vim-classpath'
+" Bundle: 'guns/vim-clojure-static'
+" Bundle: 'kien/rainbow_parentheses.vim'
 
 set clipboard=unnamed
 syntax on
