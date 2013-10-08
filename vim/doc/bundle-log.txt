@@ -1,0 +1,27 @@
+*bundle-log.txt*                   Bundle Install Log
+
+
+Logs bundle install activity. Also see the list of installed |bundles|.
+
+Mon Oct  7 16:59:04 PDT 2013 by vim-update-bundles 0.82+
+ Add |vim-pathogen|             v2.2-8-g1270dce    https://github.com/tpope/vim-pathogen.git
+ Add |vim-tmux-navigator|       6daddabf5496e      https://github.com/christoomey/vim-tmux-navigator.git
+ Add |Command-T|                1.5.1-1-g89896bd   https://github.com/wincent/Command-T.git
+ Add |vim-rails|                v5.0-13-gbdc3238   https://github.com/tpope/vim-rails.git
+ Add |vim-fugitive|             v1.2-207-g124550c  https://github.com/tpope/vim-fugitive.git
+ Add |vim-dispatch|             v1.0-23-g6a88e79   https://github.com/tpope/vim-dispatch.git
+ Add |vim-airline|              v0.5-124-g9e53c2c  https://github.com/bling/vim-airline.git
+ Add |emmet-vim|                emmet-132-g89dd2b7 https://github.com/mattn/emmet-vim.git
+ Add |supertab|                 2.0-29-g7a32e08    https://github.com/ervandew/supertab.git
+ Add |endwise.vim|              1.1                https://github.com/vim-scripts/endwise.vim.git
+ Add |syntastic|                3.1.0-99-g58ba3d4  https://github.com/scrooloose/syntastic.git
+ Add |vim-surround|             v2.0-5-g42e9b46    https://github.com/tpope/vim-surround.git
+ Add |vim-commentary|           v1.1-9-ga3ae0df    https://github.com/tpope/vim-commentary.git
+ Add |funcoo.vim|               acb0b4f38f26e      https://github.com/rizzatti/funcoo.vim.git
+ Add |dash.vim|                 9043524a528f5      https://github.com/rizzatti/dash.vim.git
+ Add |vim-fireplace|            92644485d6d75      https://github.com/tpope/vim-fireplace.git
+ Add |vim-classpath|            b9c1e0400cc96      https://github.com/tpope/vim-classpath.git
+ Add |vim-clojure-static|       vim-release-005-2-g3a43460 https://github.com/guns/vim-clojure-static.git
+ Add |rainbow_parentheses.vim|  eb8baa5428bde      https://github.com/kien/rainbow_parentheses.vim.git
+   19 bundles added
+

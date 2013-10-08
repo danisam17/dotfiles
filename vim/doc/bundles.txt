@@ -1,0 +1,28 @@
+*bundles* *bundles.txt*            Installed Bundles
+
+
+Lists the currently installed bundles. Also see the |bundle-log|.
+Last updated by vim-update-bundles on Mon Oct  7 16:59:04 PDT 2013.
+
+  PLUGIN                           VERSION                RELEASE DATE
+------------------------------------------------------------------------
+  |vim-pathogen|                   v2.2-8-g1270dce        2013-06-06
+  |vim-tmux-navigator|             6daddabf5496e          2013-09-27
+  |Command-T|                      1.5.1-1-g89896bd       2013-09-23
+  |vim-rails|                      v5.0-13-gbdc3238       2013-05-02
+  |vim-fugitive|                   v1.2-207-g124550c      2013-07-22
+  |vim-dispatch|                   v1.0-23-g6a88e79       2013-09-09
+  |vim-airline|                    v0.5-124-g9e53c2c      2013-10-06
+  |emmet-vim|                      emmet-132-g89dd2b7     2013-10-02
+  |supertab|                       2.0-29-g7a32e08        2013-07-29
+  |endwise.vim|                    1.1                    2013-01-01
+  |syntastic|                      3.1.0-99-g58ba3d4      2013-10-03
+  |vim-surround|                   v2.0-5-g42e9b46        2013-09-23
+  |vim-commentary|                 v1.1-9-ga3ae0df        2013-02-19
+  |funcoo.vim|                     acb0b4f38f26e          2013-03-24
+  |dash.vim|                       9043524a528f5          2013-08-30
+  |vim-fireplace|                  92644485d6d75          2013-09-14
+  |vim-classpath|                  b9c1e0400cc96          2013-05-19
+  |vim-clojure-static|             vim-release-005-2-g3a43460 2013-09-21
+  |rainbow_parentheses.vim|        eb8baa5428bde          2013-03-04
+
