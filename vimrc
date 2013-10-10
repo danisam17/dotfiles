@@ -3,13 +3,14 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 
 " vim-update-bundles
+" Bundle: tpope/vim-sensible
 " Bundle: christoomey/vim-tmux-navigator
 " Bundle: tpope/vim-rails
 " Bundle: tpope/vim-fugitive
 " Bundle: tpope/vim-dispatch
 " Bundle: bling/vim-airline
+" Bundle: airblade/vim-gitgutter
 " Bundle: mattn/emmet-vim
-" Bundle: ervandew/supertab
 " Bundle: endwise.vim
 " Bundle: scrooloose/syntastic
 " Bundle: tpope/vim-surround

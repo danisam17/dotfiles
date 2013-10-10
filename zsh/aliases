@@ -21,6 +21,7 @@ alias t="tmuxinator"
 alias v=vim
 alias ve="vim ~/.vimrc"
 alias vi=vim
+alias vup="vim-update-bundles -n"
 alias zef="vim ~/.zsh/functions"
 alias zea="vim ~/.zsh/aliases"
 alias ze="vim ~/.zshrc"
