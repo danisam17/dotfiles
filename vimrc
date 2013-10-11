@@ -4,7 +4,6 @@ call pathogen#infect()
 
 " vim-update-bundles
 " Bundle: christoomey/vim-tmux-navigator
-" Bundle: wincent/Command-T
 " Bundle: tpope/vim-rails
 " Bundle: tpope/vim-fugitive
 " Bundle: tpope/vim-dispatch
@@ -15,12 +14,6 @@ call pathogen#infect()
 " Bundle: scrooloose/syntastic
 " Bundle: tpope/vim-surround
 " Bundle: tpope/vim-commentary
-" Bundle: rizzatti/funcoo.vim
-" Bundle: rizzatti/dash.vim
-" Bundle: tpope/vim-fireplace
-" Bundle: tpope/vim-classpath
-" Bundle: guns/vim-clojure-static
-" Bundle: kien/rainbow_parentheses.vim
 
 syntax on
 filetype plugin indent on
