@@ -2,9 +2,7 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 " Bundle: tpope/vim-pathogen
 call pathogen#infect()
 
-" vim-update-bundles
 " Bundle: tpope/vim-sensible
-" Bundle: christoomey/vim-tmux-navigator
 " Bundle: tpope/vim-rails
 " Bundle: tpope/vim-fugitive
 " Bundle: tpope/vim-dispatch
@@ -116,10 +114,6 @@ nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
 inoremap jk <ESC>
 inoremap kj <ESC>
 nnoremap <leader>w <C-w>v<C-w>l
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
 nnoremap n nzzzv
 nnoremap N Nzzzv
 nnoremap H ^
@@ -133,7 +127,7 @@ inoremap <c-e> <esc>A
 
 nnoremap <silent><leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 
-let g:airline_theme='luna'
+let g:airline_theme='custom'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#hunks#non_zero_only = 1
 

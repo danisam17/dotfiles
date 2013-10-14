@@ -12,7 +12,9 @@ alias gs="git st"
 alias gu="git add --update :/"
 alias l="tree -L 1 -a"
 alias less="vim -u ~/.vimrc.more"
-alias mutt 'cd ~/Desktop && mutt'
+alias mutt "cd ~/Desktop && mutt"
+alias p=python
+alias pm="python manage.py"
 alias rcr="rake db:create"
 alias rmi="rake db:migrate db:test:prepare"
 alias pro="ps aux | grep"

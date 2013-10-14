@@ -1,0 +1,95 @@
+#!/usr/bin/env ruby
+#
+# for use with ugol's pomodoro app (https://github.com/ugol/pomodoro) and tmux
+# use applescript to set the time
+# How to use it:
+
+# 1. Open preferences from the pomodoro app
+# 2. Choose scripts
+# 3. Paste in the following:
+#    Start: do shell script "~/.bin/pomodoro reset mins:$mins passed:$passed time:$time"
+#    Reset: do shell script "~/.bin/pomodoro end"
+#    End: do shell script "~/.bin/pomodoro break"
+#    Break End: do shell script "~/.bin/pomodoro end"
+#    Every 1 mins: do shell script "~/.bin/pomodoro set $time"
+# 4. in .tmux.conf you can call this script:
+#    Example: set -g status-right "#(date '+%H:%M') | #(~/.bin/pomodoro time) min"
+#    Or, check out mine at: https://github.com/amiel/dotfiles/blob/master/home/tmux.conf
+
+class Pomodoro
+  TIME_FILE = File.expand_path('~/.pomodoro_left_time')
+  attr_accessor :time_file
+
+  def initialize(time_file=TIME_FILE)
+    @time_file = time_file
+  end
+
+  def reset_timer(value=25)
+    write_time_to_file(value)
+  end
+
+  def current_time
+    read_time_from_file.to_i
+  end
+
+  def decrease(step=1)
+    new_time = current_time.to_i-1
+    write_time_to_file(new_time)
+  end
+
+  def break
+    write_time_to_file(' -- break -- ')
+  end
+
+  def finish
+    write_time_to_file('')
+  end
+
+  def to_s
+    time = read_time_from_file
+    if time.match(/\d/)
+      "#{ time }m left "
+    else
+      time
+    end
+  end
+
+  def read_time_from_file
+    time = nil
+    File.open(@time_file) do |f|
+      time = f.read
+    end
+    time
+  end
+
+  def write_time_to_file(value)
+    File.open(@time_file, "w") do |f|
+      f.write(value)
+    end
+    value
+  end
+end
+
+command = ARGV.shift || 'time'
+pomodoro = Pomodoro.new
+case command
+when 'time'
+  if ! pomodoro.current_time.zero?
+    # A tomato
+    print " \xF0\x9F\x8D\x85  "
+  end
+  puts pomodoro
+when 'decrease'
+  pomodoro.decrease
+when 'reset'
+  pomodoro.reset_timer
+when 'set'
+  pomodoro.reset_timer(ARGV[0].to_i - 1)
+when 'break'
+  pomodoro.break
+when 'end'
+  pomodoro.finish
+when 'running'
+  exit ! pomodoro.current_time.zero?
+end
+
