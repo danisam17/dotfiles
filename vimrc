@@ -118,6 +118,8 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 nnoremap H ^
 nnoremap L g_
+inoremap " '
+inoremap ' "
 
 autocmd BufWritePre * :%s/\s\+$//e
 nmap <leader>rh :%s/\v:(\w+) \=\>/\1:/g<cr>
