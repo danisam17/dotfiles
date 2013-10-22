@@ -14,10 +14,13 @@ call pathogen#infect()
 " Bundle: tpope/vim-surround
 " Bundle: tpope/vim-commentary
 " Bundle: scrooloose/nerdtree
+" Bundle: altercation/vim-colors-solarized
 
 syntax on
 filetype plugin indent on
 set clipboard=unnamed
+set background=dark
+colorscheme solarized
 
 set t_Co=256
 set nocompatible
