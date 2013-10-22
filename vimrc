@@ -61,6 +61,7 @@ nnoremap <C-p> Vy<esc>p
 vnoremap <leader>S y:execute @@<cr>
 nnoremap <leader>S ^vg_y:execute @@<cr>
 nnoremap vv ^vg_
+nnoremap gn <esc>:tabnew<cr>
 
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
