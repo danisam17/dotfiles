@@ -4,8 +4,9 @@ plugins=(rails3 ruby brew)
 #autoload -U compinit && compinit
 
 export EDITOR=vim
-export PATH=/usr/local/bin:${PATH}
-export PATH="$HOME/bin:$HOME/.bin:$PATH"
+export GOPATH="$HOME/src/go"
+export PATH="$HOME/bin:$GOPATH/bin:$HOME/.bin:$PATH"
+export PATH="$HOME/.cask/bin:$PATH"
 
 export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
 export GREP_OPTIONS="--color"

@@ -1,7 +1,10 @@
+" Pathogen setup
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 " Bundle: tpope/vim-pathogen
 call pathogen#infect()
 
+" Bundles
+"
 " Bundle: tpope/vim-sensible
 " Bundle: tpope/vim-rails
 " Bundle: tpope/vim-fugitive
@@ -15,9 +18,18 @@ call pathogen#infect()
 " Bundle: tpope/vim-commentary
 " Bundle: scrooloose/nerdtree
 " Bundle: altercation/vim-colors-solarized
+" Bundle: kien/ctrlp.vim
+" Bundle: jnwhiteh/vim-golang
+" Bundle: Blackrush/vim-gocode
+" Bundle: ervandew/supertab
+" Bundle: "rizzatti/funcoo.vim"
+" Bundle: "rizzatti/dash.vim"
+" Bundle: "amiel/vim-tmux-navigator"
 
 syntax on
-filetype plugin indent on
+filetype plugin on
+filetype indent on
+filetype on
 set clipboard=unnamed
 set background=dark
 colorscheme solarized
@@ -49,8 +61,11 @@ set undofile
 set undodir=~/.vim/undo " where to save undo histories
 set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
+set backupdir=~/.vim/backup/
+set directory=~/.vim/backup/
 
 let mapleader = ","
+let g:ctrlp_map = "<c-p>"
 nnoremap / /\v
 vnoremap / /\v
 nnoremap <leader><leader> <c-^>
@@ -69,8 +84,6 @@ cnoremap <c-e> <end>
 nnoremap <leader>V V`]
 cmap w!! w !sudo tee % >/dev/null
 nnoremap vv V
-
-:nmap <silent> <leader>d <Plug>DashSearch
 
 set ignorecase
 set smartcase
@@ -91,7 +104,6 @@ augroup line_return
 augroup END
 
 set wrap
-set textwidth=79
 set formatoptions=qrn1
 set colorcolumn=85
 set list
@@ -111,10 +123,6 @@ nnoremap ; :
 
 au FocusLost * :wa
 
-nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
-nnoremap <leader>a :Ack
-nnoremap <leader>ft Vatzf
-nnoremap <leader>v V`]
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
 inoremap jk <ESC>
 inoremap kj <ESC>

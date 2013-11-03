@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+file = File.read(ENV["HOME"] + "/.guard-result")
+result = file.split("\n")
+if result.include?("Cucumber Results")
+  if result.include?("failed")
+    out = "Cucumber: #{ result.last }"
+  else
+    out = "Cucumber: #{ result.last }"
+  end
+elsif result.include?("RSpec results")
+  if result.include?("failed")
+    out = "RSpec: #{ result[-2] }"
+  else
+    out = "RSpec: #{ result[-2] }"
+  end
+end
+
+File.write(ENV["HOME"] + "/.status", out)

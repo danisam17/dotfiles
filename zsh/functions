@@ -6,20 +6,3 @@ f() {
   ack $1 -k *
 }
 
-fpost() {
-  if [[ -z "$1" ]]; then
-    echo "No search params indicated."
-  else
-    post=$(find . -name "*.markdown" | grep $1)
-    if [[ -z "$post" ]]; then
-      echo "No results found."
-    else
-      vim $post
-    fi
-  fi
-}
-
-post() {
-  date_slug=$(date +"%Y-%m-%d")
-  vim _posts/$date_slug-$1.markdown
-}

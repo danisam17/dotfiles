@@ -1,2 +1,4 @@
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-chruby ruby-2.0.0-p247
+eval $(rbenv init -)
+export HOME=/Users/`whoami`
+export RBENV=$HOME/.rbenv
+export PATH=$RBENV/shims:$RBENV/bin:$PATH

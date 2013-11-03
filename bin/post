@@ -1,0 +1,3 @@
+date_slug=$(date +'%Y-%m-%d')
+vim _posts/$date_slug-$1.markdown
+
