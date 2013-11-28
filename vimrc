@@ -19,12 +19,11 @@ call pathogen#infect()
 " Bundle: scrooloose/nerdtree
 " Bundle: altercation/vim-colors-solarized
 " Bundle: kien/ctrlp.vim
-" Bundle: jnwhiteh/vim-golang
-" Bundle: Blackrush/vim-gocode
 " Bundle: ervandew/supertab
 " Bundle: "rizzatti/funcoo.vim"
 " Bundle: "rizzatti/dash.vim"
 " Bundle: "amiel/vim-tmux-navigator"
+" Bundle: "digitaltoad/vim-jade"
 
 syntax on
 filetype plugin on
@@ -33,6 +32,7 @@ filetype on
 set clipboard=unnamed
 set background=dark
 colorscheme solarized
+set backspace=indent,eol,start
 
 set t_Co=256
 set nocompatible
@@ -142,7 +142,6 @@ inoremap <c-e> <esc>A
 
 nnoremap <silent><leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 
-let g:airline_theme='custom'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#hunks#non_zero_only = 1
 
@@ -265,3 +264,16 @@ function! RunTests(filename)
       call DispatchTests("rspec --color " . a:filename)
     end
 endfunction
+
+""""""""
+" Rails.vim
+""""""""
+
+let g:rails_projections = {
+  \ 'app/admin/*.rb': {
+  \   'command': 'admin',
+  \   'template':
+  \     'ActiveAdmin.register %S do\nend',
+  \   'affinity': 'model'
+  \ }}
+

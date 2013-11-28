@@ -6,3 +6,7 @@ f() {
   ack $1 -k *
 }
 
+nmux() {
+  current=$(echo $(basename $(pwd)))
+  tmux new -s $current
+}

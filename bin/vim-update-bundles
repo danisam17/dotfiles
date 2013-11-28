@@ -449,7 +449,7 @@ def locate_vim_files config
 
   vimrc_guesses = []
   if config[:vimdir_path]
-    vimrc_guesses.push "#{config[:vimdir_path]}/.vimrc", "#{config[:vimdir_path]}/vimrc"
+    vimrc_guesses.push "#{config[:vimdir_path]}/.vimrc", "#{config[:vimdir_path]}/vimrc" 
   end
   vimrc_guesses.push "#{ENV['HOME']}/.dotfiles/vimrc", "#{ENV['HOME']}/.vimrc"
   vimrc_guess = choose_path *vimrc_guesses

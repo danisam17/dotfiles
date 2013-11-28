@@ -1,5 +1,6 @@
 alias am="g amend"
 alias back="rake db:rollback"
+alias be="bundle exec"
 alias cob="git checkout -b"
 alias die="exec $SHELL -l"
 alias g=git
@@ -24,6 +25,7 @@ alias v=vim
 alias ve="vim ~/.vimrc"
 alias vi=vim
 alias vup="vim-update-bundles -n"
+alias xx="chmod +x"
 alias zef="vim ~/.zsh/functions"
 alias zea="vim ~/.zsh/aliases"
 alias ze="vim ~/.zshrc"
