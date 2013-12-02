@@ -24,6 +24,7 @@ call pathogen#infect()
 " Bundle: "rizzatti/dash.vim"
 " Bundle: "amiel/vim-tmux-navigator"
 " Bundle: "digitaltoad/vim-jade"
+" Bundle: "derekwyatt/vim-scala"
 
 syntax on
 filetype plugin on

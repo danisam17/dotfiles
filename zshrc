@@ -37,3 +37,9 @@ source virtualenvwrapper.sh
 if [ "$TMUX" ]; then
   tmux source-file ~/.tmux.conf
 fi
+
+command -v lolcommits > /dev/null && source lolcommitsrc || echo "lolcommits not found"
+
+export LOLCOMMITS_DELAY=2
+export LOLCOMMITS_FORKS=yes
+export LOLCOMMITS_STEALTH=yes
