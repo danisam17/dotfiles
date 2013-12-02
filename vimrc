@@ -16,7 +16,6 @@ call pathogen#infect()
 " Bundle: scrooloose/syntastic
 " Bundle: tpope/vim-surround
 " Bundle: tpope/vim-commentary
-" Bundle: scrooloose/nerdtree
 " Bundle: altercation/vim-colors-solarized
 " Bundle: kien/ctrlp.vim
 " Bundle: ervandew/supertab
@@ -145,9 +144,6 @@ nnoremap <silent><leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#hunks#non_zero_only = 1
-
-" Nerdtree if no file is specified
-autocmd vimenter * if !argc() | NERDTree | endif
 
 set foldlevelstart=-
 nnoremap <Space> za
