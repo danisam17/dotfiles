@@ -24,6 +24,7 @@ call pathogen#infect()
 " Bundle: "amiel/vim-tmux-navigator"
 " Bundle: "digitaltoad/vim-jade"
 " Bundle: "derekwyatt/vim-scala"
+" Bundle: "terryma/vim-multiple-cursors"
 
 syntax on
 filetype plugin on
