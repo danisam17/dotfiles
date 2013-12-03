@@ -1,6 +1,6 @@
 ZSH_THEME="kennethreitz"
 
-plugins=(rails3 ruby brew)
+plugins=(rails ruby brew)
 #autoload -U compinit && compinit
 
 export EDITOR=vim
