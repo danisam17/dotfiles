@@ -1,12 +1,9 @@
 ZSH_THEME="kennethreitz"
 
 plugins=(rails ruby brew)
-#autoload -U compinit && compinit
 
 export EDITOR=vim
-export GOPATH="$HOME/src/go"
 export PATH="$HOME/bin:$GOPATH/bin:$HOME/.bin:$PATH"
-export PATH="$HOME/.cask/bin:$PATH"
 
 export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
 export GREP_OPTIONS="--color"
@@ -24,11 +21,6 @@ source $HOME/.zsh/aliases
 ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 source $HOME/.secrets
-
-# Customize to your needs...
-export MUTT_EMAIL_ADDRESS="kristian@kristianfreeman.com"
-export MUTT_REALNAME="Kristian Freeman"
-export MUTT_SMTP_URL="smtp://kristian@kristianfreeman.com@smtp.gmail.com:587/"
 
 [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
 source virtualenvwrapper.sh

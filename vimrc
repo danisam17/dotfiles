@@ -5,6 +5,7 @@ call pathogen#infect()
 
 " Bundles
 "
+" Bundle: "amiel/vim-tmux-navigator"
 " Bundle: tpope/vim-sensible
 " Bundle: tpope/vim-rails
 " Bundle: tpope/vim-fugitive
@@ -21,7 +22,6 @@ call pathogen#infect()
 " Bundle: ervandew/supertab
 " Bundle: "rizzatti/funcoo.vim"
 " Bundle: "rizzatti/dash.vim"
-" Bundle: "amiel/vim-tmux-navigator"
 " Bundle: "digitaltoad/vim-jade"
 " Bundle: "derekwyatt/vim-scala"
 " Bundle: "terryma/vim-multiple-cursors"
@@ -34,6 +34,8 @@ set clipboard=unnamed
 set background=dark
 colorscheme solarized
 set backspace=indent,eol,start
+
+autocmd Filetype gitcommit setlocal spell textwidth=72
 
 set t_Co=256
 set nocompatible

@@ -6,6 +6,19 @@ f() {
   ack $1 -k *
 }
 
+gpp() {
+  if [ -z $1 ]
+  then
+    remote="origin"
+  else
+    remote=$1
+  fi
+
+  branch=$(git rev-parse --abbrev-ref HEAD)
+  git pull --rebase $remote $branch
+  git push $remote $branch
+}
+
 nmux() {
   current=$(echo $(basename $(pwd)))
   tmux new -s $current

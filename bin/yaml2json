@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require "json"
+require "yaml"
+
+yml = File.read(ARGV.first)
+data = YAML::load(yml)
+json = JSON.dump(data)
+new_file = ARGV.first.gsub("yml", "json")
+File.write(new_file, json)
+prettify_json = "/opt/boxen/rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/json_pure-1.4.6/bin/prettify_json.rb"
+out = `#{prettify_json} #{new_file}`
+File.write(new_file, out)
