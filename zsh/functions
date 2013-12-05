@@ -9,9 +9,9 @@ f() {
 gpp() {
   if [ -z $1 ]
   then
-    remote=$1
-  else
     remote="origin"
+  else
+    remote=$1
   fi
 
   branch=$(git rev-parse --abbrev-ref HEAD)
