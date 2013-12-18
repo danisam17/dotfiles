@@ -1,7 +1,3 @@
-c() {
-  builtin cd "$@" && ls
-}
-
 f() {
   ack $1 -k *
 }

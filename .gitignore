@@ -1,3 +1,4 @@
 *.pyc
 vim/*bundle*
 vim/docs
+bin/pomodoriapp

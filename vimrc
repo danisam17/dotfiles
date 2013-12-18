@@ -8,23 +8,17 @@ call pathogen#infect()
 " Bundle: "amiel/vim-tmux-navigator"
 " Bundle: tpope/vim-sensible
 " Bundle: tpope/vim-rails
-" Bundle: tpope/vim-fugitive
 " Bundle: tpope/vim-dispatch
 " Bundle: bling/vim-airline
-" Bundle: airblade/vim-gitgutter
-" Bundle: mattn/emmet-vim
 " Bundle: endwise.vim
-" Bundle: scrooloose/syntastic
-" Bundle: tpope/vim-surround
 " Bundle: tpope/vim-commentary
 " Bundle: altercation/vim-colors-solarized
 " Bundle: kien/ctrlp.vim
 " Bundle: ervandew/supertab
-" Bundle: "rizzatti/funcoo.vim"
-" Bundle: "rizzatti/dash.vim"
-" Bundle: "digitaltoad/vim-jade"
-" Bundle: "derekwyatt/vim-scala"
+" Bundle: tpope/vim-fugitive
 " Bundle: "terryma/vim-multiple-cursors"
+" Bundle: derekwyatt/vim-scala
+" Bundle: tpope/vim-surround
 
 syntax on
 filetype plugin on
@@ -67,7 +61,6 @@ set undoreload=10000        " number of lines to save for undo
 set backupdir=~/.vim/backup/
 set directory=~/.vim/backup/
 
-let mapleader = ","
 let g:ctrlp_map = "<c-p>"
 nnoremap / /\v
 vnoremap / /\v
@@ -134,8 +127,6 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 nnoremap H ^
 nnoremap L g_
-inoremap " '
-inoremap ' "
 
 autocmd BufWritePre * :%s/\s\+$//e
 nmap <leader>rh :%s/\v:(\w+) \=\>/\1:/g<cr>

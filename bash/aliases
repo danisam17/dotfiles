@@ -1,0 +1,16 @@
+alias alive="ps aux | grep"
+alias amend="git commit --amend"
+alias back="rake db:rollback"
+alias be="bundle exec"
+alias die="exec $SHELL -l"
+alias gs="git st"
+alias gu="git add -u"
+alias marked="open -a Marked.app"
+alias mutt="cd ~/Desktop && mutt"
+alias new="git checkout -b"
+alias rmi="rake db:migrate db:test:prepare"
+alias site="cd ~/src/website"
+alias ve="vim ~/.vimrc"
+alias vi=vim
+alias vup="vim-update-bundles -n"
+
