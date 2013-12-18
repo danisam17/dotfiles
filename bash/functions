@@ -1,3 +1,7 @@
+..() {
+  cd ..
+}
+
 current() {
   printf $(basename `pwd`)
 }

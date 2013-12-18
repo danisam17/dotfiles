@@ -61,6 +61,7 @@ set undoreload=10000        " number of lines to save for undo
 set backupdir=~/.vim/backup/
 set directory=~/.vim/backup/
 
+let mapleader = ","
 let g:ctrlp_map = "<c-p>"
 nnoremap / /\v
 vnoremap / /\v

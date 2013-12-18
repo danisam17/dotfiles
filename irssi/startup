@@ -1,0 +1,9 @@
+SET theme xchat
+SCRIPT LOAD xchatnickcolor.pl
+SCRIPT LOAD hilightwin.pl
+SCRIPT LOAD adv_windowlist.pl
+set awl_display_key $Q%K|%n$H$C$S
+window new split
+window name hilight
+window size 4
+ignore * JOINS PARTS QUITS
