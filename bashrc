@@ -1,3 +1,4 @@
+export PATH=$HOME/.bin:$PATH
 . $HOME/.bash/aliases
 . $HOME/.bash/functions
 . $HOME/.bash/prompt

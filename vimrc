@@ -19,6 +19,7 @@ call pathogen#infect()
 " Bundle: "terryma/vim-multiple-cursors"
 " Bundle: derekwyatt/vim-scala
 " Bundle: tpope/vim-surround
+" Bundle: mustache/vim-mustache-handlebars
 
 syntax on
 filetype plugin on
