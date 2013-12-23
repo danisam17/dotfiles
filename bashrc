@@ -8,3 +8,6 @@ export PATH=$HOME/.bin:$PATH
 
 # allow npm to do all kind of things
 ulimit -n 1000
+
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
