@@ -130,7 +130,7 @@ set forward_quote                    # include message in forwards
 set editor = "vim"        # Use terminal Vim to compose email.
 
 set from     = 'kristian@kristianfreeman.com'
-set sendmail = '/opt/boxen/homebrew/bin/msmtp -a kristianfreeman'
+set sendmail = '/usr/local/bin/msmtp -a kristianfreeman'
 set sendmail_wait = 0
 unset record
 
