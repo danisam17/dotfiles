@@ -10,7 +10,7 @@ function changed() {
 }
 
 function prompt() {
-  export PS1='  \e[0;32m$(whoami)\e[m at \e[0;34m$(basename `pwd`) $(changed)\e[m \n'
+  export PS1='  $(whoami) at $(basename `pwd`) $(changed)\n'
 }
 
 prompt
