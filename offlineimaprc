@@ -12,7 +12,7 @@ postsynchook = notmuch new
 
 [Repository Kristian-Local]
 type = Maildir
-localfolders = ~/Dropbox/Code/mail/kristianatkristianfreeman
+localfolders = ~/BTSync/Code/mail/kristianatkristianfreeman
 nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
                             'sent':    '[Gmail]/Sent Mail',
                             'flagged': '[Gmail]/Starred',
