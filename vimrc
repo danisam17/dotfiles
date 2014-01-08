@@ -12,7 +12,7 @@ call pathogen#infect()
 " Bundle: bling/vim-airline
 " Bundle: endwise.vim
 " Bundle: tpope/vim-commentary
-" Bundle: altercation/vim-colors-solarized
+" Bundle: chriskempson/vim-tomorrow-theme
 " Bundle: kien/ctrlp.vim
 " Bundle: ervandew/supertab
 " Bundle: tpope/vim-fugitive
@@ -20,6 +20,7 @@ call pathogen#infect()
 " Bundle: derekwyatt/vim-scala
 " Bundle: tpope/vim-surround
 " Bundle: mustache/vim-mustache-handlebars
+" Bundle: tpope/vim-vinegar
 
 syntax on
 filetype plugin on
@@ -27,7 +28,7 @@ filetype indent on
 filetype on
 set clipboard=unnamed
 set background=dark
-colorscheme solarized
+colorscheme tomorrow-night
 set backspace=indent,eol,start
 
 autocmd Filetype gitcommit setlocal spell textwidth=72
@@ -54,6 +55,8 @@ set ruler
 set backspace=indent,eol,start
 set laststatus=2
 set relativenumber
+
+au BufRead,BufNewFile *.md setlocal textwidth=80
 
 set undofile
 set undodir=~/.vim/undo " where to save undo histories
