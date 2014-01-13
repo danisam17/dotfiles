@@ -10,4 +10,6 @@ ulimit -n 1000
 
 source /usr/local/opt/chruby/share/chruby/chruby.sh
 source /usr/local/opt/chruby/share/chruby/auto.sh
+
+eval "$(hub alias -s)"
 chruby ruby-2.0.0-p353
