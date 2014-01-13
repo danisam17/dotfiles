@@ -60,4 +60,6 @@
 (depends-on "coffee-mode")
 (depends-on "handlebars-mode")
 
+(depends-on "magit")
+
 (depends-on "org")

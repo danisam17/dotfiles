@@ -1,4 +1,5 @@
 (require 'flyspell)
+(setq ispell-program-name "/usr/local/bin/ispell")
 (setq flyspell-issue-message-flg nil)
 (add-hook 'enh-ruby-mode-hook
           (lambda () (flyspell-prog-mode)))

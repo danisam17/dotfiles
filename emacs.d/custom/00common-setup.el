@@ -16,6 +16,10 @@
 (setq-default truncate-lines nil)
 ;; Do not use tabs for indentation
 (setq-default indent-tabs-mode nil)
+
+;; OMG TWO SPACE
+(setq default-tab-width 2)
+
 (menu-bar-mode t)
 
 ;; trucate even even when screen is split into multiple windows
@@ -42,6 +46,17 @@
   (end-of-visual-line)
   (newline)
 )
+
+(defun yank-line ()
+  "Select and yank all of current line"
+  (interactive)
+  (beginning-of-visual-line)
+  (set-mark-command)
+  (end-of-visual-line)
+  (yank)
+  (keyboard-quit)
+)
+(global-set-key (kbd "C-S-y") 'yank-line)
 
 ;; New line without disrupting current line
 (global-set-key (kbd "C-o") 'to-next-line) ; Ctrl+o
