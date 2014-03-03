@@ -1,14 +1,20 @@
+alias add="git add -u; git add ."
+alias c="add && git commit"
 alias alive="ps aux | grep"
 alias amend="git commit --amend"
 alias back="rake db:rollback"
 alias be="bundle exec"
 alias die="exec $SHELL -l"
 alias emacs="open /Applications/Emacs.app"
-alias gs="git st"
+alias folders="ls -d -- */"
+alias gd='git diff'
+alias gs='git status'
 alias gu="git add -u"
+alias lc="git log -1 --pretty=%B"
 alias marked="open -a Marked.app"
 alias mutt="cd ~/Desktop && mutt"
 alias new="git checkout -b"
+alias reset="git reset HEAD && git checkout -- ."
 alias rmi="be rake db:migrate db:test:prepare"
 alias site="cd ~/src/website"
 alias t='tmux'

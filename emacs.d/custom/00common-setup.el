@@ -10,7 +10,7 @@
 ;; Navigate between windows using Alt-1, Alt-2, Shift-left, shift-up, shift-right
 (windmove-default-keybindings)
 
-(set-frame-font "Sauce Code Pro")
+(set-frame-font "Inconsolata Pro for Powerline")
 
 ;; Display continuous lines
 (setq-default truncate-lines nil)
@@ -156,3 +156,8 @@
 
 ;; Use js2-mode for Javascript
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+
+;; omg die
+(setq inhibit-startup-message t)
+
+(global-git-gutter+-mode t)

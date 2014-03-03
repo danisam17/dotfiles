@@ -1,6 +1,6 @@
 ;; change magit diff colors
 
-(global-set-key (kbd "C-m") 'magit-status)
+;; (global-set-key (kbd "C-m") 'magit-status)
 
 (eval-after-load 'magit
   '(progn

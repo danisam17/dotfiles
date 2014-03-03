@@ -18,11 +18,8 @@
 [help]
   autocorrect = 1
 [hub]
-  protocol = ssh
-[credential]
-  helper = /opt/boxen/bin/boxen-git-credential
+  protocol = https
 [push]
   default = matching
 [core]
   editor = vim
-  excludesfile = /opt/boxen/config/git/gitignore

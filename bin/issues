@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+require 'octokit'
+
+@client = Octokit::Client.new netrc: true
+@issues = @client.list_issues
+
+repos = {}
+
+@issues.each do |issue|
+  repo = issue.repository.full_name
+  repos[repo] ||= []
+  repos[repo] << issue
+end
+
+repos.each do |repo, issues|
+  puts repo
+  puts "-----"
+  issues.each do |issue|
+    puts "#{ issue.number }: #{ issue.title }"
+    puts "https://github.com/#{issue.repository.full_name}/issues/#{issue.number}"
+  end
+  puts
+  puts
+end

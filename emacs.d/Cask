@@ -63,3 +63,4 @@
 (depends-on "magit")
 
 (depends-on "org")
+(depends-on "git-gutter+")

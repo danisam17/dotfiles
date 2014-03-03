@@ -12,7 +12,6 @@ call pathogen#infect()
 " Bundle: bling/vim-airline
 " Bundle: endwise.vim
 " Bundle: tpope/vim-commentary
-" Bundle: chriskempson/vim-tomorrow-theme
 " Bundle: kien/ctrlp.vim
 " Bundle: ervandew/supertab
 " Bundle: tpope/vim-fugitive
@@ -21,14 +20,15 @@ call pathogen#infect()
 " Bundle: tpope/vim-surround
 " Bundle: mustache/vim-mustache-handlebars
 " Bundle: tpope/vim-vinegar
+" Bundle: kchmck/vim-coffee-script
 
 syntax on
 filetype plugin on
 filetype indent on
 filetype on
 set clipboard=unnamed
+colorscheme grb256
 set background=dark
-colorscheme tomorrow-night
 set backspace=indent,eol,start
 
 autocmd Filetype gitcommit setlocal spell textwidth=72
@@ -57,6 +57,7 @@ set laststatus=2
 set relativenumber
 
 au BufRead,BufNewFile *.md setlocal textwidth=80
+au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,Procfile,Guardfile,config.ru,*.rake} set ft=ruby
 
 set undofile
 set undodir=~/.vim/undo " where to save undo histories
@@ -128,19 +129,21 @@ nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
 inoremap jk <ESC>
 inoremap kj <ESC>
 nnoremap <leader>w <C-w>v<C-w>l
+nnoremap <leader>h <C-w>n<C-w>k
 nnoremap n nzzzv
 nnoremap N Nzzzv
 nnoremap H ^
 nnoremap L g_
 
 autocmd BufWritePre * :%s/\s\+$//e
-nmap <leader>rh :%s/\v:(\w+) \=\>/\1:/g<cr>
+nmap <leader>hr :%s/\v:(\w+) \=\>/\1:/g<cr>
 
 inoremap <c-a> <esc>I
 inoremap <c-e> <esc>A
 
 nnoremap <silent><leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 
+let g:airline_theme = 'solarized'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#hunks#non_zero_only = 1
 
@@ -273,3 +276,15 @@ let g:rails_projections = {
   \   'affinity': 'model'
   \ }}
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PROMOTE VARIABLE TO RSPEC LET
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! PromoteToLet()
+  :normal! dd
+" :exec '?^\s*it\>'
+  :normal! P
+  :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
+  :normal ==
+endfunction
+:command! PromoteToLet :call PromoteToLet()
+:map <leader>p :PromoteToLet<cr>
