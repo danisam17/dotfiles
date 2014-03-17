@@ -4,3 +4,4 @@ vim/docs
 bin/pomodoriapp
 mutt/temp
 /emacs.d/tramp
+*.scpt
