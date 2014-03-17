@@ -120,8 +120,10 @@ export PATH=/usr/local/bin:$HOME/.bin:$HOME/.cask/bin:$PATH
 # allow npm to do all kind of things
 ulimit -n 1000
 
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh
+# source /usr/local/opt/chruby/share/chruby/chruby.sh
+# source /usr/local/opt/chruby/share/chruby/auto.sh
 
 eval "$(hub alias -s)"
-chruby ruby-2.0.0-p353
+# chruby ruby-2.0.0-p353
+
+# . `brew --prefix`/etc/profile.d/z.sh

@@ -5,277 +5,157 @@ call pathogen#infect()
 
 " Bundles
 "
-" Bundle: "amiel/vim-tmux-navigator"
+" Bundle: amiel/vim-tmux-navigator
 " Bundle: tpope/vim-sensible
-" Bundle: tpope/vim-rails
-" Bundle: tpope/vim-dispatch
 " Bundle: bling/vim-airline
 " Bundle: endwise.vim
 " Bundle: tpope/vim-commentary
 " Bundle: kien/ctrlp.vim
-" Bundle: ervandew/supertab
-" Bundle: tpope/vim-fugitive
-" Bundle: "terryma/vim-multiple-cursors"
-" Bundle: derekwyatt/vim-scala
-" Bundle: tpope/vim-surround
-" Bundle: mustache/vim-mustache-handlebars
-" Bundle: tpope/vim-vinegar
-" Bundle: kchmck/vim-coffee-script
+" Bundle: jtratner/vim-flavored-markdown
 
-syntax on
-filetype plugin on
-filetype indent on
-filetype on
-set clipboard=unnamed
-colorscheme grb256
-set background=dark
-set backspace=indent,eol,start
+" .vimrc folding
+augroup filetype_vim
+  autocmd!
+  autocmd FileType vim setlocal foldmethod=marker
+augroup END
 
-autocmd Filetype gitcommit setlocal spell textwidth=72
+" Reload .vimrc on save (good for editing)
+augroup myvimrc
+  au!
+  au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+augroup END
+" Unfold with space!
 
-set t_Co=256
-set nocompatible
-set modelines=0
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set expandtab
+" Basics {{{
+
+" Gratuitous theft from
+" https://bitbucket.org/sjl/dotfiles
 set encoding=utf-8
-set scrolloff=3
+set modelines=0
 set autoindent
 set showmode
 set showcmd
 set hidden
-set wildmenu
-set wildmode=longest,list,full
 set visualbell
-set cursorline
 set ttyfast
 set ruler
 set backspace=indent,eol,start
-set laststatus=2
 set relativenumber
+set laststatus=2
+set history=1000
+set undofile
+set undoreload=10000
+set list
+set listchars=tab:▸\ ,extends:❯,precedes:❮
+set lazyredraw
+set matchtime=3
+set showbreak=↪
+set splitbelow
+set splitright
+set autowrite
+set autoread
+set shiftround
+set title
+set linebreak
+set colorcolumn=+1
 
-au BufRead,BufNewFile *.md setlocal textwidth=80
-au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,Procfile,Guardfile,config.ru,*.rake} set ft=ruby
+filetype plugin on
+filetype indent on
 
+set history=700
+
+filetype plugin on
+filetype indent on
+
+" Time out on key codes but not mappings.
+" Basically this makes terminal Vim work sanely.
+set notimeout
+set ttimeout
+set ttimeoutlen=10
+
+" Make Vim able to edit crontab files again.
+set backupskip=/tmp/*,/private/tmp/*"
+
+" Better Completion
+set complete=.,w,b,u,t
+set completeopt=longest,menuone,preview
+
+" Save when losing focus
+au FocusLost * :silent! wall
+
+" Resize splits when the window is resized
+au VimResized * :wincmd =
+
+" Set to auto read when a file is changed from the outside
+set autoread
+
+" Set utf8 as standard encoding and en_US as the standard language
+set encoding=utf8
+
+" Use Unix as the standard file type
+set ffs=unix,dos,mac
+
+" Use spaces instead of tabs
+set expandtab
+
+" Be smart when using tabs ;)
+set smarttab
+
+" 1 tab == 2 spaces
+set shiftwidth=2
+set tabstop=2
+
+" }}}
+
+" Undo files {{{
 set undofile
 set undodir=~/.vim/undo " where to save undo histories
 set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
 set backupdir=~/.vim/backup/
 set directory=~/.vim/backup/
+" }}}
 
+" Colors {{{
+syntax enable
+colorscheme grb256 " .vim/colors/*.vim
+set background=dark
+
+let g:airline_theme="luna"
+let g:airline_powerline_fonts = 1
+
+" }}}
+
+" Key remapping {{{
+
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
 let mapleader = ","
-let g:ctrlp_map = "<c-p>"
-nnoremap / /\v
-vnoremap / /\v
-nnoremap <leader><leader> <c-^>
-vnoremap <leader>G :w !gist -p -t %:e \| pbcopy<cr>
-nnoremap <C-u> gUiw
-inoremap <C-u> <esc>gUiwea
-nnoremap <C-p> Vy<esc>p
-vnoremap <leader>S y:execute @@<cr>
-nnoremap <leader>S ^vg_y:execute @@<cr>
-nnoremap vv ^vg_
-nnoremap gn <esc>:tabnew<cr>
+let g:mapleader = ","
 
-cnoremap <c-a> <home>
-cnoremap <c-e> <end>
+" Fast saving
+nnoremap <leader>w <C-w>v<C-w>l
 
-nnoremap <leader>V V`]
-cmap w!! w !sudo tee % >/dev/null
-nnoremap vv V
+" j-k smash
+inoremap jk <esc>
+inoremap kj <esc>
 
-set ignorecase
-set smartcase
-set gdefault
-set incsearch
-set showmatch
-set hlsearch
-nnoremap <leader><space> :noh<cr>
-nnoremap <tab> %
-vnoremap <tab> %
-
-augroup line_return
-  au!
-  au BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   execute 'normal! g`"zvzz' |
-    \ endif
-augroup END
-
-set wrap
-set formatoptions=qrn1
-set colorcolumn=85
-set list
-set listchars=tab:▸\ ,eol:¬
-
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-nnoremap j gj
-nnoremap k gk
+" Better command keys
 nnoremap ; :
 
-au FocusLost * :wa
-
-nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
-inoremap jk <ESC>
-inoremap kj <ESC>
-nnoremap <leader>w <C-w>v<C-w>l
-nnoremap <leader>h <C-w>n<C-w>k
-nnoremap n nzzzv
-nnoremap N Nzzzv
-nnoremap H ^
-nnoremap L g_
-
-autocmd BufWritePre * :%s/\s\+$//e
-nmap <leader>hr :%s/\v:(\w+) \=\>/\1:/g<cr>
-
-inoremap <c-a> <esc>I
-inoremap <c-e> <esc>A
-
-nnoremap <silent><leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
-
-let g:airline_theme = 'solarized'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#hunks#non_zero_only = 1
-
-set foldlevelstart=-
+" Code folding with space
 nnoremap <Space> za
 vnoremap <Space> za
-nnoremap z0 zCz0
-nnoremap <leader>z zMzvzz
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SWITCH BETWEEN TEST AND PRODUCTION CODE
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Switch between files with ,,
+nnoremap <leader><leader> <c-^>
 
-" TODO: Make better for handling test/unit, etc
-function! OpenTestAlternate()
-  let new_file = AlternateForCurrentFile()
-  exec ':e ' . new_file
-endfunction
-function! AlternateForCurrentFile()
-  let current_file = expand("%")
-  let new_file = current_file
-  let in_engine = match(current_file, '^engines') != -1
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 
-  let in_spec = match(current_file, '^spec/') != -1 ||
-        \ match(current_file, '^engines/.\+/spec/') != -1
-  let going_to_spec = !in_spec
-  let in_app = match(current_file, '\<controllers\>') != -1 ||
-        \ match(current_file, '\<models\>') != -1 ||
-        \ match(current_file, '\<views\>') != -1 ||
-        \ match(current_file, '\<helpers\>') != -1 ||
-        \ match(current_file, '\<decorators\>') != -1 ||
-        \ match(current_file, '\<presenters\>') != -1 ||
-        \ match(current_file, '\<uploaders\>') != -1
+" }}}
 
-  if in_engine
-    " TODO: use :A for test/unit, etc
-    exec ":A"
-  else
-    if going_to_spec
-      if in_app
-        let new_file = substitute(new_file, '^app/', '', '')
-      end
-      let new_file = substitute(new_file, '\.rb$', '_spec.rb', '')
-      let new_file = 'spec/' . new_file
-    else
-      let new_file = substitute(new_file, '\(_spec\|_test\)\.rb$', '.rb', '')
-      let new_file = substitute(new_file, '^\(spec\|test\)/', '', '')
-      if in_app
-        let new_file = 'app/' . new_file
-      end
-    endif
-  endif
-  return new_file
-endfunction
-
-" Trying out just :A always to see how that goes
-" Maybe I'll end up wanting it for rails projects, but then OpenTestAlternate
-" for non-rails projects
-" nnoremap <leader>. :A<cr>
-nnoremap <leader>. :call OpenTestAlternate()<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" RUNNING TESTS
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>r :call RunTestFile()<cr>
-map <leader>R :call RunNearestTest()<cr>
-map <leader>a :call RunTests('')<cr>
-
-function! RunTestFile(...)
-    if a:0
-        let command_suffix = a:1
-    else
-        let command_suffix = ""
-    endif
-
-    " Run the tests for the previously-marked file.
-    let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|_test.rb\)$') != -1
-    if in_test_file
-        call SetTestFile()
-    elseif !exists("t:grb_test_file")
-        return
-    end
-    call RunTests(t:grb_test_file . command_suffix)
-endfunction
-
-function! RunNearestTest()
-    let spec_line_number = line('.')
-    call RunTestFile(":" . spec_line_number . " -b")
-endfunction
-
-function! SetTestFile()
-    " Set the spec file that tests will be run for.
-    let t:grb_test_file=@%
-endfunction
-
-function! DispatchTests(command)
-  let command = a:command
-
-  " if filereadable(".ruby-version")
-  "   let ruby_version = "`cat .ruby-version`"
-  "   if filereadable(".ruby-gemset")
-  "     let ruby_version = ruby . "@`cat .ruby-gemset`"
-  "   endif
-  " endif
-
-
-  exec ":Dispatch " . a:command
-endfunction
-
-function! RunTests(filename)
-    :w
-    if filereadable("script/test")
-      call DispatchTests("script/test " . a:filename)
-    elseif filereadable("Gemfile")
-      call DispatchTests("bundle exec rspec --color " . a:filename)
-    else
-      call DispatchTests("rspec --color " . a:filename)
-    end
-endfunction
-
-""""""""
-" Rails.vim
-""""""""
-
-let g:rails_projections = {
-  \ 'app/admin/*.rb': {
-  \   'command': 'admin',
-  \   'template':
-  \     'ActiveAdmin.register %S do\nend',
-  \   'affinity': 'model'
-  \ }}
-
+" Key commands {{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PROMOTE VARIABLE TO RSPEC LET
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -288,3 +168,34 @@ function! PromoteToLet()
 endfunction
 :command! PromoteToLet :call PromoteToLet()
 :map <leader>p :PromoteToLet<cr>
+
+" }}}
+
+" Filetypes {{{
+
+" Remove trailing whitespace in Ruby files
+autocmd BufWritePre *.rb :%s/\s\+$//e
+
+augroup trailing
+    au!
+    au InsertEnter * :set listchars-=trail:⌴
+    au InsertLeave * :set listchars+=trail:⌴
+augroup END
+
+augroup markdown
+    au!
+    au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
+augroup END
+
+augroup collumnLimit
+  autocmd!
+  autocmd BufEnter,WinEnter,FileType ruby
+        \ highlight CollumnLimit ctermbg=DarkGrey guibg=DarkGrey
+  let collumnLimit = 79 " feel free to customize
+  let pattern =
+        \ '\%<' . (collumnLimit+1) . 'v.\%>' . collumnLimit . 'v'
+  autocmd BufEnter,WinEnter,FileType ruby
+        \ let w:m1=matchadd('CollumnLimit', pattern, -1)
+augroup END
+" }}}
+

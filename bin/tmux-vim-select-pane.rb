@@ -77,15 +77,24 @@ else
 end
 
 if pane.vim?
+  # wincmd = arg.sub('-', '').tr 'lLDUR', 'phjkl'
+
   commands ||= {
     tmux: { 'U' => 'F3', 'R' => 'F4', 'D' => 'F2', 'L' => 'F1' },
     zoom: { 'U' => 'F7', 'R' => 'F8', 'D' => 'F6', 'L' => 'F5' },
+    # zoom: { 'U' => 'M-<F5>', 'R' => 'M-<F6>', 'D' => 'M-<F7>', 'L' => 'M-<F8>' },
   }
 
   keycmd = commands[style][arg.sub('-', '')]
 
   `tmux send-keys "#{keycmd}"`
 
+  # `tmux send-keys C-#{wincmd}`
+
+#   `tmux send-keys ":let nr = winnr() | wincmd #{wincmd}" C-m`
+#   `tmux send-keys ":if nr == winnr() | silent call system(\\"#{command}\\") | end"`
+#   sleep 0.1
+#   `tmux send-keys C-m ':echo "\\r"' C-m`
 else
   `#{command}`
 end
