@@ -20,6 +20,10 @@
 [hub]
   protocol = https
 [push]
-  default = matching
+	default = current
 [core]
   editor = vim
+	quotepath = false
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f

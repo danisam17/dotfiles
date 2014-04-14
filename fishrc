@@ -15,9 +15,9 @@ function ...;   cd ../..; end
 function ....;  cd ../../..; end
 function .....; cd ../../../..; end
 
-function reload; source ~/.config/fish/config.fish; end
+function reload; source ~/.fishrc; end
 
-alias be="bundle exec"
+alias vup="vim-update-bundles -n"
 
 set PATH $HOME/.bin $PATH
 

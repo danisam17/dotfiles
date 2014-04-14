@@ -2,6 +2,10 @@ current() {
   printf $(basename `pwd`)
 }
 
+attach() {
+  tmux at -t $(current)
+}
+
 f() {
   ack $1 -k *
 }
@@ -21,4 +25,8 @@ gpp() {
 
 nmux() {
   tmux new -s $(current)
+}
+
+clip() {
+  cat $1 | pbcopy
 }

@@ -12,6 +12,9 @@ call pathogen#infect()
 " Bundle: tpope/vim-commentary
 " Bundle: kien/ctrlp.vim
 " Bundle: jtratner/vim-flavored-markdown
+" Bundle: kchmck/vim-coffee-script
+" Bundle: tpope/vim-surround
+" Bundle: mustache/vim-mustache-handlebars
 
 " .vimrc folding
 augroup filetype_vim
@@ -38,9 +41,9 @@ set showcmd
 set hidden
 set visualbell
 set ttyfast
+set number
 set ruler
 set backspace=indent,eol,start
-set relativenumber
 set laststatus=2
 set history=1000
 set undofile
@@ -105,6 +108,9 @@ set smarttab
 set shiftwidth=2
 set tabstop=2
 
+" Search shows all results
+set hlsearch
+
 " }}}
 
 " Undo files {{{
@@ -124,17 +130,22 @@ set background=dark
 let g:airline_theme="luna"
 let g:airline_powerline_fonts = 1
 
+hi Folded ctermbg=23
+hi Folded ctermfg=255
+
 " }}}
 
-" Key remapping {{{
+" Key commands {{{
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
 let mapleader = ","
 let g:mapleader = ","
 
-" Fast saving
+" Vertical split
 nnoremap <leader>w <C-w>v<C-w>l
+" Horizontal split
+nnoremap <leader>h <C-w>s<C-w>l
 
 " j-k smash
 inoremap jk <esc>
@@ -142,6 +153,9 @@ inoremap kj <esc>
 
 " Better command keys
 nnoremap ; :
+
+" Turn off nohlsearch
+nmap <silent> <leader><Space> :nohlsearch<CR>
 
 " Code folding with space
 nnoremap <Space> za
@@ -153,9 +167,6 @@ nnoremap <leader><leader> <c-^>
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
-" }}}
-
-" Key commands {{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PROMOTE VARIABLE TO RSPEC LET
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -169,12 +180,15 @@ endfunction
 :command! PromoteToLet :call PromoteToLet()
 :map <leader>p :PromoteToLet<cr>
 
+" Ruby hashrocket madness
+nnoremap <leader>r :%s/:\(\w*\)\s*=>\s*/\1: /gc<cr>
+
 " }}}
 
 " Filetypes {{{
 
-" Remove trailing whitespace in Ruby files
-autocmd BufWritePre *.rb :%s/\s\+$//e
+" Remove trailing whitespace in files
+autocmd BufWritePre *.rb,*.haml :%s/\s\+$//e
 
 augroup trailing
     au!
@@ -197,5 +211,16 @@ augroup collumnLimit
   autocmd BufEnter,WinEnter,FileType ruby
         \ let w:m1=matchadd('CollumnLimit', pattern, -1)
 augroup END
+
+" }}}
+
+" Plugins {{{
+
+"" Ignore rules
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip              " MacOSX/Linux
+set wildignore+=*/node_modules/*,*/bower_components/* " Node.js
+set wildignore+=*/vendor/*,*/dist/*                   " Meh
+
 " }}}
 
