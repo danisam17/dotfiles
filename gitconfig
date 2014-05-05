@@ -18,7 +18,7 @@
 [help]
   autocorrect = 1
 [hub]
-  protocol = https
+  protocol = ssh
 [push]
 	default = current
 [core]

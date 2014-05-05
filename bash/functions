@@ -3,7 +3,12 @@ current() {
 }
 
 attach() {
-  tmux at -t $(current)
+  if [ -z "$1" ]
+  then
+    tmux at -t $(current)
+  else
+    tmux at -t "$1"
+  fi
 }
 
 f() {
@@ -29,4 +34,22 @@ nmux() {
 
 clip() {
   cat $1 | pbcopy
+}
+
+post() {
+  date_slug=$(date +'%Y-%m-%d')
+  vim source/_posts/$date_slug-$1.markdown
+}
+
+fpost() {
+  if [[ -z "$1" ]]; then
+    echo "No search params indicated."
+  else
+    post=$(find . -name "*.markdown" | grep $1)
+    if [[ -z "$post" ]]; then
+      echo "No results found."
+    else
+      vim $post
+    fi
+  fi
 }

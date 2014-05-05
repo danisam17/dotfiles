@@ -15,6 +15,7 @@ call pathogen#infect()
 " Bundle: kchmck/vim-coffee-script
 " Bundle: tpope/vim-surround
 " Bundle: mustache/vim-mustache-handlebars
+" Bundle: tpope/vim-rails
 
 " .vimrc folding
 augroup filetype_vim
@@ -188,7 +189,7 @@ nnoremap <leader>r :%s/:\(\w*\)\s*=>\s*/\1: /gc<cr>
 " Filetypes {{{
 
 " Remove trailing whitespace in files
-autocmd BufWritePre *.rb,*.haml :%s/\s\+$//e
+autocmd BufWritePre * :%s/\s\+$//e
 
 augroup trailing
     au!
@@ -221,6 +222,9 @@ augroup END
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip              " MacOSX/Linux
 set wildignore+=*/node_modules/*,*/bower_components/* " Node.js
 set wildignore+=*/vendor/*,*/dist/*                   " Meh
+
+" Leader v for Rview
+nnoremap <leader>v :Rview<Space>
 
 " }}}
 
