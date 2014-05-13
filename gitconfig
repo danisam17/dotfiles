@@ -1,31 +1,23 @@
 [user]
-	name = Kristian Freeman
+  name = Kristian Freeman
   email = kristian@kristianfreeman.com
 [diff]
 [color]
+  branch = auto
+  diff = auto
+  status = auto
   ui = auto
 [alias]
   c = add && commit
   co = checkout
   cob = checkout -b
-  delete-local-branch = branch -D
-  delete-local-reference-to-remote-branch = "!sh -c 'git branch -rd $1/$2' -"
-  delete-remote-branch = "!sh -c 'git push $1 --delete $2' -"
-  delete-branch = "!sh -c 'git delete-local-branch $1; git remotes | cut -f1 | sort | uniq | xargs -n1 -J % git delete-local-reference-to-remote-branch % $1' -"
-
   d = diff
   dc = diff --cached
   s = status
-
   fix = rebase -i HEAD~5
 
-  # Fancy logging.
-  #   h = head
-  #   hp = head with patch
-  #   r = recent commits, only current branch
-  #   ra = recent commits, all reachable refs
-  #   l = all commits, only current branch
-  #   la = all commits, all reachable refs
+  # cool logs bro
+  # thanks grb
   head = !git r -1
   h = !git head
   hp = "!. ~/.githelpers && show_git_head"
@@ -41,10 +33,7 @@
 [hub]
   protocol = ssh
 [push]
-	default = current
+  default = current
 [core]
   editor = vim
-	quotepath = false
-[filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
+  quotepath = false
