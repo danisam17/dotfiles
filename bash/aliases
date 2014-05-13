@@ -1,17 +1,36 @@
-alias atom='open -a "Atom"'
+# vi:syntax=sh
+
+# Git
 alias add="git add -u; git add ."
+alias am="git commit --amend"
 alias c="add && git commit"
 alias co='git checkout'
 alias cob="git checkout -b"
-alias alive="ps aux | grep"
-alias am="git commit --amend"
+alias g=git
+
+# Ruby/Rails/Rake
+alias b='bundle check; bundle install'
 alias back="rake db:rollback"
-alias be="bundle exec"
 alias bake="be rake"
+alias be="bundle exec"
+alias rmi="be rake db:migrate db:test:prepare"
+
+# Applications
+alias atom='open -a "Atom"'
+alias marked="open -a Marked.app"
+alias psql="/Applications/Postgres93.app/Contents/MacOS/bin/psql"
+alias subl='open -a "Sublime Text"'
+
+# Terminal misc.
+alias alive="ps aux | grep"
 alias die="exec $SHELL -l"
-alias gd='git diff'
-alias gs='git status'
-alias lc="git log -1 --pretty=%B"
+alias site="cd ~/src/website"
+alias sudo='sudo '
+alias t='tmux'
+alias ve="vim ~/.vimrc"
+alias v=vim
+alias vi=vim
+alias vup="vim-update-bundles -n"
 
 # Color LS
 colorflag="-G"
@@ -20,17 +39,3 @@ alias l="ls -lF ${colorflag}" # all files, in long format
 alias la="ls -laF ${colorflag}" # all files inc dotfiles, in long format
 alias lsd='ls -lF ${colorflag} | grep "^d"' # only directories
 
-alias marked="open -a Marked.app"
-alias reset="git reset HEAD && git checkout -- ."
-alias rmi="be rake db:migrate db:test:prepare"
-alias subl='open -a "Sublime Text"'
-alias site="cd ~/src/website"
-alias sudo='sudo '
-alias t='tmux'
-alias ve="vim ~/.vimrc"
-alias vi=vim
-alias vup="vim-update-bundles -n"
-
-alias empty="git checkout -- .; gs"
-
-alias psql="/Applications/Postgres93.app/Contents/MacOS/bin/psql"

@@ -1,18 +1,38 @@
-current() {
-  printf $(basename `pwd`)
-}
+# vi:syntax=bash
 
 attach() {
   if [ -z "$1" ]
   then
     tmux at -t $(current)
   else
-    tmux at -t "$1"
+    tmux at -t "$1*"
   fi
 }
 
+clip() {
+  cat $1 | pbcopy
+}
+
+current() {
+  printf $(basename `pwd`)
+}
+
+
 f() {
   ack $1 -k *
+}
+
+fpost() {
+  if [[ -z "$1" ]]; then
+    echo "No search params indicated."
+  else
+    post=$(find . -name "*.markdown" | grep $1)
+    if [[ -z "$post" ]]; then
+      echo "No results found."
+    else
+      vim $post
+    fi
+  fi
 }
 
 gpp() {
@@ -32,24 +52,8 @@ nmux() {
   tmux new -s $(current)
 }
 
-clip() {
-  cat $1 | pbcopy
-}
-
 post() {
   date_slug=$(date +'%Y-%m-%d')
   vim source/_posts/$date_slug-$1.markdown
 }
 
-fpost() {
-  if [[ -z "$1" ]]; then
-    echo "No search params indicated."
-  else
-    post=$(find . -name "*.markdown" | grep $1)
-    if [[ -z "$post" ]]; then
-      echo "No results found."
-    else
-      vim $post
-    fi
-  fi
-}

@@ -24,5 +24,6 @@ fi
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="./bin:$PATH"
+export ANDROID_HOME=/usr/local/opt/android-sdk
 
 eval "$(rbenv init -)"
