@@ -1,3 +1,0 @@
-export LOLCOMMITS_DELAY=2
-export LOLCOMMITS_FORK=yes
-export LOLCOMMITS_STEALTH=yes
