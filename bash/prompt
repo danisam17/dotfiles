@@ -27,5 +27,5 @@ grb_git_prompt() {
     fi
 }
 
-PS1="\h:\W\$(grb_git_prompt) \u\$ "
+PS1="\h:\W\$(grb_git_prompt)\$ "
 

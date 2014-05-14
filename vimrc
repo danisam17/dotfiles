@@ -10,7 +10,6 @@ call pathogen#infect()
 " Bundle: bling/vim-airline
 " Bundle: endwise.vim
 " Bundle: tpope/vim-commentary
-" Bundle: kien/ctrlp.vim
 " Bundle: jtratner/vim-flavored-markdown
 " Bundle: kchmck/vim-coffee-script
 " Bundle: tpope/vim-surround
@@ -154,6 +153,9 @@ nnoremap <leader>h <C-w>s<C-w>l
 inoremap jk <esc>
 inoremap kj <esc>
 
+" Save, yo
+nnoremap <cr> :w<cr>
+
 " Better command keys
 nnoremap ; :
 
@@ -166,10 +168,6 @@ vnoremap <Space> za
 
 " Switch between files with ,,
 nnoremap <leader><leader> <c-^>
-
-" Ctrlp
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
 
 " Fugitive
 nnoremap <leader>g :G
@@ -232,6 +230,9 @@ set wildignore+=*/vendor/*,*/dist/*                   " Meh
 " Leader v for Rview
 nnoremap <leader>v :Rview<Space>
 
+" Surround
+map <leader>s ysiw
+
 " Rainbows!
 " let g:rainbow_active = 1
 
@@ -239,13 +240,15 @@ nnoremap <leader>v :Rview<Space>
 
 " Functions {{{
 
+" Testing {{{
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RUNNING TESTS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! MapCR()
-  nnoremap <cr> :call RunTestFile()<cr>
+function! MapTest()
+  nnoremap <leader>t :call RunTestFile()<cr>
 endfunction
-call MapCR()
+call MapTest()
 nnoremap <leader>T :call RunNearestTest()<cr>
 nnoremap <leader>a :call RunTests('')<cr>
 
@@ -336,5 +339,29 @@ function! AlternateForCurrentFile()
   return new_file
 endfunction
 nnoremap <leader>. :call OpenTestAlternate()<cr>
+
+" }}}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Selecta
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Run a given vim command on the results of fuzzy selecting from a given shell
+" command. See usage below.
+function! SelectaCommand(choice_command, selecta_args, vim_command)
+  try
+    silent let selection = system(a:choice_command . " | selecta " . a:selecta_args)
+  catch /Vim:Interrupt/
+    " Swallow the ^C so that the redraw below happens; otherwise there will be
+    " leftovers from selecta on the screen
+    redraw!
+    return
+  endtry
+  redraw!
+  exec a:vim_command . " " . selection
+endfunction
+
+" Find all files in all non-dot directories starting in the working directory.
+" Fuzzy select one of those. Open the selected file with :e.
+nnoremap <c-p> :call SelectaCommand("ag --no-numbers --nogroup -l .", "", ":e")<cr>
 
 " }}}

@@ -1,2 +1,4 @@
 --type-set=md=.markdown
 --type-add=md=.md
+--ignore-dir=dist
+--ignore-dir=vendor
