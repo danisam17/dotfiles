@@ -10,6 +10,7 @@ alias d="git d"
 alias g=git
 alias l="git r"
 alias last="git show $(git rev-parse HEAD)"
+alias push="git up && git push"
 alias reset="git reset"
 alias s="git status"
 
