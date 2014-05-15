@@ -6,6 +6,7 @@ alias am="git commit --amend"
 alias commit="add && git commit"
 alias co="git branch | cut -c 3- | selecta | xargs git checkout"
 alias cob="git checkout -b"
+alias d="git d"
 alias g=git
 alias l="git r"
 alias last="git show $(git rev-parse HEAD)"

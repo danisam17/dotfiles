@@ -1,3 +1,9 @@
+" O HAI
+" .vimrc
+" @imkmf
+
+" Bundles {{{
+
 " Pathogen setup
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 " Bundle: tpope/vim-pathogen
@@ -18,6 +24,9 @@ call pathogen#infect()
 " Bundle: 'luochen1990/rainbow'
 " Bundle: 'tpope/vim-fugitive'
 
+" }}}
+
+" vimrc settings {{{
 " .vimrc folding
 augroup filetype_vim
   autocmd!
@@ -31,44 +40,69 @@ augroup myvimrc
 augroup END
 " Unfold with space!
 
+" }}}
+
 " Basics {{{
 
 " Gratuitous theft from
 " https://bitbucket.org/sjl/dotfiles
-set encoding=utf-8
+" Disable vim modeline
 set modelines=0
-set autoindent
+
+" Mode indications
 set showmode
 set showcmd
+
+" Retain buffers until quit
 set hidden
+
+" No bells!
 set visualbell
+
+" Tell vim which characters to show for expanded TABs,
+" trailing whitespace, and end-of-lines. VERY useful!
+set listchars=tab:>-,trail:·,eol:$
+
+" Fast scrolling
 set ttyfast
-set number
+
+" Path/file expansion in colon-mode.
+set wildmode=longest:full,list:full,list:longest
+set wildchar=<TAB>
+
+" Better dividers
+set isk+=_,$,@,%,#,-
+
+" Space it out a little more (easier to read)
+set lsp=0
+
+" Line numbers are nice
 set ruler
+
+" Backspace for normal people
 set backspace=indent,eol,start
+
+" Always show status
 set laststatus=2
-set history=1000
-set undofile
-set undoreload=10000
+
+" Show whitespace
 set list
-set listchars=tab:▸\ ,extends:❯,precedes:❮
+
+" Pretty self-explanatory
 set lazyredraw
+
+" Brace face
+set showmatch
 set matchtime=3
-set showbreak=↪
+
+" Split down and right
 set splitbelow
 set splitright
-set autowrite
-set autoread
-set shiftround
-set title
-set linebreak
-set colorcolumn=+1
 
-filetype plugin on
-filetype indent on
+" Good indentation
+" set shiftround
 
-set history=700
-
+" Read filetype stuff
 filetype plugin on
 filetype indent on
 
@@ -85,14 +119,8 @@ set backupskip=/tmp/*,/private/tmp/*"
 set complete=.,w,b,u,t
 set completeopt=longest,menuone,preview
 
-" Save when losing focus
-au FocusLost * :silent! wall
-
 " Resize splits when the window is resized
 au VimResized * :wincmd =
-
-" Set to auto read when a file is changed from the outside
-set autoread
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
@@ -104,6 +132,7 @@ set ffs=unix,dos,mac
 set expandtab
 
 " Be smart when using tabs ;)
+set autoindent
 set smarttab
 
 " 1 tab == 2 spaces
@@ -115,7 +144,11 @@ set hlsearch
 
 " }}}
 
-" Undo files {{{
+" History/Undo settings {{{
+
+" We have computers with pretty big
+" hard drives, so let's keep these
+set history=1000
 set undofile
 set undodir=~/.vim/undo " where to save undo histories
 set undolevels=1000         " How many undos
@@ -127,6 +160,9 @@ set directory=~/.vim/backup/
 " Colors {{{
 syntax enable
 colorscheme grb256 " .vim/colors/*.vim
+hi NonText ctermfg=black guifg=black
+highlight SignColumn ctermbg=red
+
 set background=dark
 
 let g:airline_theme="solarized"
