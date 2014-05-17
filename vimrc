@@ -61,7 +61,7 @@ set visualbell
 
 " Tell vim which characters to show for expanded TABs,
 " trailing whitespace, and end-of-lines. VERY useful!
-set listchars=tab:>-,trail:·,eol:$
+set listchars=tab:>-,trail:·
 
 " Fast scrolling
 set ttyfast
@@ -160,8 +160,7 @@ set directory=~/.vim/backup/
 " Colors {{{
 syntax enable
 colorscheme grb256 " .vim/colors/*.vim
-hi NonText ctermfg=black guifg=black
-highlight SignColumn ctermbg=red
+hi NonText ctermbg=NONE
 
 set background=dark
 
