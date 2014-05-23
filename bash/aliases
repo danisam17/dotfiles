@@ -11,6 +11,7 @@ alias g=git
 alias l="git r"
 alias last="git show $(git rev-parse HEAD)"
 # `gem install git-up`
+alias 🚀="git up && git push"
 alias push="git up && git push"
 alias reset="git reset"
 alias s="git status"
