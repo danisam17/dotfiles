@@ -11,18 +11,23 @@ call pathogen#infect()
 
 " Bundles
 "
+" Misc
 " Bundle: amiel/vim-tmux-navigator
 " Bundle: tpope/vim-sensible
 " Bundle: bling/vim-airline
 " Bundle: endwise.vim
 " Bundle: tpope/vim-commentary
+" Bundle: tpope/vim-surround
+" Bundle: luochen1990/rainbow
+" Bundle: tpope/vim-fugitive
+"
+" Filetypes
 " Bundle: jtratner/vim-flavored-markdown
 " Bundle: kchmck/vim-coffee-script
-" Bundle: tpope/vim-surround
 " Bundle: mustache/vim-mustache-handlebars
 " Bundle: tpope/vim-rails
-" Bundle: 'luochen1990/rainbow'
-" Bundle: 'tpope/vim-fugitive'
+" Bundle: tpope/vim-fireplace
+" Bundle: t9md/vim-ruby-xmpfilter
 
 " }}}
 
@@ -270,6 +275,10 @@ map <leader>s ysiw
 
 " Rainbows!
 " let g:rainbow_active = 1
+
+" Ruby eval
+map <leader>c <Plug>(xmpfilter-mark)
+map <leader>e <Plug>(xmpfilter-run)
 
 " }}}
 
