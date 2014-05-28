@@ -6,6 +6,9 @@
 . $HOME/.bash/git-completion.bash
 . ~/.zsh
 
+# omg this is a thing waaaaat
+bind "set completion-ignore-case on"
+
 eval "$(hub alias -s)"
 eval "$(rbenv init -)"
 
