@@ -9,7 +9,6 @@ alias cob="git checkout -b"
 alias d="git d"
 alias g=git
 alias l="git r"
-alias last="git show $(git rev-parse HEAD)"
 # `gem install git-up`
 alias 🚀="git up && git push"
 alias push="git up && git push"
