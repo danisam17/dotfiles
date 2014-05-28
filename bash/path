@@ -10,3 +10,4 @@ fi
 # Android tools as installed by Homebrew
 export ANDROID_HOME=/usr/local/opt/android-sdk
 
+. *.machine
