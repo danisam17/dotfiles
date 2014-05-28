@@ -20,6 +20,7 @@ call pathogen#infect()
 " Bundle: tpope/vim-surround
 " Bundle: luochen1990/rainbow
 " Bundle: tpope/vim-fugitive
+" Bundle: rking/ag.vim
 "
 " Filetypes
 " Bundle: jtratner/vim-flavored-markdown
@@ -403,9 +404,25 @@ function! SelectaCommand(choice_command, selecta_args, vim_command)
   redraw!
   exec a:vim_command . " " . selection
 endfunction
-
 " Find all files in all non-dot directories starting in the working directory.
 " Fuzzy select one of those. Open the selected file with :e.
 nnoremap <c-p> :call SelectaCommand("ag --no-numbers --nogroup -l .", "", ":e")<cr>
+
+" Fuzzy file searcher. Still not super happy with the output, but it works
+function! FindIn(choice_command, selecta_args, vim_command)
+  try
+    silent let selection = system(a:choice_command . " | selecta " . a:selecta_args)
+  catch /Vim:Interrupt/
+    " Swallow the ^C so that the redraw below happens; otherwise there will be
+    " leftovers from selecta on the screen
+    redraw!
+    return
+  endtry
+  redraw!
+  " Regex out the match result so we can open the file
+  silent let file = substitute(selection, "\:.*$", "", "g")
+  exec a:vim_command . " " . file
+endfunction
+nnoremap ss :call FindIn("ag '\w'", "", ":e")<cr>
 
 " }}}
