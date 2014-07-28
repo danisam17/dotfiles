@@ -3,6 +3,5 @@ vim/*bundle*
 vim/docs
 bin/pomodoriapp
 mutt/temp
-/emacs.d/tramp
 *.scpt
 bash/*.machine
