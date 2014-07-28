@@ -1,6 +1,6 @@
 [user]
   name = Kristian Freeman
-  email = kristian@kristianfreeman.com
+  email = kristian@simple.com
 [pager]
   diff = diff-highlight | less
 [diff]
@@ -39,3 +39,8 @@
 [core]
   editor = vim
   quotepath = false
+[http]
+  sslcainfo = /usr/local/etc/openssl/cert.pem
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f

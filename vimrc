@@ -18,9 +18,10 @@ call pathogen#infect()
 " Bundle: endwise.vim
 " Bundle: tpope/vim-commentary
 " Bundle: tpope/vim-surround
-" Bundle: luochen1990/rainbow
-" Bundle: tpope/vim-fugitive
-" Bundle: rking/ag.vim
+" Bundle: altercation/vim-colors-solarized
+" Bundle: kien/ctrlp.vim
+" Bundle: tpope/vim-repeat
+" Bundle: sjl/gundo.vim
 "
 " Filetypes
 " Bundle: jtratner/vim-flavored-markdown
@@ -29,6 +30,7 @@ call pathogen#infect()
 " Bundle: tpope/vim-rails
 " Bundle: tpope/vim-fireplace
 " Bundle: t9md/vim-ruby-xmpfilter
+" Bundle: "mattn/emmet-vim"
 
 " }}}
 
@@ -165,16 +167,14 @@ set directory=~/.vim/backup/
 
 " Colors {{{
 syntax enable
-colorscheme grb256 " .vim/colors/*.vim
-hi NonText ctermbg=NONE
+colorscheme solarized " .vim/colors/*.vim
+set background=light
 
-set background=dark
-
+" Airline
 let g:airline_theme="solarized"
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 
-hi Folded ctermbg=23
-hi Folded ctermfg=255
 
 " }}}
 
@@ -212,6 +212,14 @@ nnoremap <leader><leader> <c-^>
 
 " Fugitive
 nnoremap <leader>g :G
+
+" Buffer commands
+nmap <c-b> :bprevious<CR>
+nmap <c-n> :bnext<CR>
+
+" Saving, closing
+nnoremap ww :x<CR>
+nnoremap bb :bd<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PROMOTE VARIABLE TO RSPEC LET
@@ -274,16 +282,14 @@ nnoremap <leader>v :Rview<Space>
 " Surround
 map <leader>s ysiw
 
-" Rainbows!
-" let g:rainbow_active = 1
+" Ctrl-p
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 
-" Ruby eval
-map <leader>c <Plug>(xmpfilter-mark)
-map <leader>e <Plug>(xmpfilter-run)
+" Gundo
+nnoremap <leader>u :GundoToggle<cr>
 
 " }}}
-
-" Functions {{{
 
 " Testing {{{
 
@@ -384,45 +390,5 @@ function! AlternateForCurrentFile()
   return new_file
 endfunction
 nnoremap <leader>. :call OpenTestAlternate()<cr>
-
-" }}}
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Selecta
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Run a given vim command on the results of fuzzy selecting from a given shell
-" command. See usage below.
-function! SelectaCommand(choice_command, selecta_args, vim_command)
-  try
-    silent let selection = system(a:choice_command . " | selecta " . a:selecta_args)
-  catch /Vim:Interrupt/
-    " Swallow the ^C so that the redraw below happens; otherwise there will be
-    " leftovers from selecta on the screen
-    redraw!
-    return
-  endtry
-  redraw!
-  exec a:vim_command . " " . selection
-endfunction
-" Find all files in all non-dot directories starting in the working directory.
-" Fuzzy select one of those. Open the selected file with :e.
-nnoremap <c-p> :call SelectaCommand("ag --no-numbers --nogroup -l .", "", ":e")<cr>
-
-" Fuzzy file searcher. Still not super happy with the output, but it works
-function! FindIn(choice_command, selecta_args, vim_command)
-  try
-    silent let selection = system(a:choice_command . " | selecta " . a:selecta_args)
-  catch /Vim:Interrupt/
-    " Swallow the ^C so that the redraw below happens; otherwise there will be
-    " leftovers from selecta on the screen
-    redraw!
-    return
-  endtry
-  redraw!
-  " Regex out the match result so we can open the file
-  silent let file = substitute(selection, "\:.*$", "", "g")
-  exec a:vim_command . " " . file
-endfunction
-nnoremap ss :call FindIn("ag '\w'", "", ":e")<cr>
 
 " }}}

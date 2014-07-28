@@ -4,12 +4,10 @@
 alias add="git add -u; git add ."
 alias am="git commit --amend"
 alias commit="add && git commit"
-alias co="git branch | cut -c 3- | selecta | xargs git checkout"
 alias cob="git checkout -b"
 alias d="git d"
 alias dc="git diff --cached"
 alias g=git
-alias l="git r"
 # `gem install git-up`
 alias 🚀="git up && git push"
 alias push="git up && git push"
@@ -19,13 +17,11 @@ alias ss="git up"
 
 # Ruby/Rails/Rake
 alias bu='bundle check; bundle install'
-alias back="rake db:rollback"
+alias back="bake db:rollback"
 alias bake="be rake"
 alias be="bundle exec"
 alias rmi="be rake db:migrate db:test:prepare"
-
-# Applications
-alias psql="/Applications/Postgres93.app/Contents/MacOS/bin/psql"
+alias rr="rbenv rehash"
 
 # Terminal misc.
 alias alive="ps aux | grep"
@@ -37,6 +33,7 @@ alias nv="cd ~/Dropbox/Misc/Notes; vim -c ':exe \"normal ss\"'"
 alias site="cd ~/src/website"
 alias sudo='sudo '
 alias t='tmux'
+alias tmux="tmux -2"
 alias ve="vim ~/.vimrc"
 alias v=vim
 alias vi=vim
