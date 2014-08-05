@@ -6,3 +6,4 @@ mutt/temp
 *.scpt
 bash/*.machine
 *.gpg
+emacs.d/projectile-bookmarks.eld
