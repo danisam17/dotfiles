@@ -5,3 +5,4 @@ bin/pomodoriapp
 mutt/temp
 *.scpt
 bash/*.machine
+*.gpg

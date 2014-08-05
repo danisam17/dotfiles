@@ -13,7 +13,13 @@
 (defconst *is-a-mac* (eq system-type 'darwin))
 
 ;;----------------------------------------------------------------------------
-;; Bootstrap config
+;; secrets
+;;----------------------------------------------------------------------------
+;(load-library "secrets.el.gpg")
+;(provide 'secrets)
+
+;;----------------------------------------------------------------------------
+;; config
 ;;----------------------------------------------------------------------------
 (require 'init-compat)
 (require 'init-utils)
@@ -41,7 +47,7 @@
 (require 'init-isearch)
 (require 'init-uniquify)
 (require 'init-ibuffer)
-(require 'init-flycheck)
+;;(require 'init-flycheck)
 
 (require 'init-recentf)
 (require 'init-ido)
@@ -92,6 +98,11 @@
 
 (require 'init-dash)
 (require 'init-ledger)
+(require 'init-web-mode)
+(require 'projectile)
+(require 'init-modeline)
+(require 'init-custom-commands)
+
 ;; Extra packages which don't require any configuration
 
 (require-package 'gnuplot)

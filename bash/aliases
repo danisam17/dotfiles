@@ -8,6 +8,7 @@ alias cob="git checkout -b"
 alias d="git d"
 alias dc="git diff --cached"
 alias g=git
+alias l="git log"
 # `gem install git-up`
 alias 🚀="git up && git push"
 alias push="git up && git push"

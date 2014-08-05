@@ -1,0 +1,1 @@
+("~/.dotfiles/" "~/src/imkmf/website/" "~/src/simple/belvedere/" "~/src/simple/simple-ruby/")

@@ -1,12 +1,5 @@
-(require-package 'rinari)
-(after-load 'rinari
-  (diminish 'rinari-minor-mode "Rin"))
-(global-rinari-mode)
-
-(defun update-rails-ctags ()
-  (interactive)
-  (let ((default-directory (or (rinari-root) default-directory)))
-    (shell-command (concat "ctags -a -e -f " rinari-tags-file-name " --tag-relative -R app lib vendor test"))))
-
+(require 'projectile-rails)
+(projectile-global-mode) ;; not sure about this
+(add-hook 'projectile-mode-hook 'projectile-rails-on)
 
 (provide 'init-rails)

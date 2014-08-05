@@ -1,0 +1,2 @@
+#!/bin/sh
+osascript ~/.bin/spotify_np.scpt

@@ -1,0 +1,6 @@
+HAS_NETWORK=$(ifconfig en0 | grep inactive)
+if [[ "$HAS_NETWORK" ]]; then
+  echo "pattern: red flashes"
+else
+  echo "pattern: nightfall"
+fi
