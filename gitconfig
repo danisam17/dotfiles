@@ -28,6 +28,8 @@
   l = "!. ~/.githelpers && pretty_git_log"
   la = !git l --all
 
+[merge]
+  tool = vimdiff
 [help]
   autocorrect = 1
 [hub]
@@ -35,7 +37,7 @@
 [push]
   default = current
 [core]
-  editor = emacs
+  editor = vim
   quotepath = false
 [http]
   sslcainfo = /usr/local/etc/openssl/cert.pem
