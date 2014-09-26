@@ -25,6 +25,7 @@ alias mkdir="mkdir -p"
 alias sudo='sudo '
 alias tmux="tmux -2"
 alias ve="vim ~/.vimrc"
+alias vup="vim-update-bundles -n"
 
 # Color LS
 colorflag="-G"
