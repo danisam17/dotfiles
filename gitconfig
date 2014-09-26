@@ -39,8 +39,17 @@
 [core]
   editor = vim
   quotepath = false
+	excludesfile = /Users/kristian/.gitignore_global
 [http]
   sslcainfo = /usr/local/etc/openssl/cert.pem
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
+[pull]
+	rebase = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

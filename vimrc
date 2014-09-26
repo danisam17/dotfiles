@@ -9,32 +9,27 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 " Bundle: tpope/vim-pathogen
 call pathogen#infect()
 
-" Bundles
-"
-" Misc
+" Bundle: itchyny/lightline.vim
 " Bundle: amiel/vim-tmux-navigator
 " Bundle: tpope/vim-sensible
-" Bundle: bling/vim-airline
 " Bundle: endwise.vim
 " Bundle: tpope/vim-commentary
 " Bundle: tpope/vim-surround
-" Bundle: altercation/vim-colors-solarized
 " Bundle: kien/ctrlp.vim
-" Bundle: tpope/vim-repeat
-" Bundle: sjl/gundo.vim
-"
-" Filetypes
+" Bundle: rking/ag.vim
+" Bundle: Lokaltog/vim-easymotion
 " Bundle: jtratner/vim-flavored-markdown
 " Bundle: kchmck/vim-coffee-script
 " Bundle: mustache/vim-mustache-handlebars
 " Bundle: tpope/vim-rails
-" Bundle: tpope/vim-fireplace
-" Bundle: t9md/vim-ruby-xmpfilter
 " Bundle: "mattn/emmet-vim"
+" Bundle: "fatih/vim-go"
+" Bundle: tpope/vim-fugitive
 
 " }}}
 
 " vimrc settings {{{
+"
 " .vimrc folding
 augroup filetype_vim
   autocmd!
@@ -61,15 +56,23 @@ set modelines=0
 set showmode
 set showcmd
 
+" Hide extra vim info because lightline
+set noshowmode
+
 " Retain buffers until quit
 set hidden
 
 " No bells!
 set visualbell
 
-" Tell vim which characters to show for expanded TABs,
-" trailing whitespace, and end-of-lines. VERY useful!
-set listchars=tab:>-,trail:·
+" Define characters to show when you show formatting
+" stolen from https://github.com/tpope/vim-sensible
+if &listchars ==# 'eol:$'
+  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+  if &termencoding ==# 'utf-8' || &encoding ==# 'utf-8'
+    let &listchars = "tab:\u21e5,trail:\u2423,extends:\u21c9,precedes:\u21c7,nbsp:\u26ad"
+  endif
+endif
 
 " Fast scrolling
 set ttyfast
@@ -167,21 +170,12 @@ set directory=~/.vim/backup/
 
 " Colors {{{
 syntax enable
-colorscheme solarized " .vim/colors/*.vim
-set background=light
-
-" Airline
-let g:airline_theme="solarized"
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-
+colorscheme ir_black " .vim/colors/*.vim
 
 " }}}
 
 " Key commands {{{
 
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
 let mapleader = ","
 let g:mapleader = ","
 
@@ -203,39 +197,13 @@ nnoremap ; :
 " Turn off nohlsearch
 nmap <silent> <leader><Space> :nohlsearch<CR>
 
-" Code folding with space
-nnoremap <Space> za
-vnoremap <Space> za
-
 " Switch between files with ,,
 nnoremap <leader><leader> <c-^>
 
-" Fugitive
-nnoremap <leader>g :G
-
-" Buffer commands
-nmap <c-b> :bprevious<CR>
-nmap <c-n> :bnext<CR>
-
-" Saving, closing
-nnoremap ww :x<CR>
-nnoremap bb :bd<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PROMOTE VARIABLE TO RSPEC LET
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! PromoteToLet()
-  :normal! dd
-" :exec '?^\s*it\>'
-  :normal! P
-  :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
-  :normal ==
-endfunction
-:command! PromoteToLet :call PromoteToLet()
-:map <leader>p :PromoteToLet<cr>
-
 " Ruby hashrocket madness
 nnoremap <leader>r :%s/:\(\w*\)\s*=>\s*/\1: /gc<cr>
+
+nnoremap <space> za
 
 " }}}
 
@@ -255,15 +223,13 @@ augroup markdown
     au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 augroup END
 
-augroup collumnLimit
-  autocmd!
-  autocmd BufEnter,WinEnter,FileType ruby
-        \ highlight CollumnLimit ctermbg=DarkGrey guibg=DarkGrey
-  let collumnLimit = 79 " feel free to customize
-  let pattern =
-        \ '\%<' . (collumnLimit+1) . 'v.\%>' . collumnLimit . 'v'
-  autocmd BufEnter,WinEnter,FileType ruby
-        \ let w:m1=matchadd('CollumnLimit', pattern, -1)
+augroup handlebars
+    au!
+    au BufNewFile,BufRead *.hbs,*.hbs.ember setlocal filetype=mustache
+augroup END
+
+augroup golang
+    autocmd BufRead *.go set nolist
 augroup END
 
 " }}}
@@ -276,119 +242,12 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip              " MacOSX/Linux
 set wildignore+=*/node_modules/*,*/bower_components/* " Node.js
 set wildignore+=*/vendor/*,*/dist/*                   " Meh
 
-" Leader v for Rview
-nnoremap <leader>v :Rview<Space>
-
-" Surround
-map <leader>s ysiw
-
 " Ctrl-p
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
-" Gundo
-nnoremap <leader>u :GundoToggle<cr>
+" Easymotion
+map \\ <Plug>(easymotion-prefix)
 
 " }}}
 
-" Testing {{{
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" RUNNING TESTS
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! MapTest()
-  nnoremap <leader>t :call RunTestFile()<cr>
-endfunction
-call MapTest()
-nnoremap <leader>T :call RunNearestTest()<cr>
-nnoremap <leader>a :call RunTests('')<cr>
-
-function! RunTestFile(...)
-    if a:0
-        let command_suffix = a:1
-    else
-        let command_suffix = ""
-    endif
-
-    " Run the tests for the previously-marked file.
-    let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\)$') != -1
-    if in_test_file
-        call SetTestFile()
-    elseif !exists("t:grb_test_file")
-        return
-    end
-    call RunTests(t:grb_test_file . command_suffix)
-endfunction
-
-function! RunNearestTest()
-    let spec_line_number = line('.')
-    call RunTestFile(":" . spec_line_number)
-endfunction
-
-function! SetTestFile()
-    " Set the spec file that tests will be run for.
-    let t:grb_test_file=@%
-endfunction
-
-function! RunTests(filename)
-    " Write the file and run tests for the given filename
-    if expand("%") != ""
-      :w
-    end
-    if match(a:filename, '\.feature$') != -1
-        exec ":!script/features " . a:filename
-    else
-        " First choice: project-specific test script
-        if filereadable("script/test")
-            exec ":!script/test " . a:filename
-        " Fall back to the .test-commands pipe if available, assuming someone
-        " is reading the other side and running the commands
-        elseif filewritable(".test-commands")
-          let cmd = 'rspec --color --format progress --require "~/lib/vim_rspec_formatter" --format VimFormatter --out tmp/quickfix'
-          exec ":!echo " . cmd . " " . a:filename . " > .test-commands"
-
-          " Write an empty string to block until the command completes
-          sleep 100m " milliseconds
-          :!echo > .test-commands
-          redraw!
-        " Fall back to a blocking test run with Bundler
-        elseif filereadable("Gemfile")
-            exec ":!bundle exec rspec --color " . a:filename
-        " Fall back to a normal blocking test run
-        else
-            exec ":!rspec --color " . a:filename
-        end
-    end
-endfunction
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SWITCH BETWEEN TEST AND PRODUCTION CODE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! OpenTestAlternate()
-  let new_file = AlternateForCurrentFile()
-  exec ':e ' . new_file
-endfunction
-function! AlternateForCurrentFile()
-  let current_file = expand("%")
-  let new_file = current_file
-  let in_spec = match(current_file, '^spec/') != -1
-  let going_to_spec = !in_spec
-  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1
-  if going_to_spec
-    if in_app
-      let new_file = substitute(new_file, '^app/', '', '')
-    end
-    let new_file = substitute(new_file, '\.e\?rb$', '_spec.rb', '')
-    let new_file = 'spec/' . new_file
-  else
-    let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
-    let new_file = substitute(new_file, '^spec/', '', '')
-    if in_app
-      let new_file = 'app/' . new_file
-    end
-  endif
-  return new_file
-endfunction
-nnoremap <leader>. :call OpenTestAlternate()<cr>
-
-" }}}

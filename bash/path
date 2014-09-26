@@ -1,6 +1,7 @@
 export PATH="/usr/local/bin:$HOME/.bin:$HOME/.cask/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="./bin:$PATH"
+export PATH="/Users/kristian/.cask/bin:$PATH"
 
 # Use Postgres93.app bin folder if it exists
 if [ -f /Applications/Postgres93.app/Contents/MacOS/bin/psql ]; then

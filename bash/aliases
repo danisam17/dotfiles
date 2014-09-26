@@ -1,44 +1,30 @@
 # vi:syntax=sh
 
 # Git
-alias add="git add -u; git add ."
 alias am="git commit --amend"
-alias commit="add && git commit"
+alias co="git checkout"
 alias cob="git checkout -b"
 alias d="git d"
 alias dc="git diff --cached"
-alias g=git
 alias l="git log"
 # `gem install git-up`
 alias 🚀="git up && git push"
-alias push="git up && git push"
-alias reset="git reset"
 alias s="git status"
-alias ss="git up"
 
 # Ruby/Rails/Rake
 alias bu='bundle check; bundle install'
 alias back="bake db:rollback"
 alias bake="be rake"
 alias be="bundle exec"
-alias rmi="be rake db:migrate db:test:prepare"
-alias rr="rbenv rehash"
 
 # Terminal misc.
 alias alive="ps aux | grep"
 alias c="clear"
 alias die="exec $SHELL -l"
-alias list="tree -I 'node_modules|tmp|vendor'"
 alias mkdir="mkdir -p"
-alias nv="cd ~/Dropbox/Misc/Notes; vim -c ':exe \"normal ss\"'"
-alias site="cd ~/src/website"
 alias sudo='sudo '
-alias t='tmux'
 alias tmux="tmux -2"
 alias ve="vim ~/.vimrc"
-alias v=vim
-alias vi=vim
-alias vup="vim-update-bundles -n"
 
 # Color LS
 colorflag="-G"

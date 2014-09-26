@@ -3,8 +3,7 @@
 . $HOME/.bash/aliases
 . $HOME/.bash/functions
 . $HOME/.bash/prompt
-. $HOME/.bash/git-completion.bash
-. ~/.zsh
+. $HOME/.bash/git-prompt.sh
 
 # omg this is a thing waaaaat
 bind "set completion-ignore-case on"

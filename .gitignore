@@ -1,9 +1,11 @@
 *.pyc
 vim/*bundle*
 vim/docs
+bin/bastion.scpt
+bin/dgist
 bin/pomodoriapp
 mutt/temp
 *.scpt
 bash/*.machine
 *.gpg
-emacs.d/projectile-bookmarks.eld
+emacs.d
