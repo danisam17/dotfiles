@@ -2,20 +2,26 @@
 
 # Git
 alias am="git commit --amend"
+alias b="git branch --verbose"
 alias co="git checkout"
+alias clean="git checkout -- ."
 alias cob="git checkout -b"
 alias d="git d"
 alias dc="git diff --cached"
 alias l="git log"
 # `gem install git-up`
 alias 🚀="git up && git push"
+alias reset="git reset HEAD --hard"
 alias s="git status"
+alias stash="git stash"
+alias pop="git stash pop"
 
 # Ruby/Rails/Rake
 alias bu='bundle check; bundle install'
 alias back="bake db:rollback"
 alias bake="be rake"
 alias be="bundle exec"
+alias rmi="bake db:migrate"
 
 # Terminal misc.
 alias alive="ps aux | grep"
