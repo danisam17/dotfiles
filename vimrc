@@ -9,8 +9,11 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 " Bundle: tpope/vim-pathogen
 call pathogen#infect()
 
-" Bundle: itchyny/lightline.vim
+" Bundle: tpope/vim-rails
+" Bundle: altercation/vim-colors-solarized
+" Bundle: bling/vim-airline
 " Bundle: amiel/vim-tmux-navigator
+" Bundle: airblade/vim-gitgutter
 " Bundle: tpope/vim-sensible
 " Bundle: endwise.vim
 " Bundle: tpope/vim-commentary
@@ -21,9 +24,8 @@ call pathogen#infect()
 " Bundle: jtratner/vim-flavored-markdown
 " Bundle: kchmck/vim-coffee-script
 " Bundle: mustache/vim-mustache-handlebars
-" Bundle: tpope/vim-rails
-" Bundle: "mattn/emmet-vim"
-" Bundle: "fatih/vim-go"
+" Bundle: mattn/emmet-vim
+" Bundle: fatih/vim-go
 " Bundle: tpope/vim-fugitive
 
 " }}}
@@ -50,14 +52,11 @@ augroup END
 " Gratuitous theft from
 " https://bitbucket.org/sjl/dotfiles
 " Disable vim modeline
-set modelines=0
+set modelines=1
 
 " Mode indications
 set showmode
 set showcmd
-
-" Hide extra vim info because lightline
-set noshowmode
 
 " Retain buffers until quit
 set hidden
@@ -170,7 +169,8 @@ set directory=~/.vim/backup/
 
 " Colors {{{
 syntax enable
-colorscheme ir_black " .vim/colors/*.vim
+set background=dark
+colorscheme solarized
 
 " }}}
 
@@ -194,6 +194,11 @@ nnoremap <cr> :w<cr>
 " Better command keys
 nnoremap ; :
 
+" Buffer commands
+nmap <c-b> :bprevious<CR>
+nmap <c-n> :bnext<CR>
+nmap bb :bw<CR>
+
 " Turn off nohlsearch
 nmap <silent> <leader><Space> :nohlsearch<CR>
 
@@ -202,8 +207,6 @@ nnoremap <leader><leader> <c-^>
 
 " Ruby hashrocket madness
 nnoremap <leader>r :%s/:\(\w*\)\s*=>\s*/\1: /gc<cr>
-
-nnoremap <space> za
 
 " }}}
 
@@ -228,10 +231,6 @@ augroup handlebars
     au BufNewFile,BufRead *.hbs,*.hbs.ember setlocal filetype=mustache
 augroup END
 
-augroup golang
-    autocmd BufRead *.go set nolist
-augroup END
-
 " }}}
 
 " Plugins {{{
@@ -248,6 +247,30 @@ let g:ctrlp_cmd = 'CtrlP'
 
 " Easymotion
 map \\ <Plug>(easymotion-prefix)
+
+" Airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme="solarized"
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+
+" Gitgutter
+highlight clear SignColumn
+highlight GitGutterAdd ctermfg=green guifg=darkgreen
+highlight GitGutterChange ctermfg=yellow guifg=darkyellow
+highlight GitGutterDelete ctermfg=red guifg=darkred
+highlight GitGutterChangeDelete ctermfg=yellow guifg=darkyellow
+
+" Rails.vim
+map <leader>a :A<cr> " alternate
+map <leader>rc :Rcontroller<space> " controller
+map <leader>re :Renvironment<space> " environment
+map <leader>ri :Rinitializer<space> " initializer
+map <leader>rl :Rlib<space> " lib
+map <leader>rm :Rmodel<space> " model
+map <leader>rs :Rspec<space> " spec
 
 " }}}
 

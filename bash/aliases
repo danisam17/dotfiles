@@ -9,6 +9,7 @@ alias cob="git checkout -b"
 alias d="git d"
 alias dc="git diff --cached"
 alias l="git log"
+alias la="git diff HEAD^..HEAD"
 # `gem install git-up`
 alias 🚀="git up && git push"
 alias reset="git reset HEAD --hard"
@@ -34,5 +35,4 @@ alias ve="vim ~/.vimrc"
 alias vup="vim-update-bundles -n"
 
 # Color LS
-colorflag="-G"
-alias ls="command ls ${colorflag} -l"
+alias ls="ls --color=auto -la"
