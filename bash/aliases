@@ -4,6 +4,7 @@
 alias am="git commit --amend"
 alias b="git branch --verbose"
 alias co="git checkout"
+alias couple="git log --format=oneline -10"
 alias clean="git checkout -- ."
 alias cob="git checkout -b"
 alias d="git d"
@@ -18,11 +19,12 @@ alias stash="git stash"
 alias pop="git stash pop"
 
 # Ruby/Rails/Rake
-alias bu='bundle check; bundle install'
+alias bu='bundle check; bundle install -j8'
 alias back="bake db:rollback"
 alias bake="be rake"
 alias be="bundle exec"
 alias rmi="bake db:migrate"
+alias route="bake routes | grep $1"
 
 # Terminal misc.
 alias alive="ps aux | grep"

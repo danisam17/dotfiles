@@ -9,24 +9,36 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 " Bundle: tpope/vim-pathogen
 call pathogen#infect()
 
-" Bundle: tpope/vim-rails
-" Bundle: altercation/vim-colors-solarized
-" Bundle: bling/vim-airline
-" Bundle: amiel/vim-tmux-navigator
-" Bundle: airblade/vim-gitgutter
 " Bundle: tpope/vim-sensible
+" Tmux
+" Bundle: amiel/vim-tmux-navigator
+" Git
+" Bundle: tpope/vim-fugitive
+" Vim addons
 " Bundle: endwise.vim
 " Bundle: tpope/vim-commentary
 " Bundle: tpope/vim-surround
 " Bundle: kien/ctrlp.vim
-" Bundle: rking/ag.vim
 " Bundle: Lokaltog/vim-easymotion
-" Bundle: jtratner/vim-flavored-markdown
+" Bundle: kana/vim-textobj-user
+" Lang
+" Web
+" Bundle: mattn/emmet-vim
+" Bundle: tpope/vim-rails
 " Bundle: kchmck/vim-coffee-script
 " Bundle: mustache/vim-mustache-handlebars
-" Bundle: mattn/emmet-vim
+" Other
+" Bundle: rking/ag.vim
 " Bundle: fatih/vim-go
-" Bundle: tpope/vim-fugitive
+" Bundle: jtratner/vim-flavored-markdown
+" Bundle: thoughtbot/vim-rspec
+" Bundle: ervandew/supertab
+" Bundle: tpope/vim-dispatch
+" Bundle: nelstrom/vim-textobj-rubyblock
+" Display
+" Bundle: airblade/vim-gitgutter
+" Bundle: twerth/ir_black
+" Bundle: bling/vim-airline
 
 " }}}
 
@@ -51,8 +63,9 @@ augroup END
 
 " Gratuitous theft from
 " https://bitbucket.org/sjl/dotfiles
-" Disable vim modeline
-set modelines=1
+
+" Who knows what the fuck 5 is supposed to mean?
+set modelines=5
 
 " Mode indications
 set showmode
@@ -63,15 +76,6 @@ set hidden
 
 " No bells!
 set visualbell
-
-" Define characters to show when you show formatting
-" stolen from https://github.com/tpope/vim-sensible
-if &listchars ==# 'eol:$'
-  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
-  if &termencoding ==# 'utf-8' || &encoding ==# 'utf-8'
-    let &listchars = "tab:\u21e5,trail:\u2423,extends:\u21c9,precedes:\u21c7,nbsp:\u26ad"
-  endif
-endif
 
 " Fast scrolling
 set ttyfast
@@ -152,6 +156,9 @@ set tabstop=2
 " Search shows all results
 set hlsearch
 
+" Line numbering
+set number
+
 " }}}
 
 " History/Undo settings {{{
@@ -170,7 +177,7 @@ set directory=~/.vim/backup/
 " Colors {{{
 syntax enable
 set background=dark
-colorscheme solarized
+colorscheme ir_black
 
 " }}}
 
@@ -231,6 +238,13 @@ augroup handlebars
     au BufNewFile,BufRead *.hbs,*.hbs.ember setlocal filetype=mustache
 augroup END
 
+augroup ft_go
+    au!
+
+    au Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
+    au Filetype go setlocal nolist
+augroup END
+
 " }}}
 
 " Plugins {{{
@@ -250,7 +264,7 @@ map \\ <Plug>(easymotion-prefix)
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme="solarized"
+let g:airline_theme="dark"
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
@@ -271,6 +285,108 @@ map <leader>ri :Rinitializer<space> " initializer
 map <leader>rl :Rlib<space> " lib
 map <leader>rm :Rmodel<space> " model
 map <leader>rs :Rspec<space> " spec
-
 " }}}
 
+" Tests {{{
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SWITCH BETWEEN TEST AND PRODUCTION CODE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! OpenTestAlternate()
+  let new_file = AlternateForCurrentFile()
+  exec ':e ' . new_file
+endfunction
+function! AlternateForCurrentFile()
+  let current_file = expand("%")
+  let new_file = current_file
+  let in_spec = match(current_file, '^spec/') != -1
+  let going_to_spec = !in_spec
+  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1
+  if going_to_spec
+    if in_app
+      let new_file = substitute(new_file, '^app/', '', '')
+    end
+    let new_file = substitute(new_file, '\.e\?rb$', '_spec.rb', '')
+    let new_file = 'spec/' . new_file
+  else
+    let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
+    let new_file = substitute(new_file, '^spec/', '', '')
+    if in_app
+      let new_file = 'app/' . new_file
+    end
+  endif
+  return new_file
+endfunction
+nnoremap <leader>. :call OpenTestAlternate()<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" RUNNING TESTS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! MapCR()
+  nnoremap <leader>t :call RunTestFile()<cr>
+endfunction
+call MapCR()
+nnoremap <leader>T :call RunNearestTest()<cr>
+nnoremap <leader>a :call RunTests('')<cr>
+" nnoremap <leader>c :w\|:!script/features<cr>
+" nnoremap <leader>w :w\|:!script/features --profile wip<cr>
+
+function! RunTestFile(...)
+    if a:0
+        let command_suffix = a:1
+    else
+        let command_suffix = ""
+    endif
+
+    " Run the tests for the previously-marked file.
+    let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\)$') != -1
+    if in_test_file
+        call SetTestFile()
+    elseif !exists("t:grb_test_file")
+        return
+    end
+    call RunTests(t:grb_test_file . command_suffix)
+endfunction
+
+function! RunNearestTest()
+    let spec_line_number = line('.')
+    call RunTestFile(":" . spec_line_number)
+endfunction
+
+function! SetTestFile()
+    " Set the spec file that tests will be run for.
+    let t:grb_test_file=@%
+endfunction
+
+function! RunTests(filename)
+    " Write the file and run tests for the given filename
+    if expand("%") != ""
+      :w
+    end
+    if match(a:filename, '\.feature$') != -1
+        exec ":!script/features " . a:filename
+    else
+        " First choice: project-specific test script
+        if filereadable("script/test")
+            exec ":!script/test " . a:filename
+        " Fall back to the .test-commands pipe if available, assuming someone
+        " is reading the other side and running the commands
+        elseif filewritable(".test-commands")
+          let cmd = 'rspec --color --format progress --require "~/lib/vim_rspec_formatter" --format VimFormatter --out tmp/quickfix'
+          exec ":!echo " . cmd . " " . a:filename . " > .test-commands"
+
+          " Write an empty string to block until the command completes
+          sleep 100m " milliseconds
+          :!echo > .test-commands
+          redraw!
+        " Fall back to a blocking test run with Bundler
+        elseif filereadable("Gemfile")
+            exec ":!bundle exec rspec --color " . a:filename
+        " Fall back to a normal blocking test run
+        else
+            exec ":!rspec --color " . a:filename
+        end
+    end
+endfunction
+
+" }}}

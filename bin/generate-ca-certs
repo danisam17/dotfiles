@@ -1,0 +1,22 @@
+#!/bin/sh
+
+if [ $EUID != 0 ]; then
+  sudo "$0" "$@"
+  exit $?
+fi
+
+mkdir /tmp/curl
+cd /tmp/curl
+curl -s -o curl.tgz http://curl.haxx.se/download/curl-7.38.0.tar.gz
+
+tar -zxvf curl.tgz
+cd curl-7.38.0/lib
+./mk-ca-bundle.pl
+
+mkdir -p /etc/ssl/certs
+cp ca-bundle.crt /etc/ssl/certs/ca-certificates.crt
+
+rm -rf /tmp/curl
+
+echo "Installed /etc/ssl/certs/ca-certificates.crt"
+

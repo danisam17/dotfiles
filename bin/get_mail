@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cd ~/Mail
+git commit -m "Before sync. $(date +%s)" --allow-empty
+git fsck --strict --full
+mbsync boxes
+git add .
+git commit -m "After sync. $(date +%s)"
