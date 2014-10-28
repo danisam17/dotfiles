@@ -1,0 +1,55 @@
+# mbsyncrc config
+# Kristian Freeman
+# kristian@kristianfreeman.com
+# 2014-10-28
+
+Expunge None
+Create Both
+
+MaildirStore work-local
+Path ~/Mail/simple/
+Inbox ~/Mail/simple/inbox
+Trash Trash
+
+IMAPStore work-remote
+Host imap.gmail.com
+User kristian@simple.com
+# On Mac OS X, run "KeyChain Access" -- File->New Password Item. Fill out form using
+#  "Keychain Item Name" http://IMAPSERVER  (note: the "http://" is a hack)
+#  "Account Name" USERNAME
+#  "Password" PASSWORD
+PassCmd "/usr/bin/security find-internet-password -w -a kristian@simple.com -s imap.gmail.com ~/Library/Keychains/login.keychain"
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+UseIMAPS yes
+
+Channel work
+Master :work-remote:
+Slave :work-local:
+Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail" ![Airmail]* !OmniFocus
+Create Both
+Expunge Both
+SyncState *
+
+MaildirStore personal-local
+Path ~/Mail/personal/
+Inbox ~/Mail/personal/inbox
+Trash Trash
+
+IMAPStore personal-remote
+Host imap.gmail.com
+User kristian@kristianfreeman.com
+PassCmd "/usr/bin/security find-internet-password -w -a kristian@kristianfreeman.com -s imap.gmail.com ~/Library/Keychains/login.keychain"
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+UseIMAPS yes
+
+Channel personal
+Master :personal-remote:
+Slave :personal-local:
+Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail" ![Airmail]* !OmniFocus
+Create Both
+Expunge Both
+SyncState *
+
+Group boxes
+Channels work personal
+
