@@ -1,0 +1,1 @@
+alias ve="vim ~/.vimrc"

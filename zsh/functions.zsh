@@ -1,0 +1,3 @@
+current() {
+  printf $(basename `pwd`)
+}

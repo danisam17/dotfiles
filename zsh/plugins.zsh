@@ -1,0 +1,2 @@
+plugins=(git ls rails)
+
