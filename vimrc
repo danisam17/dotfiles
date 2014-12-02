@@ -2,43 +2,39 @@
 " .vimrc
 " @imkmf
 
-" Bundles {{{
+" Plugins {{{
 
-" Pathogen setup
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-" Bundle: tpope/vim-pathogen
-call pathogen#infect()
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-" Bundle: tpope/vim-sensible
-" Tmux
-" Bundle: amiel/vim-tmux-navigator
-" Git
-" Bundle: tpope/vim-fugitive
-" Vim addons
-" Bundle: endwise.vim
-" Bundle: tpope/vim-commentary
-" Bundle: tpope/vim-surround
-" Bundle: kien/ctrlp.vim
-" Bundle: Lokaltog/vim-easymotion
-" Bundle: kana/vim-textobj-user
-" Lang
-" Web
-" Bundle: mattn/emmet-vim
-" Bundle: tpope/vim-rails
-" Bundle: kchmck/vim-coffee-script
-" Bundle: mustache/vim-mustache-handlebars
-" Other
-" Bundle: rking/ag.vim
-" Bundle: fatih/vim-go
-" Bundle: jtratner/vim-flavored-markdown
-" Bundle: thoughtbot/vim-rspec
-" Bundle: ervandew/supertab
-" Bundle: tpope/vim-dispatch
-" Bundle: nelstrom/vim-textobj-rubyblock
-" Display
-" Bundle: airblade/vim-gitgutter
-" Bundle: twerth/ir_black
-" Bundle: bling/vim-airline
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+Plugin 'amiel/vim-tmux-navigator'
+Plugin 'tpope/vim-fugitive'
+Plugin 'endwise.vim'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-surround'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'kana/vim-textobj-user'
+Plugin 'mattn/emmet-vim'
+Plugin 'tpope/vim-rails'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'rking/ag.vim'
+Plugin 'fatih/vim-go'
+Plugin 'jtratner/vim-flavored-markdown'
+Plugin 'thoughtbot/vim-rspec'
+Plugin 'tpope/vim-dispatch'
+Plugin 'Shougo/neocomplcache.vim'
+Plugin 'nelstrom/vim-textobj-rubyblock'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'twerth/ir_black'
+Plugin 'bling/vim-airline'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
 
 " }}}
 
@@ -49,13 +45,8 @@ augroup filetype_vim
   autocmd!
   autocmd FileType vim setlocal foldmethod=marker
 augroup END
-
-" Reload .vimrc on save (good for editing)
-augroup myvimrc
-  au!
-  au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
-augroup END
-" Unfold with space!
+" Fold with space
+nnoremap <space> za
 
 " }}}
 
@@ -183,6 +174,10 @@ colorscheme ir_black
 
 " Key commands {{{
 
+" Wrapped lines goes down/up to next row, rather than next line in file.
+noremap j gj
+noremap k gk
+
 let mapleader = ","
 let g:mapleader = ","
 
@@ -255,9 +250,21 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip              " MacOSX/Linux
 set wildignore+=*/node_modules/*,*/bower_components/* " Node.js
 set wildignore+=*/vendor/*,*/dist/*                   " Meh
 
-" Ctrl-p
+" ctrl-p
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -i -l --nocolor --nogroup -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
 
 " Easymotion
 map \\ <Plug>(easymotion-prefix)
@@ -285,6 +292,10 @@ map <leader>ri :Rinitializer<space> " initializer
 map <leader>rl :Rlib<space> " lib
 map <leader>rm :Rmodel<space> " model
 map <leader>rs :Rspec<space> " spec
+
+" Completion
+let g:neocomplcache_enable_at_startup = 0
+
 " }}}
 
 " Tests {{{
@@ -379,7 +390,7 @@ function! RunTests(filename)
           sleep 100m " milliseconds
           :!echo > .test-commands
           redraw!
-        " Fall back to a blocking test run with Bundler
+        " Fall back to a blocking test run with Pluginr
         elseif filereadable("Gemfile")
             exec ":!bundle exec rspec --color " . a:filename
         " Fall back to a normal blocking test run

@@ -7,8 +7,8 @@ Expunge None
 Create Both
 
 MaildirStore work-local
-Path ~/Mail/simple/
-Inbox ~/Mail/simple/inbox
+Path /Users/kristian/Mail/simple/
+Inbox /Users/kristian/Mail/simple/inbox
 Trash Trash
 
 IMAPStore work-remote
@@ -18,7 +18,7 @@ User kristian@simple.com
 #  "Keychain Item Name" http://IMAPSERVER  (note: the "http://" is a hack)
 #  "Account Name" USERNAME
 #  "Password" PASSWORD
-PassCmd "/usr/bin/security find-internet-password -w -a kristian@simple.com -s imap.gmail.com ~/Library/Keychains/login.keychain"
+PassCmd "/usr/bin/security find-internet-password -w -a kristian@simple.com -s imap.gmail.com /Users/kristian/Library/Keychains/login.keychain"
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 UseIMAPS yes
 
@@ -31,14 +31,14 @@ Expunge Both
 SyncState *
 
 MaildirStore personal-local
-Path ~/Mail/personal/
-Inbox ~/Mail/personal/inbox
+Path /Users/kristian/Mail/personal/
+Inbox /Users/kristian/Mail/personal/inbox
 Trash Trash
 
 IMAPStore personal-remote
 Host imap.gmail.com
 User kristian@kristianfreeman.com
-PassCmd "/usr/bin/security find-internet-password -w -a kristian@kristianfreeman.com -s imap.gmail.com ~/Library/Keychains/login.keychain"
+PassCmd "/usr/bin/security find-internet-password -w -a kristian@kristianfreeman.com -s imap.gmail.com /Users/kristian/Library/Keychains/login.keychain"
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 UseIMAPS yes
 
@@ -52,4 +52,3 @@ SyncState *
 
 Group boxes
 Channels work personal
-

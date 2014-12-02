@@ -1,8 +1,13 @@
 #!/bin/bash
 
-cd ~/Mail
+cd /Users/kristian/Mail
 git commit -m "Before sync. $(date +%s)" --allow-empty
-git fsck --strict --full
-mbsync boxes
+# Check integrity
+# git fsck --strict --full
+/usr/local/bin/mbsync boxes &
+rm contents
+du -h -d1 >> contents
+notmuch new &
 git add .
+git add -u
 git commit -m "After sync. $(date +%s)"

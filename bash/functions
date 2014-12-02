@@ -22,7 +22,12 @@ f() {
 }
 
 nmux() {
-  tmux new -s $(current)
+  if [ -z "$1" ]
+  then
+    tmux new -s $(current)
+  else
+    tmux new -s "$1"
+  fi
 }
 
 delete_merged() {

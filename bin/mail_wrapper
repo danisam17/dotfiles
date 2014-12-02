@@ -1,0 +1,5 @@
+session_name=mail
+command="~/.bin/get_mail"
+
+tmux new-session -s "$session_name" -d
+tmux send-keys -t "$session_name" $command Enter
