@@ -41,7 +41,8 @@
   quotepath = false
 	excludesfile = /Users/kristian/.gitignore_global
 [http]
-  sslcainfo = /usr/local/etc/openssl/cert.pem
+  sslVerify = false
+  sslCAinfo = /bin/curl-ca-bundle.crt
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
@@ -58,3 +59,5 @@
 [ghi]
 [ghi]
 	token = !security find-internet-password -a imkmf -s github.com -l 'ghi token' -w
+[init]
+	templatedir = ~/.git_template

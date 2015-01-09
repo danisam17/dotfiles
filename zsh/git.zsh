@@ -1,5 +1,5 @@
 # brew install hub
-eval "$(hub alias -s)"
+# eval "$(hub alias -s)"
 
 # Aliases
 
@@ -10,8 +10,10 @@ alias br="git branch | cut -c 3- | selecta | xargs git checkout"
 alias co="git checkout"
 alias clean="git checkout -- ."
 alias cob="git checkout -b"
-alias d="git d"
+alias d="git diff"
 alias dc="git diff --cached"
+alias sd="git icdiff"
+alias sdc="git icdiff --cached"
 alias l="git log"
 # `gem install git-up`
 alias 🚀="git up && git push"
