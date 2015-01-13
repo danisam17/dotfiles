@@ -1,0 +1,3 @@
+# This covers 90% of errors that show up when I open Ruby files in Vim
+Metrics/LineLength:
+  Enabled: false
