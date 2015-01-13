@@ -9,29 +9,25 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-Plugin 'amiel/vim-tmux-navigator'
-Plugin 'tpope/vim-fugitive'
+"" Vim config
+Plugin 'bling/vim-airline'
+Plugin 'chriskempson/base16-vim'
 Plugin 'endwise.vim'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-surround'
+Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'kana/vim-textobj-user'
-Plugin 'mattn/emmet-vim'
-Plugin 'tpope/vim-rails'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+"" Shell/non-Vim interfacing
+Plugin 'airblade/vim-gitgutter'
+Plugin 'amiel/vim-tmux-navigator'
 Plugin 'rking/ag.vim'
+"" Language specific
 Plugin 'fatih/vim-go'
 Plugin 'jtratner/vim-flavored-markdown'
-Plugin 'thoughtbot/vim-rspec'
-Plugin 'tpope/vim-dispatch'
-Plugin 'Shougo/neocomplcache.vim'
-Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'twerth/ir_black'
-Plugin 'bling/vim-airline'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'scrooloose/syntastic'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -52,16 +48,6 @@ nnoremap <space> za
 
 " Basics {{{
 
-" Gratuitous theft from
-" https://bitbucket.org/sjl/dotfiles
-
-" Who knows what the fuck 5 is supposed to mean?
-set modelines=5
-
-" Mode indications
-set showmode
-set showcmd
-
 " Retain buffers until quit
 set hidden
 
@@ -75,12 +61,6 @@ set ttyfast
 set wildmode=longest:full,list:full,list:longest
 set wildchar=<TAB>
 
-" Better dividers
-set isk+=_,$,@,%,#,-
-
-" Space it out a little more (easier to read)
-set lsp=0
-
 " Line numbers are nice
 set ruler
 
@@ -90,12 +70,6 @@ set backspace=indent,eol,start
 " Always show status
 set laststatus=2
 
-" Show whitespace
-set list
-
-" Pretty self-explanatory
-set lazyredraw
-
 " Brace face
 set showmatch
 set matchtime=3
@@ -103,9 +77,6 @@ set matchtime=3
 " Split down and right
 set splitbelow
 set splitright
-
-" Good indentation
-" set shiftround
 
 " Read filetype stuff
 filetype plugin on
@@ -119,10 +90,6 @@ set ttimeoutlen=10
 
 " Make Vim able to edit crontab files again.
 set backupskip=/tmp/*,/private/tmp/*"
-
-" Better Completion
-set complete=.,w,b,u,t
-set completeopt=longest,menuone,preview
 
 " Resize splits when the window is resized
 au VimResized * :wincmd =
@@ -167,8 +134,8 @@ set directory=~/.vim/backup/
 
 " Colors {{{
 syntax enable
-set background=light
-colorscheme ir_black
+set background=dark
+colorscheme base16-default
 
 " }}}
 
@@ -254,24 +221,9 @@ set wildignore+=*/vendor/*,*/dist/*                   " Meh
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
-" The Silver Searcher
-" if executable('ag')
-"   " Use ag over grep
-"   set grepprg=ag\ --nogroup\ --nocolor
-
-"   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-"   let g:ctrlp_user_command = 'ag %s -i -l --nocolor --nogroup -g ""'
-
-"   " ag is fast enough that CtrlP doesn't need to cache
-"   let g:ctrlp_use_caching = 0
-" endif
-
-" Easymotion
-map \\ <Plug>(easymotion-prefix)
-
 " Airline
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme="solarized"
+let g:airline_theme="base16"
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
@@ -284,120 +236,16 @@ highlight GitGutterChange ctermfg=yellow guifg=darkyellow
 highlight GitGutterDelete ctermfg=red guifg=darkred
 highlight GitGutterChangeDelete ctermfg=yellow guifg=darkyellow
 
-" Rails.vim
-map <leader>a :A<cr> " alternate
-map <leader>rc :Rcontroller<space> " controller
-map <leader>re :Renvironment<space> " environment
-map <leader>ri :Rinitializer<space> " initializer
-map <leader>rl :Rlib<space> " lib
-map <leader>rm :Rmodel<space> " model
-map <leader>rs :Rspec<space> " spec
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
-" Completion
-let g:neocomplcache_enable_at_startup = 0
-
-" }}}
-
-" Tests {{{
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SWITCH BETWEEN TEST AND PRODUCTION CODE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! OpenTestAlternate()
-  let new_file = AlternateForCurrentFile()
-  exec ':e ' . new_file
-endfunction
-function! AlternateForCurrentFile()
-  let current_file = expand("%")
-  let new_file = current_file
-  let in_spec = match(current_file, '^spec/') != -1
-  let going_to_spec = !in_spec
-  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1
-  if going_to_spec
-    if in_app
-      let new_file = substitute(new_file, '^app/', '', '')
-    end
-    let new_file = substitute(new_file, '\.e\?rb$', '_spec.rb', '')
-    let new_file = 'spec/' . new_file
-  else
-    let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
-    let new_file = substitute(new_file, '^spec/', '', '')
-    if in_app
-      let new_file = 'app/' . new_file
-    end
-  endif
-  return new_file
-endfunction
-nnoremap <leader>. :call OpenTestAlternate()<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" RUNNING TESTS
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! MapCR()
-  nnoremap <leader>t :call RunTestFile()<cr>
-endfunction
-call MapCR()
-nnoremap <leader>T :call RunNearestTest()<cr>
-nnoremap <leader>a :call RunTests('')<cr>
-" nnoremap <leader>c :w\|:!script/features<cr>
-" nnoremap <leader>w :w\|:!script/features --profile wip<cr>
-
-function! RunTestFile(...)
-    if a:0
-        let command_suffix = a:1
-    else
-        let command_suffix = ""
-    endif
-
-    " Run the tests for the previously-marked file.
-    let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\)$') != -1
-    if in_test_file
-        call SetTestFile()
-    elseif !exists("t:grb_test_file")
-        return
-    end
-    call RunTests(t:grb_test_file . command_suffix)
-endfunction
-
-function! RunNearestTest()
-    let spec_line_number = line('.')
-    call RunTestFile(":" . spec_line_number)
-endfunction
-
-function! SetTestFile()
-    " Set the spec file that tests will be run for.
-    let t:grb_test_file=@%
-endfunction
-
-function! RunTests(filename)
-    " Write the file and run tests for the given filename
-    if expand("%") != ""
-      :w
-    end
-    if match(a:filename, '\.feature$') != -1
-        exec ":!script/features " . a:filename
-    else
-        " First choice: project-specific test script
-        if filereadable("script/test")
-            exec ":!script/test " . a:filename
-        " Fall back to the .test-commands pipe if available, assuming someone
-        " is reading the other side and running the commands
-        elseif filewritable(".test-commands")
-          let cmd = 'rspec --color --format progress --require "~/lib/vim_rspec_formatter" --format VimFormatter --out tmp/quickfix'
-          exec ":!echo " . cmd . " " . a:filename . " > .test-commands"
-
-          " Write an empty string to block until the command completes
-          sleep 100m " milliseconds
-          :!echo > .test-commands
-          redraw!
-        " Fall back to a blocking test run with Pluginr
-        elseif filereadable("Gemfile")
-            exec ":!bundle exec rspec --color " . a:filename
-        " Fall back to a normal blocking test run
-        else
-            exec ":!rspec --color " . a:filename
-        end
-    end
-endfunction
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_ruby_checkers = ['rubocop']
 
 " }}}
+
