@@ -11,13 +11,13 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 "" Vim config
 Plugin 'bling/vim-airline'
-Plugin 'chriskempson/base16-vim'
 Plugin 'endwise.vim'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
+Plugin 'altercation/vim-colors-solarized'
 "" Shell/non-Vim interfacing
 Plugin 'airblade/vim-gitgutter'
 Plugin 'amiel/vim-tmux-navigator'
@@ -27,6 +27,7 @@ Plugin 'fatih/vim-go'
 Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'davidoc/taskpaper.vim'
 " Plugin 'scrooloose/syntastic'
 
 " All of your Plugins must be added before the following line
@@ -135,8 +136,7 @@ set directory=~/.vim/backup/
 " Colors {{{
 syntax enable
 set background=dark
-colorscheme base16-default
-
+colorscheme solarized
 " }}}
 
 " Key commands {{{
@@ -223,7 +223,7 @@ let g:ctrlp_cmd = 'CtrlP'
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme="base16"
+let g:airline_theme="solarized"
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''

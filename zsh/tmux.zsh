@@ -1,5 +1,4 @@
 alias mux=tmuxinator
-alias tls="tmux ls"
 alias tmux="tmux -2"
 
 attach() {

@@ -30,7 +30,6 @@ alias route="bake routes | grep $1"
 
 # Terminal misc.
 alias alive="ps aux | grep"
-alias c="clear"
 alias die="exec $SHELL -l"
 alias mkdir="mkdir -p"
 alias sudo='sudo '
