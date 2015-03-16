@@ -29,6 +29,7 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'davidoc/taskpaper.vim'
 " Plugin 'scrooloose/syntastic'
+Plugin 'Lokaltog/vim-easymotion'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -117,6 +118,8 @@ set hlsearch
 
 " Line numbering
 set number
+
+let g:netrw_liststyle=3
 
 " }}}
 
@@ -220,6 +223,7 @@ set wildignore+=*/vendor/*,*/dist/*                   " Meh
 " ctrl-p
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+nmap <C-i> :CtrlPBuffer<cr>
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1

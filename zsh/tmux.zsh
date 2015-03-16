@@ -19,3 +19,11 @@ nmux() {
   fi
 }
 
+sup() {
+  for directory in "$DIRECTORIES[@]"
+  do
+    name="$(basename $directory)"
+    echo "Creating $name session"
+    tmux new-session -c $directory -s "$name" -d
+  done
+}

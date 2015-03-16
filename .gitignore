@@ -7,5 +7,6 @@ bin/pomodoriapp
 mutt/temp
 *.scpt
 bash/*.machine
+zsh/*.machine
 *.gpg
 emacs.d
