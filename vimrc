@@ -30,6 +30,9 @@ Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'davidoc/taskpaper.vim'
 " Plugin 'scrooloose/syntastic'
 Plugin 'Lokaltog/vim-easymotion'
+Plugin 'osyo-manga/vim-over'
+Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-repeat'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -114,6 +117,8 @@ set shiftwidth=2
 set tabstop=2
 
 " Search shows all results
+set incsearch
+set showmatch
 set hlsearch
 
 " Line numbering
@@ -180,6 +185,10 @@ nnoremap <leader><leader> <c-^>
 " Ruby hashrocket madness
 nnoremap <leader>r :%s/:\(\w*\)\s*=>\s*/\1: /gc<cr>
 
+" this.element => this.get('element'), hi ember
+" this is a shitty macro and i should feel bad
+nnoremap <leader>g b<esc>iget('<esc>wwi')<esc>
+
 " }}}
 
 " Filetypes {{{
@@ -239,6 +248,18 @@ highlight GitGutterAdd ctermfg=green guifg=darkgreen
 highlight GitGutterChange ctermfg=yellow guifg=darkyellow
 highlight GitGutterDelete ctermfg=red guifg=darkred
 highlight GitGutterChangeDelete ctermfg=yellow guifg=darkyellow
+
+" vim-over
+function! VisualFindAndReplace()
+    :OverCommandLine%s/
+    :w
+endfunction
+function! VisualFindAndReplaceWithSelection() range
+    :'<,'>OverCommandLine s/
+    :w
+endfunction
+nnoremap <Leader>fr :call VisualFindAndReplace()<CR>
+xnoremap <Leader>fr :call VisualFindAndReplaceWithSelection()<CR>
 
 " }}}
 
