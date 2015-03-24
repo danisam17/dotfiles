@@ -143,7 +143,7 @@ set directory=~/.vim/backup/
 
 " Colors {{{
 syntax enable
-set background=dark
+set background=light
 colorscheme solarized
 " }}}
 
@@ -221,7 +221,7 @@ augroup END
 
 " }}}
 
-" Plugins {{{
+" Plugin configurations {{{
 
 "" Ignore rules
 
