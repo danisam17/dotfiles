@@ -1,5 +1,9 @@
 # vi:syntax=bash
 
+current() {
+  printf $(basename `pwd`)
+}
+
 attach() {
   if [ -z "$1" ]
   then
@@ -9,18 +13,6 @@ attach() {
   fi
 }
 
-clip() {
-  cat $1 | pbcopy
-}
-
-current() {
-  printf $(basename `pwd`)
-}
-
-f() {
-  ack $1 -k *
-}
-
 nmux() {
   if [ -z "$1" ]
   then
@@ -28,9 +20,5 @@ nmux() {
   else
     tmux new -s "$1"
   fi
-}
-
-delete_merged() {
-  git branch --merged | grep -v "\*" | xargs -n 1 git branch -d
 }
 

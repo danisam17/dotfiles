@@ -1,9 +1,6 @@
-. $HOME/.bash/colors
-. $HOME/.bash/path
-. $HOME/.bash/aliases.bash
-. $HOME/.bash/functions
-. $HOME/.bash/prompt
-. $HOME/.bash/git-prompt.sh
+for file in $HOME/.bash/*; do
+  source $file
+done
 
 # omg this is a thing waaaaat
 bind "set completion-ignore-case on"
@@ -12,8 +9,6 @@ eval "$(hub alias -s)"
 eval "$(rbenv init -)"
 
 export EDITOR=vim
-
-# export PATH=./bin:$PATH
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
