@@ -14,3 +14,6 @@ eval "$(rbenv init -)"
 export EDITOR=vim
 
 # export PATH=./bin:$PATH
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
