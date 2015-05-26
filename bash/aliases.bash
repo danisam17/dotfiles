@@ -1,5 +1,7 @@
 # vi:syntax=sh
 
+alias ls="gls --color=auto -l"
+
 # Git
 alias am="git commit --amend"
 alias b="git branch --verbose"
@@ -22,3 +24,9 @@ alias die="exec $SHELL -l"
 alias tls="tmux ls"
 alias ve="vim ~/.vimrc"
 
+## selecta
+
+# fuzzy branch checkout
+alias bs="git branch | cut -c 3- | selecta | xargs git checkout"
+# find pid
+alias findpid="ps axww -o pid,user,%cpu,%mem,start,time,command | selecta | sed 's/^ *//' | cut -f1 -d' '"

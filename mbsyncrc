@@ -1,0 +1,43 @@
+Expunge None
+Create Both
+SyncState *
+
+MaildirStore personal-maildir
+Path ~/Dropbox/Mail/Personal/
+Inbox ~/Dropbox/Mail/Personal/Inbox
+
+IMAPStore personal
+Host imap.gmail.com
+User kristian@kristianfreeman.com
+Pass T#P68mwPjxwnxjAtoUmATK$AZ
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+UseIMAPS yes
+
+Channel personal
+Master :personal:
+Slave :personal-maildir:
+Create    Slave
+Expunge   Slave
+Sync      Pull
+# Exclude everything under the internal [Gmail] folder, except archived mails
+Patterns  * ![Gmail]* "[Gmail]/All Mail"
+
+MaildirStore simple-maildir
+Path ~/Dropbox/Mail/Simple/
+Inbox ~/Dropbox/Mail/Simple/Inbox
+
+IMAPStore simple
+Host imap.gmail.com
+User kristian@simple.com
+Pass tcoxlzfkrltmtfwb
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+UseIMAPS yes
+
+Channel simple
+Master :simple:
+Slave :simple-maildir:
+Create    Slave
+Expunge   Slave
+Sync      Pull
+# Exclude everything under the internal [Gmail] folder, except archived mails
+Patterns  * ![Gmail]* "[Gmail]/All Mail"

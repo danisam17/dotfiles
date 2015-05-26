@@ -16,9 +16,15 @@ attach() {
 nmux() {
   if [ -z "$1" ]
   then
-    tmux new -s $(current)
+    tmux new -s "$(printf $(basename `pwd`))"
   else
     tmux new -s "$1"
   fi
 }
 
+# switch tmux session
+
+t() {
+  session=$(tmux list-sessions | selecta | sed 's/^ *//' | cut -f1 -d':')
+  tmux switch-client -t "$session"
+}

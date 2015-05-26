@@ -1,0 +1,3 @@
+#!/usr/local/bin/bash
+
+redis-cli HSET $1 $2

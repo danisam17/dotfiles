@@ -2,6 +2,10 @@
 " .vimrc
 " @imkmf
 
+" You might not have this
+" if you aren't using Homebrew
+set shell=/usr/local/bin/bash
+
 " Plugins {{{
 
 " set the runtime path to include Vundle and initialize
@@ -9,15 +13,29 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
 "" Vim config
 Plugin 'bling/vim-airline'
+Plugin 'edkolev/tmuxline.vim'
 Plugin 'endwise.vim'
-Plugin 'gmarik/Vundle.vim'
+
+Plugin 'rust-lang/rust.vim'
+
 Plugin 'kien/ctrlp.vim'
+Plugin 'imkmf/ctrlp-branches'
+Plugin 'tacahiroy/ctrlp-funky'
+Plugin 'sgur/ctrlp-extensions.vim'
+
+Plugin 'SirVer/ultisnips'
+
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
-Plugin 'altercation/vim-colors-solarized'
+Plugin 'croaky/vim-colors-github'
+" Plugin 'altercation/vim-colors-solarized'
+" Plugin 'w0ng/vim-hybrid'
+" Plugin 'twerth/ir_black'
 "" Shell/non-Vim interfacing
 Plugin 'airblade/vim-gitgutter'
 Plugin 'amiel/vim-tmux-navigator'
@@ -30,9 +48,11 @@ Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'davidoc/taskpaper.vim'
 " Plugin 'scrooloose/syntastic'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'osyo-manga/vim-over'
 Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-repeat'
+Plugin 'osyo-manga/vim-over'
+" Plugin 'bruno-/vim-ruby-fold'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -47,7 +67,7 @@ augroup filetype_vim
   autocmd FileType vim setlocal foldmethod=marker
 augroup END
 " Fold with space
-nnoremap <space> za
+" nnoremap <space> za
 
 " }}}
 
@@ -144,7 +164,7 @@ set directory=~/.vim/backup/
 " Colors {{{
 syntax enable
 set background=light
-colorscheme solarized
+colorscheme github
 " }}}
 
 " Key commands {{{
@@ -187,7 +207,10 @@ nnoremap <leader>r :%s/:\(\w*\)\s*=>\s*/\1: /gc<cr>
 
 " this.element => this.get('element'), hi ember
 " this is a shitty macro and i should feel bad
-nnoremap <leader>g b<esc>iget('<esc>wwi')<esc>
+nnoremap <leader>e b<esc>iget('<esc>wwi')<esc>
+
+" open directory in netrw
+nnoremap <leader>o :Explore %:h<cr>
 
 " }}}
 
@@ -227,20 +250,34 @@ augroup END
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip              " MacOSX/Linux
 set wildignore+=*/node_modules/*,*/bower_components/* " Node.js
-set wildignore+=*/vendor/*,*/dist/*                   " Meh
+set wildignore+=*/vendor/*,*/dist/*,/target/*         " Meh
 
 " ctrl-p
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-nmap <C-i> :CtrlPBuffer<cr>
+nmap <leader>i :CtrlPBuffer<cr>
+
+let g:ctrlp_extensions = [
+      \ 'branches',
+      \ 'funky',
+      \ 'yankring'
+      \ ]
+
+nnoremap <leader>g :CtrlPBranches<cr>
+nnoremap <Leader>fu :CtrlPFunky<Cr>
+
+let g:UltiSnipsExpandTrigger="<tab>"
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme="solarized"
+let g:airline_theme="light"
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
+
+" Tmuxline
+let g:tmuxline_powerline_separators = 0
 
 " Gitgutter
 highlight clear SignColumn
@@ -262,4 +299,3 @@ nnoremap <Leader>fr :call VisualFindAndReplace()<CR>
 xnoremap <Leader>fr :call VisualFindAndReplaceWithSelection()<CR>
 
 " }}}
-
