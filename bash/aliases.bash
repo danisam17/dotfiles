@@ -30,3 +30,6 @@ alias ve="vim ~/.vimrc"
 alias bs="git branch | cut -c 3- | selecta | xargs git checkout"
 # find pid
 alias findpid="ps axww -o pid,user,%cpu,%mem,start,time,command | selecta | sed 's/^ *//' | cut -f1 -d' '"
+
+alias brews="cat ~/.brews | xargs brew install"
+alias casks="cat ~/.casks | xargs brew cask install"

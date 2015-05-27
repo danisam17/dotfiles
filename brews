@@ -1,0 +1,10 @@
+bash
+caskroom/cask/brew-cask
+coreutils
+git
+hub
+rbenv
+redis
+tmux
+vim
+wget

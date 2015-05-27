@@ -41,9 +41,6 @@
   editor = vim
   quotepath = false
 	excludesfile = /Users/kristian/.gitignore_global
-[http]
-  sslVerify = false
-  sslCAinfo = /bin/curl-ca-bundle.crt
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
