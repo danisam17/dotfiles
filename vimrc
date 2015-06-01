@@ -20,14 +20,9 @@ Plugin 'bling/vim-airline'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'endwise.vim'
 
-Plugin 'rust-lang/rust.vim'
-
 Plugin 'kien/ctrlp.vim'
 Plugin 'imkmf/ctrlp-branches'
-Plugin 'tacahiroy/ctrlp-funky'
-Plugin 'sgur/ctrlp-extensions.vim'
-
-Plugin 'SirVer/ultisnips'
+" Plugin 'sgur/ctrlp-extensions.vim'
 
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
@@ -45,14 +40,11 @@ Plugin 'fatih/vim-go'
 Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'davidoc/taskpaper.vim'
 " Plugin 'scrooloose/syntastic'
-Plugin 'Lokaltog/vim-easymotion'
 Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-repeat'
 Plugin 'osyo-manga/vim-over'
-" Plugin 'bruno-/vim-ruby-fold'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -67,7 +59,7 @@ augroup filetype_vim
   autocmd FileType vim setlocal foldmethod=marker
 augroup END
 " Fold with space
-" nnoremap <space> za
+nnoremap <space> za
 
 " }}}
 
@@ -144,6 +136,7 @@ set hlsearch
 " Line numbering
 set number
 
+" Tree style listing on Explore
 let g:netrw_liststyle=3
 
 " }}}
@@ -205,10 +198,6 @@ nnoremap <leader><leader> <c-^>
 " Ruby hashrocket madness
 nnoremap <leader>r :%s/:\(\w*\)\s*=>\s*/\1: /gc<cr>
 
-" this.element => this.get('element'), hi ember
-" this is a shitty macro and i should feel bad
-nnoremap <leader>e b<esc>iget('<esc>wwi')<esc>
-
 " open directory in netrw
 nnoremap <leader>o :Explore %:h<cr>
 
@@ -259,14 +248,9 @@ nmap <leader>i :CtrlPBuffer<cr>
 
 let g:ctrlp_extensions = [
       \ 'branches',
-      \ 'funky',
-      \ 'yankring'
       \ ]
 
 nnoremap <leader>g :CtrlPBranches<cr>
-nnoremap <Leader>fu :CtrlPFunky<Cr>
-
-let g:UltiSnipsExpandTrigger="<tab>"
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1

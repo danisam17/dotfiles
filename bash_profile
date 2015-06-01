@@ -14,3 +14,5 @@ export EDITOR=vim
 export PATH="/usr/local/heroku/bin:$PATH"
 
 source ~/.bin/z.sh
+
+export PATH="$PWD/bin:$PATH"

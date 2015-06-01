@@ -1,10 +1,13 @@
+ag
 bash
 caskroom/cask/brew-cask
 coreutils
 git
+heroku
 hub
 rbenv
 redis
 tmux
+tree
 vim
 wget
