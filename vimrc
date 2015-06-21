@@ -28,9 +28,9 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'croaky/vim-colors-github'
-" Plugin 'altercation/vim-colors-solarized'
-" Plugin 'w0ng/vim-hybrid'
-" Plugin 'twerth/ir_black'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'w0ng/vim-hybrid'
+Plugin 'twerth/ir_black'
 "" Shell/non-Vim interfacing
 Plugin 'airblade/vim-gitgutter'
 Plugin 'amiel/vim-tmux-navigator'
@@ -156,8 +156,8 @@ set directory=~/.vim/backup/
 
 " Colors {{{
 syntax enable
-set background=light
-colorscheme github
+set background=dark
+colorscheme ir_black
 " }}}
 
 " Key commands {{{
@@ -254,7 +254,7 @@ nnoremap <leader>g :CtrlPBranches<cr>
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme="light"
+let g:airline_theme="dark"
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
