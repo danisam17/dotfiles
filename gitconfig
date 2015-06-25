@@ -1,6 +1,6 @@
 [user]
   name = Kristian Freeman
-  email = kristian@kristianfreeman.com
+  email = kristian@simple.com
 [pager]
   diff = diff-highlight | less
 [diff]
@@ -64,3 +64,6 @@
 [mergetool "Kaleidoscope"]
 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 	trustExitCode = true
+[http]
+  sslVerify = false
+  sslCAinfo = ~/.bin/curl.crt
