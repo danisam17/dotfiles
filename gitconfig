@@ -66,4 +66,3 @@
 	trustExitCode = true
 [http]
   sslVerify = false
-  sslCAinfo = ~/.bin/curl.crt
