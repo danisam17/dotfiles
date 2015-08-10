@@ -1,3 +1,2 @@
-. ~/.nvm/nvm.sh
-NVM_SYMLINK_CURRENT=true
-export PATH="/Users/kristian/.nvm/versions/node/v0.12.3/bin:$PATH"
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
