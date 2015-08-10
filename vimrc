@@ -87,6 +87,9 @@ set backspace=indent,eol,start
 " Always show status
 set laststatus=2
 
+" scrolling
+set mouse=a
+
 " Brace face
 set showmatch
 set matchtime=3
@@ -156,8 +159,8 @@ set directory=~/.vim/backup/
 
 " Colors {{{
 syntax enable
-set background=dark
-colorscheme ir_black
+set background=light
+colorscheme solarized
 " }}}
 
 " Key commands {{{
@@ -254,7 +257,7 @@ nnoremap <leader>g :CtrlPBranches<cr>
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme="dark"
+let g:airline_theme="solarized"
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''

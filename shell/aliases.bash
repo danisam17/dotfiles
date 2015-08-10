@@ -14,6 +14,7 @@ alias l="git log"
 alias 🚀="git up && git push"
 alias reset="git reset HEAD --hard"
 alias s="git status"
+alias delete_branches='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
 
 # Ruby/Rails/Rake
 alias bu='bundle check; bundle install -j8'
@@ -21,7 +22,6 @@ alias bake="be rake"
 alias be="bundle exec"
 
 alias die="exec $SHELL -l"
-alias tls="tmux ls"
 alias ve="vim ~/.vimrc"
 
 ## selecta

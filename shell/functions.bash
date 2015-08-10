@@ -22,13 +22,6 @@ nmux() {
   fi
 }
 
-# switch tmux session
-
-t() {
-  session=$(tmux list-sessions | selecta | sed 's/^ *//' | cut -f1 -d':')
-  tmux switch-client -t "$session"
-}
-
 v0() {
   lame "$1" --preset extreme
 }
