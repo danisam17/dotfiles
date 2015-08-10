@@ -6,7 +6,6 @@ bin/dgist
 bin/pomodoriapp
 mutt/temp
 *.scpt
-bash/*.machine
-zsh/*.machine
+machines/*.machine
 *.gpg
 emacs.d
