@@ -1,3 +1,5 @@
+bindkey -e
+
 # Globals
 source $HOME/.shellrc
 
