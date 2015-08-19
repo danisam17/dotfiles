@@ -24,6 +24,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'imkmf/ctrlp-branches'
 " Plugin 'sgur/ctrlp-extensions.vim'
 
+Plugin 'suan/vim-instant-markdown'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
