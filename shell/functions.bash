@@ -13,15 +13,6 @@ attach() {
   fi
 }
 
-nmux() {
-  if [ -z "$1" ]
-  then
-    tmux new -s "$(printf $(basename `pwd`))"
-  else
-    tmux new -s "$1"
-  fi
-}
-
 v0() {
   lame "$1" --preset extreme
 }

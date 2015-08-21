@@ -1,3 +1,0 @@
-#!/usr/local/bin/bash
-
-terminal-notifier -sound 'beep-piano' -sender 'com.omnigroup.OmniFocus2' -title 'OmniFocus' -message "$1 is overdue. Next reminder in three minutes"
