@@ -1,35 +1,23 @@
 # vi:syntax=sh
 
-alias ls="gls --color=auto -l"
-
-# Git
+alias a="attach"
 alias am="git commit --amend"
-alias b="git branch --verbose"
+alias b="git branch"
+alias bake="be rake"
+alias be="bundle exec"
+alias brews="cat ~/.brews | xargs brew install"
+alias bu='bundle check; bundle install -j8'
+alias casks="cat ~/.casks | xargs brew cask install"
 alias co="git checkout"
 alias cob="git checkout -b"
 alias d="git d"
 alias dc="git diff --cached"
-alias l="git log"
-# `gem install git-up`
-alias 🚀="git up && git push"
-alias reset="git reset HEAD --hard"
-alias s="git status"
 alias delete_branches='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
-
-# Ruby/Rails/Rake
-alias bu='bundle check; bundle install -j8'
-alias bake="be rake"
-alias be="bundle exec"
-
 alias die="exec $SHELL -l"
+alias l="git log"
+alias ls="gls --color=auto -l"
+alias s="git status"
 alias ve="vim ~/.vimrc"
 
-## selecta
-
-# fuzzy branch checkout
-alias bs="git branch | cut -c 3- | selecta | xargs git checkout"
-# find pid
-alias findpid="ps axww -o pid,user,%cpu,%mem,start,time,command | selecta | sed 's/^ *//' | cut -f1 -d' '"
-
-alias brews="cat ~/.brews | xargs brew install"
-alias casks="cat ~/.casks | xargs brew cask install"
+alias mcal="gcalcli"
+alias scal="gcalcli --configFolder ~/.simplegcal --calendar kristian@simple.com"

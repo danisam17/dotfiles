@@ -3,5 +3,7 @@
 directory = Dir.pwd.split("/").last
 directory.gsub!('.','')
 
+directory = ARGV.first if ARGV.first
+
 `tmux attach -t #{directory} > /dev/null`
 `tmux new -s #{directory}`

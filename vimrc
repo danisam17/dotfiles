@@ -24,14 +24,10 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'imkmf/ctrlp-branches'
 " Plugin 'sgur/ctrlp-extensions.vim'
 
-Plugin 'suan/vim-instant-markdown'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
-Plugin 'croaky/vim-colors-github'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'w0ng/vim-hybrid'
-Plugin 'twerth/ir_black'
+Plugin 'flazz/vim-colorschemes'
 "" Shell/non-Vim interfacing
 Plugin 'airblade/vim-gitgutter'
 Plugin 'amiel/vim-tmux-navigator'
@@ -41,7 +37,7 @@ Plugin 'fatih/vim-go'
 Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'mustache/vim-mustache-handlebars'
-" Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-repeat'
@@ -161,7 +157,7 @@ set directory=~/.vim/backup/
 " Colors {{{
 syntax enable
 set background=dark
-colorscheme solarized
+colorscheme Tomorrow-Night
 " }}}
 
 " Key commands {{{
@@ -244,6 +240,7 @@ augroup END
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip              " MacOSX/Linux
 set wildignore+=*/node_modules/*,*/bower_components/* " Node.js
 set wildignore+=*/vendor/*,*/dist/*,/target/*         " Meh
+set wildignore+=*/Godeps/*                            " Go
 
 " ctrl-p
 let g:ctrlp_map = '<c-p>'
@@ -258,11 +255,14 @@ nnoremap <leader>g :CtrlPBranches<cr>
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme="solarized"
+let g:airline_theme="tomorrow"
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
+
+let g:airline_section_c = '%t'
+let g:airline#extensions#tabline#fnametruncate = 0
 
 " Tmuxline
 let g:tmuxline_powerline_separators = 0
@@ -273,6 +273,11 @@ highlight GitGutterAdd ctermfg=green guifg=darkgreen
 highlight GitGutterChange ctermfg=yellow guifg=darkyellow
 highlight GitGutterDelete ctermfg=red guifg=darkred
 highlight GitGutterChangeDelete ctermfg=yellow guifg=darkyellow
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " vim-over
 function! VisualFindAndReplace()
@@ -285,5 +290,7 @@ function! VisualFindAndReplaceWithSelection() range
 endfunction
 nnoremap <Leader>fr :call VisualFindAndReplace()<CR>
 xnoremap <Leader>fr :call VisualFindAndReplaceWithSelection()<CR>
+
+let macvim_skip_colorscheme=1
 
 " }}}

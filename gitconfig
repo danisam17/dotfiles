@@ -1,9 +1,6 @@
 [user]
   name = Kristian Freeman
   email = kristian@simple.com
-[pager]
-  diff = diff-highlight | less
-[diff]
 [color]
   branch = auto
   diff = auto
@@ -66,3 +63,7 @@
 	trustExitCode = true
 [http]
   sslVerify = false
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f

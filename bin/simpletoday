@@ -1,0 +1,3 @@
+#!/usr/local/bin/zsh
+
+gcalcli --configFolder ~/.simplegcal --calendar kristian@simple.com agenda today tomorrow
