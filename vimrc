@@ -157,7 +157,8 @@ set directory=~/.vim/backup/
 " Colors {{{
 syntax enable
 set background=dark
-colorscheme Tomorrow-Night
+" colorscheme Tomorrow-Night
+colorscheme ir_black
 " }}}
 
 " Key commands {{{
@@ -255,7 +256,7 @@ nnoremap <leader>g :CtrlPBranches<cr>
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme="tomorrow"
+let g:airline_theme="dark"
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
