@@ -16,3 +16,7 @@ attach() {
 v0() {
   lame "$1" --preset extreme
 }
+
+code4slide() {
+  highlight -O rtf "$1" --line-numbers --font-size 24 --font Inconsolata --style zenburn -W -J 78 -j 3 --src-lang ruby | pbcopy
+}

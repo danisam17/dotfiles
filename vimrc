@@ -18,7 +18,19 @@ Plugin 'mattn/emmet-vim'
 Plugin 'osyo-manga/vim-over'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-repeat'
-call vundle#end()
+
+Plugin 'elixir-lang/vim-elixir'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+
+" .vimrc folding
+augroup filetype_vim
+  autocmd!
+  autocmd FileType vim setlocal foldmethod=marker
+augroup END
+" Fold with space
+nnoremap <space> za
 
 " Retain buffers until quit
 set hidden
@@ -100,6 +112,7 @@ set directory=~/.vim/backup/
 syntax enable
 set background=dark
 colorscheme ir_black
+
 let macvim_skip_colorscheme=1
 
 " Wrapped lines goes down/up to next row, rather than next line in file.
