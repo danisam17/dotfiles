@@ -1,66 +1,24 @@
-" O HAI
 " .vimrc
 " @imkmf
 
-" You might not have this
-" if you aren't using Homebrew
-set shell=/usr/local/bin/bash
+set shell=$SHELL
 
-" Plugins {{{
-
-" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
-" let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-"" Vim config
-Plugin 'bling/vim-airline'
-Plugin 'edkolev/tmuxline.vim'
-Plugin 'endwise.vim'
-
-Plugin 'kien/ctrlp.vim'
-Plugin 'imkmf/ctrlp-branches'
-" Plugin 'sgur/ctrlp-extensions.vim'
-
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'flazz/vim-colorschemes'
-"" Shell/non-Vim interfacing
 Plugin 'airblade/vim-gitgutter'
 Plugin 'amiel/vim-tmux-navigator'
-Plugin 'rking/ag.vim'
-"" Language specific
-Plugin 'fatih/vim-go'
-Plugin 'jtratner/vim-flavored-markdown'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-abolish'
-Plugin 'tpope/vim-eunuch'
-Plugin 'tpope/vim-repeat'
+Plugin 'bling/vim-airline'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'imkmf/ctrlp-branches'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mattn/emmet-vim'
 Plugin 'osyo-manga/vim-over'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-
-" }}}
-
-" vimrc settings {{{
-"
-" .vimrc folding
-augroup filetype_vim
-  autocmd!
-  autocmd FileType vim setlocal foldmethod=marker
-augroup END
-" Fold with space
-nnoremap <space> za
-
-" }}}
-
-" Basics {{{
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-repeat'
+call vundle#end()
 
 " Retain buffers until quit
 set hidden
@@ -86,14 +44,6 @@ set laststatus=2
 
 " scrolling
 set mouse=a
-
-" Brace face
-set showmatch
-set matchtime=3
-
-" Split down and right
-set splitbelow
-set splitright
 
 " Read filetype stuff
 filetype plugin on
@@ -136,13 +86,6 @@ set hlsearch
 " Line numbering
 set number
 
-" Tree style listing on Explore
-let g:netrw_liststyle=3
-
-" }}}
-
-" History/Undo settings {{{
-
 " We have computers with pretty big
 " hard drives, so let's keep these
 set history=1000
@@ -152,16 +95,12 @@ set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
 set backupdir=~/.vim/backup/
 set directory=~/.vim/backup/
-" }}}
 
-" Colors {{{
+" Colors
 syntax enable
 set background=dark
-" colorscheme Tomorrow-Night
 colorscheme ir_black
-" }}}
-
-" Key commands {{{
+let macvim_skip_colorscheme=1
 
 " Wrapped lines goes down/up to next row, rather than next line in file.
 noremap j gj
@@ -202,13 +141,8 @@ nnoremap <leader>r :%s/:\(\w*\)\s*=>\s*/\1: /gc<cr>
 " open directory in netrw
 nnoremap <leader>o :Explore %:h<cr>
 
-" }}}
-
-" Filetypes {{{
-
 " Remove trailing whitespace in files
 autocmd BufWritePre * :%s/\s\+$//e
-
 augroup trailing
     au!
     au InsertEnter * :set listchars-=trail:⌴
@@ -232,10 +166,6 @@ augroup ft_go
     au Filetype go setlocal nolist
 augroup END
 
-" }}}
-
-" Plugin configurations {{{
-
 "" Ignore rules
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip              " MacOSX/Linux
@@ -244,6 +174,10 @@ set wildignore+=*/vendor/*,*/dist/*,/target/*         " Meh
 set wildignore+=*/Godeps/*                            " Go
 
 " ctrl-p
+let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 nmap <leader>i :CtrlPBuffer<cr>
@@ -261,7 +195,6 @@ let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
-
 let g:airline_section_c = '%t'
 let g:airline#extensions#tabline#fnametruncate = 0
 
@@ -292,6 +225,3 @@ endfunction
 nnoremap <Leader>fr :call VisualFindAndReplace()<CR>
 xnoremap <Leader>fr :call VisualFindAndReplaceWithSelection()<CR>
 
-let macvim_skip_colorscheme=1
-
-" }}}
