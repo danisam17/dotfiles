@@ -5,18 +5,19 @@ set shell=$SHELL
 
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
-Plug 'amiel/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'bling/vim-airline'
+Plug 'davidoc/taskpaper.vim'
 Plug 'edkolev/tmuxline.vim'
+Plug 'elixir-lang/vim-elixir'
 Plug 'flazz/vim-colorschemes'
-Plug 'whatyouhide/vim-gotham'
 Plug 'imkmf/ctrlp-branches'
 Plug 'kien/ctrlp.vim'
 Plug 'mattn/emmet-vim'
 Plug 'osyo-manga/vim-over'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
-Plug 'elixir-lang/vim-elixir'
+Plug 'dhruvasagar/vim-table-mode'
 call plug#end()
 
 " Retain buffers until quit
@@ -77,8 +78,8 @@ set backupdir=~/.vim/backup/
 set directory=~/.vim/backup/
 " Colors
 syntax enable
-set background=dark
-colorscheme gotham
+set background=light
+colorscheme default
 let macvim_skip_colorscheme=1
 " Wrapped lines goes down/up to next row, rather than next line in file.
 noremap j gj
@@ -155,29 +156,8 @@ nnoremap <leader>g :CtrlPBranches<cr>
 nnoremap <leader>p :CtrlP<cr>
 
 " Airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme="gotham"
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_section_c = '%t'
-let g:airline#extensions#tabline#fnametruncate = 0
-
-" Tmuxline
-let g:tmuxline_powerline_separators = 0
-
-" Gitgutter
-highlight clear SignColumn
-highlight GitGutterAdd ctermfg=green guifg=darkgreen
-highlight GitGutterChange ctermfg=yellow guifg=darkyellow
-highlight GitGutterDelete ctermfg=red guifg=darkred
-highlight GitGutterChangeDelete ctermfg=yellow guifg=darkyellow
-
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
+let g:airline_theme="light"
+let g:airline_powerline_fonts = 1
 
 " vim-over
 function! VisualFindAndReplace()
@@ -191,3 +171,18 @@ endfunction
 nnoremap <Leader>fr :call VisualFindAndReplace()<CR>
 xnoremap <Leader>fr :call VisualFindAndReplaceWithSelection()<CR>
 
+" some font bullshit
+set guifont=Inconsolata\ for\ Powerline:h15
+let g:Powerline_symbols = 'fancy'
+set encoding=utf-8
+set t_Co=256
+set fillchars+=stl:\ ,stlnc:\
+set term=xterm-256color
+set termencoding=utf-8
+
+if has("gui_running")
+  let s:uname = system("uname")
+  if s:uname == "Darwin\n"
+    set guifont=Inconsolata\ for\ Powerline:h15
+  endif
+endif
