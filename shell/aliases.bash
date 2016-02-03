@@ -1,5 +1,7 @@
 # vi:syntax=sh
 
+alias vim=nvim
+
 alias a="attach"
 alias am="git commit --amend"
 alias b="git branch"

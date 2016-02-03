@@ -3,22 +3,13 @@
 
 set shell=$SHELL
 
-call plug#begin('~/.vim/plugged')
-Plug 'airblade/vim-gitgutter'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'bling/vim-airline'
-Plug 'davidoc/taskpaper.vim'
-Plug 'edkolev/tmuxline.vim'
-Plug 'elixir-lang/vim-elixir'
-Plug 'flazz/vim-colorschemes'
-Plug 'imkmf/ctrlp-branches'
-Plug 'kien/ctrlp.vim'
-Plug 'mattn/emmet-vim'
-Plug 'osyo-manga/vim-over'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-repeat'
-Plug 'dhruvasagar/vim-table-mode'
-call plug#end()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'scrooloose/syntastic'
+call vundle#end()
 
 " Retain buffers until quit
 set hidden
@@ -85,15 +76,12 @@ let macvim_skip_colorscheme=1
 noremap j gj
 noremap k gk
 " Leader is: <Space>
-let mapleader = "\<Space>"
-let g:mapleader = "\<Space>"
+let mapleader = ","
+let g:mapleader = ","
 " Vertical split
 nnoremap <leader>w <C-w>v<C-w>l
 " Horizontal split
 nnoremap <leader>h <C-w>s<C-w>l
-" j-k smash
-inoremap jk <esc>
-inoremap kj <esc>
 " Save all the time with return
 nnoremap <cr> :w<cr>
 " No shift-reaching
@@ -141,48 +129,17 @@ set wildignore+=*/vendor/*,*/dist/*,/target/*         " Meh
 set wildignore+=*/Godeps/*                            " Go
 
 " ctrl-p
-let g:ctrlp_match_window = 'bottom,order:ttb'
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_working_path_mode = 0
 let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-nmap <leader>i :CtrlPBuffer<cr>
-let g:ctrlp_extensions = [
-      \ 'branches',
-      \ ]
 
-nnoremap <leader>g :CtrlPBranches<cr>
-nnoremap <leader>p :CtrlP<cr>
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
-" Airline
-let g:airline_theme="light"
-let g:airline_powerline_fonts = 1
-
-" vim-over
-function! VisualFindAndReplace()
-    :OverCommandLine%s/
-    :w
-endfunction
-function! VisualFindAndReplaceWithSelection() range
-    :'<,'>OverCommandLine s/
-    :w
-endfunction
-nnoremap <Leader>fr :call VisualFindAndReplace()<CR>
-xnoremap <Leader>fr :call VisualFindAndReplaceWithSelection()<CR>
-
-" some font bullshit
-set guifont=Inconsolata\ for\ Powerline:h15
-let g:Powerline_symbols = 'fancy'
-set encoding=utf-8
-set t_Co=256
-set fillchars+=stl:\ ,stlnc:\
-set term=xterm-256color
-set termencoding=utf-8
-
-if has("gui_running")
-  let s:uname = system("uname")
-  if s:uname == "Darwin\n"
-    set guifont=Inconsolata\ for\ Powerline:h15
-  endif
-endif
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['standard']
