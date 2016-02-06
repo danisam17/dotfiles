@@ -6,9 +6,20 @@ set shell=$SHELL
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'SirVer/ultisnips'
+Plugin 'chriskempson/base16-vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'haya14busa/vim-easyoperator-line'
+Plugin 'heavenshell/vim-jsdoc'
+Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-commentary'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'wellbredgrapefruit/tomdoc.vim'
 call vundle#end()
 
 " Retain buffers until quit
@@ -40,8 +51,6 @@ set ttimeoutlen=10
 set backupskip=/tmp/*,/private/tmp/*"
 " Resize splits when the window is resized
 au VimResized * :wincmd =
-" Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 " Use spaces instead of tabs
@@ -69,8 +78,9 @@ set backupdir=~/.vim/backup/
 set directory=~/.vim/backup/
 " Colors
 syntax enable
-set background=light
-colorscheme default
+set background=dark
+let base16colorspace=256
+colorscheme base16-ocean
 let macvim_skip_colorscheme=1
 " Wrapped lines goes down/up to next row, rather than next line in file.
 noremap j gj
@@ -137,9 +147,22 @@ let g:ctrlp_cmd = 'CtrlP'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['standard']
+
+" ultisnip
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" easymotion
+hi link EasyMotionTarget ErrorMsg
+hi link EasyMotionShade  Comment
+hi link EasyMotionMoveHL Search
+
+" airline
+let g:airline_powerline_fonts = 1
+let g:airline_theme = "base16"
