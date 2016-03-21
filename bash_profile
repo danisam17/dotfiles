@@ -10,7 +10,7 @@ export BASH_IT="/Users/kristian/.bash_it"
 
 # Lock and Load a custom theme file
 # location /.bash_it/themes/
-export BASH_IT_THEME='powerline-multiline'
+export BASH_IT_THEME='doubletime'
 
 # Don't check mail when opening terminal.
 unset MAILCHECK
@@ -24,3 +24,4 @@ export SCM_CHECK=true
 
 # Load Bash It
 source $BASH_IT/bash_it.sh
+

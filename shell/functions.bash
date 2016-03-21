@@ -20,3 +20,7 @@ v0() {
 code4slide() {
   highlight -O rtf "$1" --line-numbers --font-size 24 --font Inconsolata --style zenburn -W -J 78 -j 3 --src-lang ruby | pbcopy
 }
+
+fuzz() {
+  vim "$(ag -i '$1' -L | head -n1)"
+}

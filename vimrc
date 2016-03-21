@@ -12,11 +12,13 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'easymotion/vim-easymotion'
+Plugin 'elixir-lang/vim-elixir'
 Plugin 'haya14busa/vim-easyoperator-line'
 Plugin 'heavenshell/vim-jsdoc'
 Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'wellbredgrapefruit/tomdoc.vim'
@@ -164,5 +166,5 @@ hi link EasyMotionShade  Comment
 hi link EasyMotionMoveHL Search
 
 " airline
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:airline_theme = "base16"
