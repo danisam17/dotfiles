@@ -8,3 +8,4 @@ mutt/temp
 *.scpt
 machines/*.machine
 *.gpg
+config/configstore
