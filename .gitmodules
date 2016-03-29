@@ -1,3 +1,6 @@
 [submodule "vim/bundle/vim-pathogen"]
 	path = vim/bundle/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen.git
+[submodule "emacs.d"]
+	path = emacs.d
+	url = git@github.com:imkmf/spacemacs.git
