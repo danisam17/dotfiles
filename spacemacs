@@ -24,6 +24,8 @@
      markdown
      org
      osx
+     react
+     (ruby :variables ruby-version-manager 'rbenv)
      syntax-checking
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
@@ -60,17 +62,13 @@ before layers configuration."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(solarized-dark
-                         solarized-light
-                         leuven
-                         monokai
-                         zenburn)
+   dotspacemacs-themes '(solarized-light)
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '("Operator Mono"
-                               :size 13
+                               :size 14
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -134,7 +132,11 @@ before layers configuration."
    ;; Not used for now.
    dotspacemacs-default-package-repository nil
    )
-  ;; User initialization goes here
+
+   ;; your config here <3
+   (require 'org-habit)
+   (setq org-todo-keywords
+         '((sequence "TODO(t)" "WAITING(w)" "IN REVIEW(r)" "|" "MERGED(m)" "SHIPPED(s)" "CANCELLED(c)" "DONE(d)")))
   )
 
 (defun dotspacemacs/config ()
@@ -142,6 +144,7 @@ before layers configuration."
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
 
+  (setq-default js2-basic-offset 2)
   (setq js-indent-level 2)
   '(projectile-globally-ignored-directories
    (quote
@@ -160,11 +163,20 @@ layers configuration."
  '(ahs-idle-interval 0.25)
  '(ahs-idle-timer 0 t)
  '(ahs-inhibit-face-list nil)
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
  '(custom-enabled-themes (quote (solarized-light)))
  '(custom-safe-themes
    (quote
     ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
+ '(hl-sexp-background-color "#efebe9")
  '(magit-use-overlays nil)
+ '(org-agenda-files
+   (quote
+    ("~/Dropbox/org/tasks/me.org" "~/Dropbox/org/tasks/simple.org")))
+ '(org-modules
+   (quote
+    (org-bbdb org-bibtex org-docview org-gnus org-habit org-info org-irc org-mhe org-rmail org-w3m)))
  '(ring-bell-function (quote ignore) t)
  '(rspec-use-bundler-when-possible nil))
 (custom-set-faces

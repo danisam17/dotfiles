@@ -1,7 +1,8 @@
-# Globals
-source $HOME/.shellrc
-
 for file in $HOME/.bash/*; do
+  source $file
+done
+
+for file in $HOME/.shell/*; do
   source $file
 done
 
@@ -23,5 +24,5 @@ export SCM_CHECK=true
 #export VCPROMPT_EXECUTABLE=~/.vcprompt/bin/vcprompt
 
 # Load Bash It
-source $BASH_IT/bash_it.sh
+# source $BASH_IT/bash_it.sh
 
