@@ -18,6 +18,7 @@
      ;; --------------------------------------------------------
      auto-completion
      better-defaults
+     elixir
      javascript
      (git :variables
           git-gutter-use-fringe t)
@@ -144,7 +145,18 @@ before layers configuration."
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
 
-  (setq-default js2-basic-offset 2)
+  (setq-default
+   ;; js2-mode
+   js2-basic-offset 2
+   ;; web-mode
+   css-indent-offset 2
+   web-mode-markup-indent-offset 2
+   web-mode-css-indent-offset 2
+   web-mode-code-indent-offset 2
+   web-mode-attr-indent-offset 2
+   js2-strict-missing-semi-warning nil
+   )
+
   (setq js-indent-level 2)
   '(projectile-globally-ignored-directories
    (quote
