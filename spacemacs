@@ -20,6 +20,7 @@
      better-defaults
      elixir
      javascript
+     kristian-org-notify
      (git :variables
           git-gutter-use-fringe t)
      markdown
