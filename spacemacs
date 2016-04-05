@@ -26,8 +26,10 @@
      markdown
      org
      osx
+     ranger
      react
      (ruby :variables ruby-version-manager 'rbenv)
+     (shell :variables shell-default-shell 'eshell)
      syntax-checking
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
@@ -55,7 +57,7 @@ before layers configuration."
    ;; List of items to show in the startup buffer. If nil it is disabled.
    ;; Possible values are: `recents' `bookmarks' `projects'."
    dotspacemacs-startup-lists '(recents projects)
-   dotspacemacs-themes '(tao-yang)
+   dotspacemacs-themes '(zenburn)
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -152,7 +154,7 @@ layers configuration."
   (setq js-indent-level 2)
   '(projectile-globally-ignored-directories
    (quote
-    (".idea" ".eunit" ".git" ".hg" ".fslckout" ".bzr" "_darcs" ".tox" ".svn" "build" "node_modules" "bower_components" "target"))) 
+    (".idea" ".eunit" ".git" ".hg" ".fslckout" ".bzr" "_darcs" ".tox" ".svn" "build" "node_modules" "bower_components" "target")))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -172,7 +174,7 @@ layers configuration."
  '(custom-enabled-themes (quote (tao-yang)))
  '(custom-safe-themes
    (quote
-    ("40bc0ac47a9bd5b8db7304f8ef628d71e2798135935eb450483db0dbbfff8b11" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
+    ("f3d6a49e3f4491373028eda655231ec371d79d6d2a628f08d5aa38739340540b" "40bc0ac47a9bd5b8db7304f8ef628d71e2798135935eb450483db0dbbfff8b11" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(hl-sexp-background-color "#efebe9")
  '(magit-use-overlays nil)
  '(org-agenda-files

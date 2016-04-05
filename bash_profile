@@ -6,6 +6,10 @@ for file in $HOME/.shell/*; do
   source $file
 done
 
+for file in $HOME/.machines/*; do
+  source $file
+done
+
 # Path to the bash it configuration
 export BASH_IT="/Users/kristian/.bash_it"
 
