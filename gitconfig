@@ -61,8 +61,6 @@
 [mergetool "Kaleidoscope"]
 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 	trustExitCode = true
-[http]
-  sslVerify = false
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean %f

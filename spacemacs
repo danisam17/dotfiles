@@ -129,9 +129,11 @@ before layers configuration."
    )
 
    ;; your config here <3
-   (require 'org-habit)
-   (setq org-todo-keywords
-         '((sequence "TODO(t)" "WAITING(w)" "IN REVIEW(r)" "|" "MERGED(m)" "SHIPPED(s)" "CANCELLED(c)" "DONE(d)")))
+    (require 'org)
+    (require 'org-habit)
+    (require 'outline)
+    (setq org-todo-keywords
+      '((sequence "TODO(t)" "WAITING(w)" "IN REVIEW(r)" "|" "MERGED(m)" "SHIPPED(s)" "CANCELLED(c)" "DONE(d)")))
   )
 
 (defun dotspacemacs/config ()
@@ -180,6 +182,7 @@ layers configuration."
  '(org-agenda-files
    (quote
     ("~/Dropbox/org/tasks/me.org" "~/Dropbox/org/tasks/simple.org")))
+ '(org-babel-load-languages (quote ((ruby . t) (calc . t) (emacs-lisp . t))))
  '(org-modules
    (quote
     (org-bbdb org-bibtex org-docview org-gnus org-habit org-info org-irc org-mhe org-rmail org-w3m)))
