@@ -1,11 +1,24 @@
 [user]
   name = Kristian Freeman
   email = kristian@simple.com
+	signingkey = 95F7EEF1
 [color]
   branch = auto
   diff = auto
   status = auto
-  ui = auto
+  ui = always
+[color "diff-highlight"]
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
+[color "diff"]
+  commit = green
+  meta = yellow
+  frag = cyan
+  old = red
+  new = green
+  whitespace = red reverse
 [alias]
   c = add && commit
   co = checkout
@@ -37,7 +50,8 @@
 [core]
   editor = vim
   quotepath = false
-	excludesfile = /Users/kristian/.gitignore_global
+  excludesfile = /Users/kristian/.gitignore_global
+  pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
@@ -65,3 +79,7 @@
 	required = true
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
+[gpg]
+	program = gpg2
+[commit]
+	gpgSign = true

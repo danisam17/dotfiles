@@ -1,0 +1,12 @@
+for file in $HOME/.bash/*; do
+  source $file
+done
+
+for file in $HOME/.shell/*; do
+  source $file
+done
+
+for file in $HOME/.machines/*; do
+  source $file
+done
+

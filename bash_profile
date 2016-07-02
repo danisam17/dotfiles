@@ -1,15 +1,3 @@
-for file in $HOME/.bash/*; do
-  source $file
-done
-
-for file in $HOME/.shell/*; do
-  source $file
-done
-
-for file in $HOME/.machines/*; do
-  source $file
-done
-
 # Path to the bash it configuration
 export BASH_IT="/Users/kristian/.bash_it"
 
@@ -30,3 +18,9 @@ export SCM_CHECK=true
 # Load Bash It
 # source $BASH_IT/bash_it.sh
 
+source ~/.shellrc
+
+# fix sublime, computers are frustratingly obtuse sometimes
+export NVM_DIR="${HOME}/.nvm"
+[ -s "$NVM_DIR/nvm.sh"  ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+nvm use default
