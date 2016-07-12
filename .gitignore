@@ -9,3 +9,6 @@ mutt/temp
 machines/*.machine
 *.gpg
 config
+vim/plugged/*
+vim/undo/*
+vim/backup/*

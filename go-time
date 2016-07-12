@@ -6,15 +6,11 @@ home = ENV["HOME"]+"/"
 Dir.foreach(home+".dotfiles") do |item|
   next if blacklist.include? item
   home_file = home+".#{item}"
-  if item == "vim"
-    File.symlink("#{home+".dotfiles"}/#{item}/*", home+".#{ item }/*")
+  if File.exists?(home_file)
+    File.delete(home_file)
+    puts "Deleting #{item} and re-linking"
   else
-    if File.exists?(home_file)
-      File.delete(home_file)
-      puts "Deleting #{item} and re-linking"
-    else
-      puts "symlinking #{ item }"
-    end
-    File.symlink("#{home+".dotfiles"}/#{item}", home+".#{ item }")
+    puts "symlinking #{ item }"
   end
+  File.symlink("#{home+".dotfiles"}/#{item}", home+".#{ item }")
 end
