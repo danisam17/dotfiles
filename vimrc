@@ -6,7 +6,7 @@ set shell=$SHELL
 call plug#begin('~/.vim/plugged')
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'edkolev/tmuxline.vim'
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'osyo-manga/vim-over'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
@@ -130,7 +130,7 @@ augroup END
 "" Ignore rules
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip              " MacOSX/Linux
 set wildignore+=*/node_modules/*,*/bower_components/* " Node.js
-set wildignore+=*/vendor/*,*/dist/*,/target/*         " Meh
+set wildignore+=*/vendor/*,*/dist/*,/target/*,.git/*  " Rando
 set wildignore+=*/Godeps/*                            " Go
 
 " ctrl-p
