@@ -1,5 +1,4 @@
 export NVM_DIR=~/.nvm
-. $(brew --prefix nvm)/nvm.sh
 
 # Extract your NPM auth token and export it for use by project-level .npmrc
 # files. This is required so projects can use NPM_TOKEN to install private
