@@ -4,6 +4,7 @@
 set shell=$SHELL
 
 call plug#begin('~/.vim/plugged')
+Plug 'altercation/vim-colors-solarized'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'edkolev/tmuxline.vim'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -71,8 +72,8 @@ set backupdir=~/.vim/backup/
 set directory=~/.vim/backup/
 " Colors
 syntax enable
-set background=light
-colorscheme default
+set background=dark
+colorscheme solarized
 let macvim_skip_colorscheme=1
 " Wrapped lines goes down/up to next row, rather than next line in file.
 noremap j gj
@@ -94,7 +95,7 @@ nnoremap ; :
 " Buffer commands
 nmap <c-b> :bprevious<CR>
 nmap <c-n> :bnext<CR>
-nmap bb :bw<CR>
+nmap bw :bw<CR>
 " Turn off nohlsearch
 nmap <silent> <leader><Space> :nohlsearch<CR>
 " Interactive find-and-replace for :foo => bar to foo: bar
@@ -134,10 +135,9 @@ set wildignore+=*/vendor/*,*/dist/*,/target/*,.git/*  " Rando
 set wildignore+=*/Godeps/*                            " Go
 
 " ctrl-p
-let g:ctrlp_match_window = 'bottom,order:ttb'
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --ignore .git -g ""'
+let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 nmap <leader>i :CtrlPBuffer<cr>
@@ -156,3 +156,12 @@ endfunction
 nnoremap <Leader>fr :call VisualFindAndReplace()<CR>
 xnoremap <Leader>fr :call VisualFindAndReplaceWithSelection()<CR>
 
+" use ag for grep functionality in vim
+" http://vi.stackexchange.com/questions/6485/project-wide-replace-using-ag
+set grepprg=ag\ --vimgrep
+set grepformat=%f:%l:%c:%m,%f:%l:%m
+augroup quickfix
+  autocmd!
+  autocmd QuickFixCmdPost [^l]* cwindow
+  autocmd QuickFixCmdPost l*    lwindow
+augroup END
