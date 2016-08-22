@@ -1,0 +1,4 @@
+*bundle*
+*.lock
+public/js/*
+log/*

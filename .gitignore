@@ -12,3 +12,4 @@ config
 vim/plugged/*
 vim/undo/*
 vim/backup/*
+vim/.netrwhist
