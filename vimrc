@@ -6,12 +6,17 @@ set shell=$SHELL
 call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'edkolev/tmuxline.vim'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'derekwyatt/vim-scala'
+Plug 'edkolev/tmuxline.vim'
+Plug 'elixir-lang/vim-elixir'
+Plug 'mxw/vim-jsx'
 Plug 'osyo-manga/vim-over'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 " Retain buffers until quit
@@ -72,7 +77,7 @@ set backupdir=~/.vim/backup/
 set directory=~/.vim/backup/
 " Colors
 syntax enable
-set background=dark
+set background=light
 colorscheme solarized
 let macvim_skip_colorscheme=1
 " Wrapped lines goes down/up to next row, rather than next line in file.
@@ -103,6 +108,7 @@ nnoremap <leader>r :%s/:\(\w*\)\s*=>\s*/\1: /gc<cr>
 
 "" Filetypes
 
+let g:jsx_ext_required = 0
 " Remove trailing whitespace in files
 autocmd BufWritePre * :%s/\s\+$//e
 augroup trailing
@@ -165,3 +171,14 @@ augroup quickfix
   autocmd QuickFixCmdPost [^l]* cwindow
   autocmd QuickFixCmdPost l*    lwindow
 augroup END
+
+" airline
+let g:airline_theme='solarized'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:tmuxline_powerline_separators = 0
+
+" operator
+highlight Comment cterm=italic
+highlight Comment gui=italic
