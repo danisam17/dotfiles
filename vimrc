@@ -5,11 +5,13 @@ set shell=$SHELL
 
 call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
+Plug 'chriskempson/base16-vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'derekwyatt/vim-scala'
 Plug 'edkolev/tmuxline.vim'
 Plug 'elixir-lang/vim-elixir'
+Plug 'lambdatoast/elm.vim'
 Plug 'mxw/vim-jsx'
 Plug 'osyo-manga/vim-over'
 Plug 'tpope/vim-commentary'
@@ -77,9 +79,11 @@ set backupdir=~/.vim/backup/
 set directory=~/.vim/backup/
 " Colors
 syntax enable
-set background=light
-colorscheme solarized
-let macvim_skip_colorscheme=1
+set background=dark
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
 " Wrapped lines goes down/up to next row, rather than next line in file.
 noremap j gj
 noremap k gk
@@ -173,10 +177,11 @@ augroup quickfix
 augroup END
 
 " airline
-let g:airline_theme='solarized'
+let g:airline_theme='base16_tomorrow'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
 
 " operator
 highlight Comment cterm=italic
 highlight Comment gui=italic
+
